@@ -420,14 +420,14 @@ export function AppShell({
         <main className="ka-content">
           <div className="ka-tabbar">
             <div className="ka-tab-list">
-              <div
-                ref={isWorkbench ? activeTabRef : undefined}
-                className={`ka-tab${isWorkbench ? " is-active" : ""}`}
-                onClick={() => router.push("/orgs/index")}
-              >
-                <SpriteIcon name="org-menu-gongzuotai" className="ka-tab-icon" />
-                <span className="ka-tab-text">工作台</span>
-                {isWorkbench ? (
+              {isWorkbench ? (
+                <div
+                  ref={activeTabRef}
+                  className="ka-tab is-active"
+                  onClick={() => router.push("/orgs/index")}
+                >
+                  <SpriteIcon name="org-menu-gongzuotai" className="ka-tab-icon" />
+                  <span className="ka-tab-text">工作台</span>
                   <button
                     type="button"
                     className="ka-tab-reload"
@@ -439,8 +439,8 @@ export function AppShell({
                   >
                     <ReloadIcon />
                   </button>
-                ) : null}
-              </div>
+                </div>
+              ) : null}
 
               {settingsTabKeys.map((key) => {
                 const page = SETTINGS_PAGE_BY_KEY[key];

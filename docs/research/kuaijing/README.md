@@ -105,7 +105,8 @@ source (`agreement-content.ts`).
 The settings shell selects 系统设置, uses the settings sidebar (including the
 nested 组织架构 → 通讯录管理 group), and accumulates a tab per visited page
 (client-side store; the tab strip scrolls and 更多 keeps refresh/fullscreen/
-new-window/close actions). The workbench tab stays available.
+new-window/close actions). As in the source, the settings tab strip contains only
+settings pages; the workbench is reached from 数据中心.
 
 | # | Page | Local route | Layout |
 | --- | --- | --- | --- |
@@ -130,9 +131,9 @@ new-window/close actions). The workbench tab stays available.
 | 19 | APP | `/orgs/settings/app` | app list table |
 | 20 | 操作日志 | `/orgs/settings/operation-log` | inline filters + log table |
 
-Employee names, phone numbers, emails and operation-log IP/phone values were
-**sanitized** in the clone (dummy employee names, masked phones, placeholder IPs).
-The source screenshots for 成员/部门 and 操作日志 are intentionally not stored.
+This is a demonstration clone: every page is populated with the source's captured
+demo data (including the employee directory and operation-log rows). No privacy
+sanitization is applied, and none should be applied to later pages either.
 
 ## Asset map
 
@@ -149,7 +150,7 @@ The source screenshots for 成员/部门 and 操作日志 are intentionally not 
 | header logo data URL | `public/sites/kuaijing/images/org-logo.png` | 52×48, rendered 36×36 white tile |
 | `/public_h5/static/images/user/avatar.png` | `public/sites/kuaijing/images/user-avatar.png` | 18×18 header avatar |
 | `#bailing_watermark` background | `public/sites/kuaijing/images/watermark.png` | 380×380 captured watermark tile |
-| iconfont sprite subset | `public/sites/kuaijing/iconfont-sprite.svg` | 45 symbols used on the page |
+| iconfont sprite subset | `public/sites/kuaijing/iconfont-sprite.svg` | 70 symbols used across the shell, workbench, and settings |
 | `/public_web/static/images/workbench/*` | `public/sites/kuaijing/workbench/cards/` | 8 card thumbnails |
 | `/public_web/static/images/orgApp/*` | `public/sites/kuaijing/workbench/apps/` | 8 quick-function images |
 | `/public_web/static/images/message/*` | `public/sites/kuaijing/workbench/messages/` | 3 notification avatars |
@@ -191,14 +192,21 @@ mobile, lock, eye, eye-invisible, wechat, close) and the page iconfont symbol
   2026-11-27 session time.
 - The page uses the captured account's company name, building, user initial,
   notices, and watermark.
-- 系统设置 pages are visual clones: search/reset, add/edit/delete, import/export,
-  save, permission dialogs, menu drag-and-drop, and member detail actions are
-  not wired. Inner menus (企业信息 门户/安全/通知, 模型参数 知识库, 成员/部门/岗位)
-  render their default state only; pagination is static.
-- The settings tab strip accumulates pages in a client store and resets on a
-  full reload. It scrolls horizontally rather than reproducing Ant Design's
-  overflow 更多 popup exactly.
-- Sensitive employee/operation-log data was sanitized (see the settings section).
+- 系统设置 pages have their demo interactions wired: search/reset filtering,
+  status filters, pagination and page size, add/edit/delete dialogs and drawers,
+  switches, copy/refresh invite code, upload previews, CSV export, inner tab
+  switching (企业信息 门户/安全/通知, 模型参数 知识库, 成员/部门/岗位, 三方
+  integration menus), member/department/position management, role creation and
+  member transfer, menu drag-drop/quick-add/publish, permission rules, profile
+  field display, question categories/questions, WeChat/DingTalk/Feishu/APP bind
+  forms, and operation-log filters (user/IP/service/port/date range).
+- All settings changes live in page-level React state. They are not sent to a
+  backend and reset on a full reload; the clone has no API layer.
+- The tab strip accumulates pages in a client store and also resets on a full
+  reload. It scrolls horizontally rather than reproducing Ant Design's overflow
+  更多 popup exactly.
+- Inner 三方集成 tabs that require a bound account show the source's empty-state
+  copy ("请至少绑定一个服务号", "请先绑定用户端小程序").
 
 ## Evidence
 
@@ -215,7 +223,7 @@ Screenshots live in `docs/design-references/`:
   `kuaijing-workbench-source-drawer-1440.png`,
   `kuaijing-workbench-source-collapsed-1440.png`,
   `kuaijing-workbench-source-calendar.png`,
-  `settings-source-01.png` … `settings-source-19.png` (05 and 20 omitted for PII)
+  `settings-source-01.png` … `settings-source-20.png`
 - Local: `kuaijing-local-initial.png`, `kuaijing-local-password.png`,
   `kuaijing-local-filled.png`, `kuaijing-local-wechat.png`,
   `kuaijing-local-wecom-modal.png`, `kuaijing-local-lang.png`,
