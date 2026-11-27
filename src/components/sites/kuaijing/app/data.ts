@@ -124,6 +124,98 @@ export const SIDEBAR: SidebarNode[] = [
   },
 ];
 
+export const OFFICE_SIDEBAR: SidebarNode[] = [
+  {
+    type: "page",
+    key: "menu-workHrDataOverview-371027",
+    name: "数据总览",
+    icon: "org-menu-shujukanban",
+  },
+  {
+    type: "group",
+    key: "menu-workApproval-280003",
+    name: "通用审批",
+    icon: "org-menu-shenpi",
+    children: [
+      {
+        type: "group",
+        key: "menu-workApprovalMy-280005",
+        name: "我的审批",
+        icon: "org-menu-wodeshenpi",
+        children: [
+          { type: "page", key: "menu-workApprovalMyNew-280009", name: "发起审批", icon: "org-menu-faqishenpi" },
+          { type: "page", key: "menu-workApprovalMyDataCenter-280010", name: "审批中心", icon: "org-menu-shenpizhongxin" },
+        ],
+      },
+      {
+        type: "group",
+        key: "menu-workApprovalManage-280004",
+        name: "审批管理",
+        icon: "org-menu-shenpiguanli",
+        children: [
+          { type: "page", key: "menu-workApprovalManageCategory-280007", name: "审批分类", icon: "org-menu-shenpifenlei" },
+          { type: "page", key: "menu-workApprovalManageDataCenter-280008", name: "数据管理", icon: "org-menu-shenpishujuguanli" },
+          { type: "page", key: "menu-workApprovalManageProxy-281012", name: "审批代办", icon: "org-menu-shenpidaiban" },
+        ],
+      },
+    ],
+  },
+  {
+    type: "group",
+    key: "menu-report_manager-290002",
+    name: "汇报管理",
+    icon: "org-menu-huibaoguanli",
+    children: [
+      { type: "page", key: "menu-report_form-290005", name: "汇报列表", icon: "org-menu-huibaoliebiao" },
+      { type: "page", key: "menu-report_template-290004", name: "汇报模板", icon: "org-menu-huibaomoban" },
+      { type: "page", key: "menu-report_statements-290003", name: "汇报报表", icon: "org-menu-huibaobaobiao" },
+    ],
+  },
+  { type: "page", key: "menu-workNotice-250013", name: "企业公告", icon: "org-menu-qiyegonggao" },
+  { type: "page", key: "menu-workHrClock-370002", name: "考勤管理", icon: "org-menu-kaoqinguanli" },
+  { type: "page", key: "menu-workWiki-360002", name: "知识库", icon: "org-menu-zhishiku" },
+  { type: "page", key: "menu-workSmartTable-361003", name: "智能表格", icon: "org-menu-zhishiku" },
+  { type: "page", key: "menu-workHrOffice-370003", name: "公文管理", icon: "org-menu-gongwenguanli" },
+  { type: "page", key: "menu-workHrRecruit-370004", name: "人才招聘", icon: "org-menu-rencaizhaopin" },
+  { type: "page", key: "menu-workMail-400002", name: "邮箱管理", icon: "org-menu-youxiangguanli" },
+];
+
+export type OfficePage = {
+  id: string;
+  key: string;
+  name: string;
+  icon: string;
+  slug: string;
+};
+
+export const OFFICE_PAGES: OfficePage[] = [
+  { id: "01", key: "menu-workHrDataOverview-371027", name: "数据总览", icon: "org-menu-shujukanban", slug: "overview" },
+  { id: "02", key: "menu-workApprovalMyNew-280009", name: "发起审批", icon: "org-menu-faqishenpi", slug: "approval-new" },
+  { id: "03", key: "menu-workApprovalMyDataCenter-280010", name: "审批中心", icon: "org-menu-shenpizhongxin", slug: "approval-center" },
+  { id: "04", key: "menu-workApprovalManageCategory-280007", name: "审批分类", icon: "org-menu-shenpifenlei", slug: "approval-category" },
+  { id: "05", key: "menu-workApprovalManageDataCenter-280008", name: "数据管理", icon: "org-menu-shenpishujuguanli", slug: "approval-data" },
+  { id: "06", key: "menu-workApprovalManageProxy-281012", name: "审批代办", icon: "org-menu-shenpidaiban", slug: "approval-proxy" },
+  { id: "07", key: "menu-report_form-290005", name: "汇报列表", icon: "org-menu-huibaoliebiao", slug: "report-list" },
+  { id: "08", key: "menu-report_template-290004", name: "汇报模板", icon: "org-menu-huibaomoban", slug: "report-template" },
+  { id: "09", key: "menu-report_statements-290003", name: "汇报报表", icon: "org-menu-huibaobaobiao", slug: "report-statements" },
+  { id: "10", key: "menu-workNotice-250013", name: "企业公告", icon: "org-menu-qiyegonggao", slug: "notice" },
+  { id: "11", key: "menu-workHrClock-370002", name: "考勤管理", icon: "org-menu-kaoqinguanli", slug: "attendance" },
+  { id: "12", key: "menu-workWiki-360002", name: "知识库", icon: "org-menu-zhishiku", slug: "wiki" },
+  { id: "13", key: "menu-workSmartTable-361003", name: "智能表格", icon: "org-menu-zhishiku", slug: "smart-table" },
+  { id: "14", key: "menu-workHrOffice-370003", name: "公文管理", icon: "org-menu-gongwenguanli", slug: "document" },
+  { id: "15", key: "menu-workHrRecruit-370004", name: "人才招聘", icon: "org-menu-rencaizhaopin", slug: "recruit" },
+  { id: "16", key: "menu-workMail-400002", name: "邮箱管理", icon: "org-menu-youxiangguanli", slug: "mail" },
+];
+
+export const OFFICE_PAGE_BY_KEY = Object.fromEntries(
+  OFFICE_PAGES.map((page) => [page.key, page]),
+);
+
+export function officeHref(key: string): string | undefined {
+  const page = OFFICE_PAGE_BY_KEY[key];
+  return page ? `/orgs/office/${page.slug}` : undefined;
+}
+
 export const SETTINGS_SIDEBAR: SidebarNode[] = [
   {
     type: "group",

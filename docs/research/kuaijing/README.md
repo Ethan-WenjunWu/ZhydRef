@@ -13,6 +13,7 @@ and 390×844 (DPR 3, mobile emulation).
 | `/orgs/#/user/login?redirect=/index` | `/orgs` (canonical mirror), `/` (alias) | `src/app/orgs/page.tsx`, `src/app/page.tsx`, `src/components/sites/kuaijing/LoginPage.tsx` |
 | `/orgs/#/index` | `/orgs/index` | `src/app/orgs/index/page.tsx`, `src/components/sites/kuaijing/app/AppShell.tsx`, `WorkbenchPage.tsx` |
 | `/orgs/#/index` → 系统设置 left menu | `/orgs/settings/<slug>` (20 routes) | `src/app/orgs/settings/[slug]/page.tsx`, `app/SettingsShell.tsx`, `SettingsPages.tsx`, `SettingsUI.tsx` |
+| `/orgs/#/index` → 行政办公 left menu | `/orgs/office/<slug>` (16 routes) | `src/app/orgs/office/[slug]/page.tsx`, `app/OfficeShell.tsx`, `office/OfficePages.tsx`, `office/*.tsx` |
 | `/public/system/agreement/use` | `/public/system/agreement/use` | `src/app/public/system/agreement/use/page.tsx` |
 | `/public/system/agreement/privacy` | `/public/system/agreement/privacy` | `src/app/public/system/agreement/privacy/page.tsx` |
 
@@ -135,6 +136,44 @@ This is a demonstration clone: every page is populated with the source's capture
 demo data (including the employee directory and operation-log rows). No privacy
 sanitization is applied, and none should be applied to later pages either.
 
+## 行政办公 (A11) — all 16 pages
+
+The office shell selects 行政办公 and keeps its own nested sidebar
+(通用审批 → 我的审批/审批管理; 汇报管理 → 汇报列表/汇报模板/汇报报表).
+Tabs accumulate across settings and office pages, as in the source.
+
+| # | Page | Local route | Layout |
+| --- | --- | --- | --- |
+| 01 | 数据总览 | `/orgs/office/overview` | 8 stat cards, 3 chart cards, 4 mini statistic cards |
+| 02 | 发起审批 | `/orgs/office/approval-new` | 考勤 section + 请假/补卡 cards + centered request forms |
+| 03 | 审批中心 | `/orgs/office/approval-center` | 400px tabbed list + empty detail pane |
+| 04 | 审批分类 | `/orgs/office/approval-category` | category tree + approval rows + save/cancel footer |
+| 05 | 数据管理 | `/orgs/office/approval-data` | six-column filters + 6-row approval table + detail drawer |
+| 06 | 审批代办 | `/orgs/office/approval-proxy` | info alert + filters + proxy table |
+| 07 | 汇报列表 | `/orgs/office/report-list` | 我收到的/我提交的 tabs + search + empty list |
+| 08 | 汇报模板 | `/orgs/office/report-template` | 240px template groups + toolbar + template cards |
+| 09 | 汇报报表 | `/orgs/office/report-statements` | search row + empty statistics table |
+| 10 | 企业公告 | `/orgs/office/notice` | 240px category panel + announcement toolbar/search/list |
+| 11 | 考勤管理 | `/orgs/office/attendance` | 210px menu panel + 3 attendance-group rows |
+| 12 | 知识库 | `/orgs/office/wiki` | 240px category panel + knowledge-base card grid |
+| 13 | 智能表格 | `/orgs/office/smart-table` | centered empty guide + 3-step flow + recycle bin |
+| 14 | 公文管理 | `/orgs/office/document` | 210px menu + 收文发文/我的公文 cards + document tabs |
+| 15 | 人才招聘 | `/orgs/office/recruit` | 210px menu + recruitment filter/table + new-plan drawer |
+| 16 | 邮箱管理 | `/orgs/office/mail` | 288px mailbox menu + 378px list + detail pane |
+
+Interactions wired across these pages: dashboard stat shortcuts, approval request
+forms and submission gating, approval-center tabs/filter, category tree and
+add-group/create-approval/sort dialogs, approval data search/export/detail,
+proxy creation, report template groups/templates/sort, notice categories/new
+announcement/admin settings, attendance group create/edit/delete and inner menu,
+knowledge-base categories and creation drawer, smart-table category dialog and
+recycle bin, document receive/draft registration, recruitment plans, and the
+three-pane mail UI with compose/send/folders/settings.
+
+Office visuals use the source's HR/approval PNG icons, wiki/mail illustrations,
+and the additional `workHr` / `workApproval` / `workReport` / `workNotice` /
+`workMail` iconfont symbols appended to the shared sprite.
+
 ## Asset map
 
 | Source | Local | Notes |
@@ -154,6 +193,11 @@ sanitization is applied, and none should be applied to later pages either.
 | `/public_web/static/images/workbench/*` | `public/sites/kuaijing/workbench/cards/` | 8 card thumbnails |
 | `/public_web/static/images/orgApp/*` | `public/sites/kuaijing/workbench/apps/` | 8 quick-function images |
 | `/public_web/static/images/message/*` | `public/sites/kuaijing/workbench/messages/` | 3 notification avatars |
+| `/public_web/static/images/hr/icon*.png` | `public/sites/kuaijing/office/hr/` | 6 dashboard statistic icons |
+| `/public_web/static/images/approval/*.png`, `/property/approval/*.png` | `public/sites/kuaijing/office/approval/` | approval category/request icons |
+| `/public_web/static/images/wiki/icon0.png` | `public/sites/kuaijing/office/wiki/icon0.png` | knowledge-base card icon |
+| `/public_web/static/images/work_wiki/smart_empty_guide.png` | `public/sites/kuaijing/office/smart-empty-guide.png` | smart-table empty state |
+| `/public_web/static/images/workMail/mail_empty.png`, `mail.png` | `public/sites/kuaijing/office/mail-empty.png`, `mail.png` | mailbox empty/welcome illustrations |
 
 The captcha chrome (overlay 476×632 at 50% black, modal 376×330, header 36px,
 body 350×200, footer 50px, 82×40 blue drag block, icons) is reproduced from the
@@ -207,6 +251,10 @@ mobile, lock, eye, eye-invisible, wechat, close) and the page iconfont symbol
   更多 popup exactly.
 - Inner 三方集成 tabs that require a bound account show the source's empty-state
   copy ("请至少绑定一个服务号", "请先绑定用户端小程序").
+- 行政办公 pages use the source's captured demo data and page-level React state;
+  approvals/announcements/wiki/attendance/document/recruitment/mail created in
+  the UI are not persisted and reset on a full reload. Dashboard charts are
+  static SVG/CSS reproductions of the captured values, not a live chart library.
 
 ## Evidence
 
@@ -223,7 +271,8 @@ Screenshots live in `docs/design-references/`:
   `kuaijing-workbench-source-drawer-1440.png`,
   `kuaijing-workbench-source-collapsed-1440.png`,
   `kuaijing-workbench-source-calendar.png`,
-  `settings-source-01.png` … `settings-source-20.png`
+  `settings-source-01.png` … `settings-source-20.png`,
+  `office-source-01.png` … `office-source-16.png`
 - Local: `kuaijing-local-initial.png`, `kuaijing-local-password.png`,
   `kuaijing-local-filled.png`, `kuaijing-local-wechat.png`,
   `kuaijing-local-wecom-modal.png`, `kuaijing-local-lang.png`,
@@ -236,4 +285,5 @@ Screenshots live in `docs/design-references/`:
   `kuaijing-local-workbench-1440.png`, `kuaijing-local-workbench-2560.png`,
   `kuaijing-local-workbench-drawer-1440.png`,
   `kuaijing-local-workbench-collapsed-1440.png`,
-  `settings-local-01.png` … `settings-local-20.png`
+  `settings-local-01.png` … `settings-local-20.png`,
+  `office-local-01.png` … `office-local-16.png`

@@ -13,9 +13,11 @@ import {
 import {
   ACCOUNT,
   NOTICES,
+  OFFICE_PAGE_BY_KEY,
   SETTINGS_PAGE_BY_KEY,
   SIDEBAR,
   TOP_MODULES,
+  officeHref,
   settingsHref,
   type SidebarNode,
 } from "./data";
@@ -153,7 +155,10 @@ export function AppShell({
   const activeTabRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (activeTopKey === "menu-setting-30002") {
+    if (
+      activeTopKey === "menu-setting-30002" ||
+      activeTopKey === "menu-office-30010"
+    ) {
       openSiteTab(activeLeafKey);
     }
   }, [activeTopKey, activeLeafKey]);
@@ -228,6 +233,8 @@ export function AppShell({
       router.push("/orgs/index");
     } else if (key === "menu-setting-30002") {
       router.push("/orgs/settings/company-info");
+    } else if (key === "menu-office-30010") {
+      router.push("/orgs/office/overview");
     }
     setOverflowOpen(false);
   };
@@ -235,13 +242,16 @@ export function AppShell({
   const hiddenModules = TOP_MODULES.slice(visibleCount);
   const showMore = hiddenModules.length > 0;
   const isWorkbench = activeTopKey === "menu-home-30004";
-  const settingsTabKeys = openTabs.filter((key) => key !== WORKBENCH_TAB);
+  const isModulePage =
+    activeTopKey === "menu-setting-30002" ||
+    activeTopKey === "menu-office-30010";
+  const moduleTabKeys = openTabs.filter((key) => key !== WORKBENCH_TAB);
   if (
-    activeTopKey === "menu-setting-30002" &&
+    isModulePage &&
     activeLeafKey !== WORKBENCH_TAB &&
-    !settingsTabKeys.includes(activeLeafKey)
+    !moduleTabKeys.includes(activeLeafKey)
   ) {
-    settingsTabKeys.push(activeLeafKey);
+    moduleTabKeys.push(activeLeafKey);
   }
 
   const filteredNotices = NOTICES.filter((item) => {
@@ -442,8 +452,8 @@ export function AppShell({
                 </div>
               ) : null}
 
-              {settingsTabKeys.map((key) => {
-                const page = SETTINGS_PAGE_BY_KEY[key];
+              {moduleTabKeys.map((key) => {
+                const page = SETTINGS_PAGE_BY_KEY[key] ?? OFFICE_PAGE_BY_KEY[key];
                 const active = !isWorkbench && key === activeLeafKey;
                 const name = page?.name ?? (active ? tabTitle : key);
                 const icon = page?.icon ?? tabIcon;
@@ -453,7 +463,7 @@ export function AppShell({
                     ref={active ? activeTabRef : undefined}
                     className={`ka-tab${active ? " is-active" : ""}`}
                     onClick={() => {
-                      const href = settingsHref(key);
+                      const href = settingsHref(key) ?? officeHref(key);
                       if (href) router.push(href);
                     }}
                   >
@@ -556,7 +566,7 @@ export function AppShell({
                   <button
                     type="button"
                     className="ka-tab-dropdown-item"
-                    disabled={isWorkbench || settingsTabKeys.length <= 1}
+                    disabled={isWorkbench || moduleTabKeys.length <= 1}
                     onClick={() => {
                       setTabMenuOpen(false);
                       closeOtherSiteTabs(activeLeafKey);
@@ -568,7 +578,7 @@ export function AppShell({
                   <button
                     type="button"
                     className="ka-tab-dropdown-item"
-                    disabled={settingsTabKeys.length === 0}
+                    disabled={moduleTabKeys.length === 0}
                     onClick={() => {
                       setTabMenuOpen(false);
                       closeAllSiteTabs();
