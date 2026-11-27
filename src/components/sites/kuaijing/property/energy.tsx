@@ -29,11 +29,12 @@ const ENERGY_ITEMS: SubMenuItem[] = [
     ],
   },
   {
-    name: "系统设置",
+    name: "参数设置",
     children: [
-      { name: "表种类管理" },
-      { name: "抄表计划" },
-      { name: "价格标准" },
+      {
+        name: "系统设置",
+        children: [{ name: "表种类管理" }, { name: "抄表计划" }, { name: "价格标准" }],
+      },
     ],
   },
 ];
@@ -110,10 +111,34 @@ export function EnergyPage() {
             </div>
           </>
         ) : active === "能耗统计" ? (
-          <div className="pp-content-card">
-            <div className="pp-card-head"><strong>能耗统计</strong></div>
-            <SkEmpty text="暂无数据" />
-          </div>
+          <>
+            <div className="pp-content-card is-plain">
+              <SkTabs items={["电表", "水表"]} active={0} onChange={() => show(`已切换${{0: "电表", 1: "水表"}[0]}`)} />
+              <div className="wo-mini-stat-row is-five">
+                {["今日用量（kw·h）", "本周用量（kw·h）", "本月用量（kw·h）", "本季用量（kw·h）", "本年用量（kw·h）"].map((label) => (
+                  <div key={label} className="wo-mini-stat"><span>{label}</span><strong>0</strong><small>同比 0%　环比 0%</small></div>
+                ))}
+              </div>
+              <div className="wo-chart-row">
+                <section className="wo-chart-card is-main">
+                  <div className="wo-tabs-row"><h3>用量走势</h3><SkTabs items={["按月", "按日"]} active={0} onChange={() => show("切换视图")} /></div>
+                  <SkEmpty text="暂无数据" />
+                </section>
+                <section className="wo-chart-card">
+                  <h3>预付费/后付费用量占比</h3>
+                  <div className="wo-empty-donut"><div><span>总用量</span><strong>0</strong></div></div>
+                </section>
+              </div>
+            </div>
+            <div className="pp-content-card is-plain">
+              <div className="pp-card-head"><strong>读表记录</strong><div className="pp-toolbar-actions"><SkButton onClick={() => show("刷新成功")}>刷新</SkButton><SkButton>更多 ⌄</SkButton></div></div>
+              <SkTable
+                className="pp-wide-table"
+                columns={[{ key: "name", title: "表名称" }, { key: "code", title: "表具编号" }, { key: "room", title: "绑定房间" }, { key: "time", title: "读表时间" }, { key: "today", title: "今日用量" }, { key: "rest", title: "剩余用量" }]}
+                rows={[]}
+              />
+            </div>
+          </>
         ) : (
           <div className="pp-content-card">
             <div className="pp-card-head"><strong>{active}</strong><SkButton variant="primary" onClick={() => show("新增成功")}>+ 新增</SkButton></div>

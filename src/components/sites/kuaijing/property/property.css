@@ -604,3 +604,381 @@
     width: 200px;
   }
 }
+
+/* Work-order dashboard and internal pages -------------------------------- */
+
+.kuaijing-app .wo-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background: #fff;
+}
+
+.kuaijing-app .wo-dash-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 64px;
+  padding: 12px 20px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.kuaijing-app .wo-dash-head h2 {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.kuaijing-app .wo-dept-select {
+  width: 220px;
+}
+
+.kuaijing-app .wo-stat-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.kuaijing-app .wo-stat-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 210px;
+  padding: 18px 16px;
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+}
+
+.kuaijing-app .wo-stat-card > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.kuaijing-app .wo-stat-card span {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+}
+
+.kuaijing-app .wo-stat-card strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.kuaijing-app .wo-stat-card small.is-link {
+  color: #2681f3;
+  font-size: 13px;
+}
+
+.kuaijing-app .wo-stat-icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  color: #fff;
+  font-size: 31px;
+  background: #2681f3;
+  border-radius: 3px;
+}
+
+.kuaijing-app .wo-chart-row {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 10px;
+}
+
+.kuaijing-app .wo-chart-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 448px;
+  padding: 18px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.kuaijing-app .wo-chart-card h3 {
+  margin: 0 0 8px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.kuaijing-app .wo-chart-subhead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 6px 0 10px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+}
+
+.kuaijing-app .wo-line-chart {
+  position: relative;
+  flex: 1;
+  min-height: 320px;
+  margin: 4px 8px 0;
+}
+
+.kuaijing-app .wo-line-axis {
+  position: absolute;
+  inset: 0 0 34px 0;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.kuaijing-app .wo-line-grid {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .wo-line-labels {
+  position: absolute;
+  right: 0;
+  bottom: 8px;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+}
+
+.kuaijing-app .wo-line-legend {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding-top: 10px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+}
+
+.kuaijing-app .wo-line-legend.is-centered {
+  justify-content: center;
+}
+
+.kuaijing-app .wo-line-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.kuaijing-app .wo-line-legend i {
+  width: 8px;
+  height: 8px;
+  background: #409eff;
+}
+
+.kuaijing-app .wo-line-legend i.is-green {
+  background: #4ed6a4;
+}
+
+.kuaijing-app .wo-line-legend i.is-dark {
+  background: #5b6b8c;
+}
+
+.kuaijing-app .wo-radar-wrap {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.kuaijing-app .wo-radar {
+  width: 300px;
+  height: 250px;
+}
+
+.kuaijing-app .wo-radar-labels {
+  position: absolute;
+  inset: 30px 10px 20px;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.kuaijing-app .wo-radar-labels span:nth-child(1) { position: absolute; top: 0; left: 50%; transform: translateX(-50%); }
+.kuaijing-app .wo-radar-labels span:nth-child(2) { position: absolute; top: 28%; right: 2%; }
+.kuaijing-app .wo-radar-labels span:nth-child(3) { position: absolute; right: 13%; bottom: 6%; }
+.kuaijing-app .wo-radar-labels span:nth-child(4) { position: absolute; left: 13%; bottom: 6%; }
+.kuaijing-app .wo-radar-labels span:nth-child(5) { position: absolute; top: 28%; left: 2%; }
+
+.kuaijing-app .wo-satisfaction-legend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+}
+
+.kuaijing-app .wo-satisfaction-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kuaijing-app .wo-satisfaction-legend i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.kuaijing-app .wo-satisfaction-legend i.is-blue { background: #409eff; }
+.kuaijing-app .wo-satisfaction-legend i.is-green { background: #4ed6a4; }
+
+.kuaijing-app .wo-satisfaction-legend strong {
+  font-weight: 600;
+}
+
+.kuaijing-app .wo-empty-donut {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  margin: 30px auto 18px;
+  background: #f5f7fa;
+  border-radius: 50%;
+}
+
+.kuaijing-app .wo-empty-donut.is-large {
+  width: 240px;
+  height: 240px;
+  margin: 52px auto;
+}
+
+.kuaijing-app .wo-empty-donut > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.kuaijing-app .wo-empty-donut span {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+}
+
+.kuaijing-app .wo-empty-donut strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.kuaijing-app .wo-chart-full {
+  min-height: 330px;
+}
+
+.kuaijing-app .wo-mini-stat-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.kuaijing-app .wo-mini-stat {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  min-height: 84px;
+  padding: 12px 16px;
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+}
+
+.kuaijing-app .wo-mini-stat span {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+}
+
+.kuaijing-app .wo-mini-stat strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.kuaijing-app .wo-page-pad {
+  padding: 10px 16px 0;
+}
+
+.kuaijing-app .pp-filter-actions-after {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 0 14px;
+}
+
+.kuaijing-app .wo-tabs-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.kuaijing-app .wo-tabs-row .sk-page-tabs {
+  border-bottom: 0;
+}
+
+.kuaijing-app .wo-category-settings {
+  margin-top: 10px;
+}
+
+.kuaijing-app .wo-org-cards {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.kuaijing-app .wo-org-card {
+  padding: 8px 14px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+}
+
+.kuaijing-app .wo-org-card.is-active {
+  color: #2681f3;
+  border-color: #91caff;
+  background: #f0f9ff;
+}
+
+.kuaijing-app .wo-ledger-note,
+.kuaijing-app .wo-qr-note {
+  margin: 12px 0;
+  padding: 9px 14px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+  line-height: 22px;
+  background: #fafafa;
+  border-radius: 2px;
+}
+
+@media (max-width: 1200px) {
+  .kuaijing-app .wo-stat-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .kuaijing-app .wo-chart-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kuaijing-app .wo-mini-stat small {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+}

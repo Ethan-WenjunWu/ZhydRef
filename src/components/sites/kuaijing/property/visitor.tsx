@@ -7,6 +7,7 @@ import {
   SkDrawer,
   SkInput,
   SkModal,
+  SkPagination,
   SkSelect,
   SkTable,
   SkTabs,
@@ -77,20 +78,53 @@ export function PassPage() {
               />
             </div>
           </>
-        ) : (
-          <div className="pp-content-card">
-            <div className="pp-card-head"><strong>{active}</strong><SkButton variant="primary" onClick={() => show("新增成功")}>+ 新增</SkButton></div>
+        ) : active === "出入记录" ? (
+          <div className="pp-content-card is-plain">
+            <div className="pp-search-row">
+              <SkSelect placeholder="请选择楼宇" />
+              <SkButton variant="primary" onClick={() => show("查询成功")}>搜 索</SkButton>
+              <SkButton>重 置</SkButton>
+            </div>
             <SkTable
               columns={[
-                { key: "name", title: "名称" },
-                { key: "time", title: "时间" },
+                { key: "person", title: "出入人员" },
+                { key: "time", title: "出入时间" },
+                { key: "place", title: "出入地点（楼宇）" },
+                { key: "code", title: "出入证编号" },
                 { key: "status", title: "状态" },
-                { key: "op", title: "操作" },
+                { key: "op", title: "操作详细信息" },
               ]}
               rows={[]}
             />
           </div>
-        )}
+        ) : active === "黑名单" ? (
+          <div className="pp-content-card is-plain">
+            <div className="pp-card-head"><span /><SkButton variant="primary" onClick={() => show("添加黑名单")}>添加黑名单</SkButton></div>
+            <SkTable columns={[{ key: "name", title: "姓名" }, { key: "phone", title: "手机号" }, { key: "time", title: "添加时间" }, { key: "op", title: "操作" }]} rows={[]} />
+          </div>
+        ) : active === "管理员设置" ? (
+          <div className="pp-content-card is-plain">
+            <div className="pp-card-head"><strong>应用管理员</strong><SkButton onClick={() => show("添加管理员")}>添 加</SkButton></div>
+            <div className="wo-ledger-note">可设置应用的核销员</div>
+            <div className="pp-card-head"><strong>核销员</strong><SkButton onClick={() => show("添加核销员")}>添 加</SkButton></div>
+            <div className="wo-ledger-note">可在员工移动端核验出入证</div>
+          </div>
+        ) : active === "编号设置" ? (
+          <div className="pp-content-card is-plain">
+            <div className="pp-search-top"><span>未选择筛选字段</span><span className="pp-search-top-actions"><span className="sk-link">清除选项</span><span>收起 ⌃</span></span></div>
+            <div className="pp-search-row">
+              <OfficeField label="编号规则标题"><SkInput /></OfficeField>
+              <OfficeField label="绑定项目"><SkSelect placeholder="请选择绑定项目" /></OfficeField>
+              <div className="pp-filter-actions"><SkButton variant="primary">搜索</SkButton><SkButton>重置</SkButton></div>
+            </div>
+            <div className="pp-card-head"><strong>编号规则列表</strong><div className="pp-toolbar-actions"><SkButton onClick={() => show("刷新成功")}>刷新</SkButton><SkButton variant="primary" onClick={() => show("新增成功")}>新增编号规则</SkButton></div></div>
+            <SkTable
+              columns={[{ key: "title", title: "编号规则标题" }, { key: "rule", title: "编号规则" }, { key: "preview", title: "规则结果预览" }, { key: "project", title: "绑定项目" }, { key: "op", title: "操作" }]}
+              rows={[["默认规则", "创建日期+流水号", <div key="p" className="pp-rule-detail">2026112800000</div>, "全部项目", <span key="op" className="sk-action-link" onClick={() => show("编辑规则")}>编辑</span>]]}
+            />
+            <SkPagination total={1} pageSize={20} showTotal />
+          </div>
+        ) : null}
       </section>
 
       <SkModal
