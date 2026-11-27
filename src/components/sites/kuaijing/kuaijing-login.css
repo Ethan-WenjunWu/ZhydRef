@@ -1,0 +1,674 @@
+/* Scoped recreation of https://asset.kuaijingai.com/orgs/#/user/login */
+
+.kuaijing-login,
+.kuaijing-login * {
+  box-sizing: border-box;
+}
+
+.kuaijing-login {
+  --kj-primary: #1664ff;
+  --kj-primary-border: #0055ff;
+  --kj-primary-hover: #4281ff;
+  --kj-text: rgba(0, 0, 0, 0.85);
+  --kj-body: #41464f;
+  --kj-border: #d9d9d9;
+  --kj-line: #eaedf1;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  overflow-y: auto;
+  background-color: #eff3ff;
+  background-image: url("/sites/kuaijing/images/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--kj-text);
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 14px;
+  line-height: 1.5715;
+  -webkit-font-smoothing: antialiased;
+}
+
+.kuaijing-login .kj-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 0;
+}
+
+.kuaijing-login .kj-icon svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+.kuaijing-login .kj-icon-md {
+  font-size: 14px;
+}
+
+.kuaijing-login .kj-icon-sm {
+  font-size: 10px;
+}
+
+.kuaijing-login .kj-mlr-5 {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* Header ------------------------------------------------------------------ */
+
+.kuaijing-login .kj-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px 32px 11px;
+}
+
+.kuaijing-login .kj-logo {
+  display: block;
+  width: 150px;
+  max-height: 40px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.kuaijing-login .kj-lang {
+  position: relative;
+}
+
+.kuaijing-login .kj-lang-btn {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 8px;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.kuaijing-login .kj-dropdown {
+  position: absolute;
+  top: calc(100% + 3.5px);
+  left: 0;
+  z-index: 1050;
+  min-width: 106px;
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.kuaijing-login .kj-dropdown-item {
+  padding: 5px 8px;
+  font-size: 14px;
+  line-height: 22px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.kuaijing-login .kj-dropdown-item:hover {
+  background: #f5f5f5;
+}
+
+.kuaijing-login .kj-dropdown-item.is-selected {
+  color: #2681f3;
+  background: #f0f9ff;
+}
+
+/* Layout ------------------------------------------------------------------ */
+
+.kuaijing-login .kj-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  height: calc(100vh - 125px);
+  min-height: 650px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.kuaijing-login .kj-left {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  height: 100%;
+}
+
+.kuaijing-login .kj-hotspot {
+  max-width: 100%;
+  min-height: 650px;
+}
+
+.kuaijing-login .kj-hotspot img {
+  display: inline;
+  width: 100%;
+  max-width: 540px;
+  object-fit: contain;
+}
+
+.kuaijing-login .kj-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+/* Login card -------------------------------------------------------------- */
+
+.kuaijing-login .kj-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 476px;
+  min-height: 632px;
+  margin: 0 0 30px;
+  padding: 48px 43px 32px;
+  overflow-x: hidden;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.kuaijing-login .kj-card-header {
+  padding: 0 0 30px;
+}
+
+.kuaijing-login .kj-title {
+  margin: 4px 0;
+  color: #0c0d0e;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: 0.003em;
+}
+
+.kuaijing-login .kj-tabs {
+  display: flex;
+  align-items: center;
+  padding: 0 5px 8px;
+}
+
+.kuaijing-login .kj-tab {
+  position: relative;
+  padding: 8px 0 6px;
+  font-size: 16px;
+  line-height: 1.5715;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  color: inherit;
+  font-family: inherit;
+  text-align: inherit;
+}
+
+.kuaijing-login .kj-tab + .kj-tab {
+  margin-left: 36px;
+}
+
+.kuaijing-login .kj-tab.is-active {
+  color: var(--kj-primary);
+  font-weight: 500;
+}
+
+.kuaijing-login .kj-tab.is-active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background-color: var(--kj-primary);
+}
+
+.kuaijing-login .kj-card-content {
+  min-height: 100px;
+  margin-top: 16px;
+  padding: 0 5px 10px;
+}
+
+/* Inputs ------------------------------------------------------------------ */
+
+.kuaijing-login .kj-phone-group {
+  display: flex;
+  width: 100%;
+}
+
+.kuaijing-login .kj-addon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 47px;
+  background: #fafafa;
+  border: 1px solid var(--kj-border);
+  border-right: 0;
+  border-radius: 2px 0 0 2px;
+  font-size: 14px;
+}
+
+.kuaijing-login .kj-addon > div {
+  padding: 0 10px;
+  line-height: 22px;
+}
+
+.kuaijing-login .kj-affix {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  height: 40px;
+  padding: 6.5px 7px;
+  background: #fff;
+  border: 1px solid var(--kj-border);
+  border-radius: 0 2px 2px 0;
+  font-size: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.kuaijing-login .kj-affix:hover {
+  border-color: var(--kj-primary-hover);
+}
+
+.kuaijing-login .kj-affix:focus-within {
+  border-color: var(--kj-primary-border);
+  box-shadow: 0 0 0 2px rgba(22, 100, 255, 0.3);
+}
+
+.kuaijing-login .kj-prefix {
+  flex: none;
+  margin-right: 4px;
+}
+
+.kuaijing-login .kj-suffix {
+  flex: none;
+  margin-left: 4px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.kuaijing-login .kj-affix input,
+.kuaijing-login .kj-code-input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  height: 25px;
+  padding: 0;
+  color: var(--kj-text);
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 20.43px;
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+
+.kuaijing-login .kj-affix input::placeholder,
+.kuaijing-login .kj-code-input::placeholder {
+  color: rgba(0, 0, 0, 0.25);
+  font-size: 13px;
+}
+
+.kuaijing-login .kj-password {
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 2px;
+}
+
+.kuaijing-login .kj-eye {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 16px;
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+
+.kuaijing-login .kj-eye:hover {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.kuaijing-login .kj-code-row {
+  display: flex;
+  margin-top: 20px;
+}
+
+.kuaijing-login .kj-code-input {
+  flex: 1;
+  height: 40px;
+  padding: 6.5px 11px;
+  border: 1px solid var(--kj-border);
+  border-radius: 2px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.kuaijing-login .kj-code-input:hover {
+  border-color: var(--kj-primary-hover);
+}
+
+.kuaijing-login .kj-code-input:focus {
+  border-color: var(--kj-primary-border);
+  box-shadow: 0 0 0 2px rgba(22, 100, 255, 0.3);
+}
+
+.kuaijing-login .kj-get-code {
+  width: fit-content;
+  min-width: 100px;
+  height: 40px;
+  margin-left: 12px;
+  padding: 0 11px;
+  color: rgba(0, 0, 0, 0.25);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5715;
+  white-space: nowrap;
+  background: #f5f5f5;
+  border: 1px solid var(--kj-border);
+  border-radius: 2px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+  cursor: not-allowed;
+  transition: all 0.2s;
+}
+
+.kuaijing-login .kj-get-code:not(:disabled) {
+  color: var(--kj-body);
+  background-color: #f6f8fa;
+  border-color: #dde2e9;
+  cursor: pointer;
+}
+
+.kuaijing-login .kj-get-code:not(:disabled):hover {
+  background-color: #fafbfc;
+  border-color: var(--kj-primary-hover);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+}
+
+.kuaijing-login .kj-protocol {
+  margin: 12px 0 4px;
+  color: var(--kj-body);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.kuaijing-login .kj-protocol a {
+  color: #3370ff;
+  text-decoration: none;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.kuaijing-login .kj-protocol a:hover {
+  color: #6694ff;
+}
+
+.kuaijing-login .kj-submit {
+  width: 100%;
+  height: 40px;
+  margin-top: 20px;
+  padding: 6.4px 11px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5715;
+  background: var(--kj-primary);
+  border: 1px solid var(--kj-primary-border);
+  border-radius: 2px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.kuaijing-login .kj-submit:hover:not(:disabled) {
+  background: var(--kj-primary-hover);
+  border-color: var(--kj-primary);
+}
+
+.kuaijing-login .kj-submit:disabled {
+  color: #fff;
+  background: #a0c0ff;
+  border: 1px solid #a0c0ff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  cursor: not-allowed;
+}
+
+/* WeChat QR state --------------------------------------------------------- */
+
+.kuaijing-login .kj-img-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.kuaijing-login .kj-qr {
+  display: block;
+  width: 220px;
+  height: 220px;
+}
+
+.kuaijing-login .kj-tips {
+  margin-top: 10px;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 16px;
+  line-height: 1.5715;
+}
+
+/* Card footer ------------------------------------------------------------- */
+
+.kuaijing-login .kj-card-footer {
+  margin-top: 20px;
+}
+
+.kuaijing-login .kj-divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  height: 20px;
+  margin: 0 0 16px;
+}
+
+.kuaijing-login .kj-divider::before,
+.kuaijing-login .kj-divider::after {
+  content: "";
+  flex: 1;
+  height: 0;
+  border-bottom: 1px solid var(--kj-line);
+}
+
+.kuaijing-login .kj-divider-text {
+  padding: 0 16px;
+  color: #80838a;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.kuaijing-login .kj-more-login {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.kuaijing-login .kj-more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 4px 0;
+  color: var(--kj-text);
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.5715;
+  white-space: nowrap;
+  background: #fff;
+  border: 1px solid var(--kj-line);
+  border-radius: 32px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.016);
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.kuaijing-login .kj-more-btn .kj-icon {
+  font-size: 16px;
+}
+
+.kuaijing-login .kj-btn-text {
+  max-width: 0;
+  margin-left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.kuaijing-login .kj-more-btn.is-current {
+  padding: 4px 16px;
+  color: var(--kj-primary);
+  background: #f3f7ff;
+  border-color: #97bcff;
+}
+
+.kuaijing-login .kj-more-btn.is-current .kj-btn-text {
+  max-width: 150px;
+  margin-left: 8px;
+  opacity: 1;
+}
+
+/* Page footer ------------------------------------------------------------- */
+
+.kuaijing-login .kj-page-footer {
+  z-index: 99;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px 16px;
+  min-height: 40px;
+  padding: 0 20px 10px;
+  color: var(--kj-body);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.kuaijing-login .kj-registration-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* WeCom modal ------------------------------------------------------------- */
+
+.kuaijing-login .kj-modal-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.kuaijing-login .kj-modal-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+
+.kuaijing-login .kj-modal {
+  position: relative;
+  width: 580px;
+  max-width: calc(100vw - 32px);
+  background: #fff;
+  border-radius: 2px;
+  box-shadow:
+    0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 6px 16px rgba(0, 0, 0, 0.08),
+    0 9px 28px 8px rgba(0, 0, 0, 0.05);
+}
+
+.kuaijing-login .kj-modal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 16px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  transition: color 0.3s;
+}
+
+.kuaijing-login .kj-modal-close:hover {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.kuaijing-login .kj-modal-header {
+  padding: 16px 24px;
+}
+
+.kuaijing-login .kj-modal-title {
+  color: var(--kj-text);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.kuaijing-login .kj-modal-body {
+  padding: 60px 0 0;
+}
+
+.kuaijing-login .kj-modal-body img {
+  display: block;
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+}
+
+/* Responsive -------------------------------------------------------------- */
+
+@media (width <= 1199px) {
+  .kuaijing-login .kj-left {
+    display: none !important;
+  }
+}
+
+@media (width <= 600px) {
+  .kuaijing-login .kj-modal-body img {
+    height: auto;
+  }
+}
