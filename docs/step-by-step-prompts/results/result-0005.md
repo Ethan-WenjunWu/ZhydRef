@@ -63,3 +63,54 @@
 - 源站 1440 截图保存在 `docs/design-references/office-source-01.png` … `office-source-16.png`。
 
 改动尚未提交。请确认这一批页面是否可以，确认后我再继续下一个一级菜单。
+
+
+
+---------------------------------------------------------------------------------
+上述内容是AI自动写入本文件的，下述是AI处理结束后汇报的内容。
+---------------------------------------------------------------------------------
+已完成 A11「行政办公」下全部 **16 个左侧菜单页面**的克隆，只处理了这一级菜单。
+
+## 本地路由
+
+统一为 `/orgs/office/<slug>`：
+
+| 页面 | 路由 |
+|---|---|
+| 数据总览 | `/orgs/office/overview` |
+| 发起审批 | `/orgs/office/approval-new` |
+| 审批中心 | `/orgs/office/approval-center` |
+| 审批分类 | `/orgs/office/approval-category` |
+| 数据管理 | `/orgs/office/approval-data` |
+| 审批代办 | `/orgs/office/approval-proxy` |
+| 汇报列表 | `/orgs/office/report-list` |
+| 汇报模板 | `/orgs/office/report-template` |
+| 汇报报表 | `/orgs/office/report-statements` |
+| 企业公告 | `/orgs/office/notice` |
+| 考勤管理 | `/orgs/office/attendance` |
+| 知识库 | `/orgs/office/wiki` |
+| 智能表格 | `/orgs/office/smart-table` |
+| 公文管理 | `/orgs/office/document` |
+| 人才招聘 | `/orgs/office/recruit` |
+| 邮箱管理 | `/orgs/office/mail` |
+
+预览：http://localhost:3000/orgs/office/overview
+
+## 实现内容
+
+- **行政办公外壳**：顶部选中「行政办公」，左侧菜单完整复刻「通用审批 → 我的审批/审批管理」「汇报管理 → 汇报列表/汇报模板/汇报报表」等嵌套分组；分组按当前页面自动展开，页签按访问累积，可与系统设置页签混合存在。
+- **数据总览**：8 个统计卡、近 15 天审批统计、审批类型分布环图、近一周出勤统计、4 个底部统计卡，统计卡可跳转对应页面。
+- **审批模块**：发起审批的请假/补卡表单与必填校验、审批中心页签与筛选、审批分类树与新增分组/创建审批/排序/删除、数据管理筛选/导出/详情抽屉、审批代办新增。
+- **汇报模块**：汇报列表页签与筛选、汇报模板分组/模板/排序、汇报报表查询与导出。
+- **其他页面**：公告分类/新公告/管理员设置、考勤组新增编辑删除与内部菜单、知识库分类与新建、智能表格引导与回收站、公文收文登记/发文拟稿、招聘计划新建、邮箱三栏界面与写邮件发送。
+
+源站 HR 统计图标、审批分类图标、知识库图标、智能表格引导图、邮箱空态/欢迎图已下载到 `public/sites/kuaijing/office/`；行政办公菜单及页面图标已补进共享 iconfont sprite。
+
+## 校验
+
+- `npm run check` 通过（lint + typecheck + build），43 个静态页面生成，新增 16 个 `/orgs/office/<slug>` SSG 路由。
+- 浏览器实测了审批表单、数据筛选/详情、分类分组、代办新增、模板创建、公告发布、知识库创建、考勤组新增、收文登记、招聘计划、邮件发送等交互，控制台无报错。
+- 源站截图已保存为 `office-source-01.png` … `office-source-16.png`，本地截图已保存为 `office-local-01.png` … `office-local-16.png`。
+- 按之前要求，仍为演示数据，不做隐私脱敏。
+
+改动尚未提交。请确认这一批页面是否可以，确认后我再继续下一个一级菜单。

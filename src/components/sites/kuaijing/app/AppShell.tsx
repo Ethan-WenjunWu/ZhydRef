@@ -14,10 +14,12 @@ import {
   ACCOUNT,
   NOTICES,
   OFFICE_PAGE_BY_KEY,
+  PROPERTY_PAGE_BY_KEY,
   SETTINGS_PAGE_BY_KEY,
   SIDEBAR,
   TOP_MODULES,
   officeHref,
+  propertyHref,
   settingsHref,
   type SidebarNode,
 } from "./data";
@@ -157,7 +159,8 @@ export function AppShell({
   useEffect(() => {
     if (
       activeTopKey === "menu-setting-30002" ||
-      activeTopKey === "menu-office-30010"
+      activeTopKey === "menu-office-30010" ||
+      activeTopKey === "menu-property-30009"
     ) {
       openSiteTab(activeLeafKey);
     }
@@ -235,6 +238,8 @@ export function AppShell({
       router.push("/orgs/settings/company-info");
     } else if (key === "menu-office-30010") {
       router.push("/orgs/office/overview");
+    } else if (key === "menu-property-30009") {
+      router.push("/orgs/property/repair");
     }
     setOverflowOpen(false);
   };
@@ -244,7 +249,8 @@ export function AppShell({
   const isWorkbench = activeTopKey === "menu-home-30004";
   const isModulePage =
     activeTopKey === "menu-setting-30002" ||
-    activeTopKey === "menu-office-30010";
+    activeTopKey === "menu-office-30010" ||
+    activeTopKey === "menu-property-30009";
   const moduleTabKeys = openTabs.filter((key) => key !== WORKBENCH_TAB);
   if (
     isModulePage &&
@@ -453,7 +459,7 @@ export function AppShell({
               ) : null}
 
               {moduleTabKeys.map((key) => {
-                const page = SETTINGS_PAGE_BY_KEY[key] ?? OFFICE_PAGE_BY_KEY[key];
+                const page = SETTINGS_PAGE_BY_KEY[key] ?? OFFICE_PAGE_BY_KEY[key] ?? PROPERTY_PAGE_BY_KEY[key];
                 const active = !isWorkbench && key === activeLeafKey;
                 const name = page?.name ?? (active ? tabTitle : key);
                 const icon = page?.icon ?? tabIcon;
@@ -463,7 +469,7 @@ export function AppShell({
                     ref={active ? activeTabRef : undefined}
                     className={`ka-tab${active ? " is-active" : ""}`}
                     onClick={() => {
-                      const href = settingsHref(key) ?? officeHref(key);
+                      const href = settingsHref(key) ?? officeHref(key) ?? propertyHref(key);
                       if (href) router.push(href);
                     }}
                   >

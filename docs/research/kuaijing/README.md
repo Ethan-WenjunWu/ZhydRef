@@ -14,6 +14,7 @@ and 390×844 (DPR 3, mobile emulation).
 | `/orgs/#/index` | `/orgs/index` | `src/app/orgs/index/page.tsx`, `src/components/sites/kuaijing/app/AppShell.tsx`, `WorkbenchPage.tsx` |
 | `/orgs/#/index` → 系统设置 left menu | `/orgs/settings/<slug>` (20 routes) | `src/app/orgs/settings/[slug]/page.tsx`, `app/SettingsShell.tsx`, `SettingsPages.tsx`, `SettingsUI.tsx` |
 | `/orgs/#/index` → 行政办公 left menu | `/orgs/office/<slug>` (16 routes) | `src/app/orgs/office/[slug]/page.tsx`, `app/OfficeShell.tsx`, `office/OfficePages.tsx`, `office/*.tsx` |
+| `/orgs/#/index` → 物业管理 left menu | `/orgs/property/<slug>` (31 routes) | `src/app/orgs/property/[slug]/page.tsx`, `app/PropertyShell.tsx`, `property/PropertyPages.tsx`, `property/*.tsx` |
 | `/public/system/agreement/use` | `/public/system/agreement/use` | `src/app/public/system/agreement/use/page.tsx` |
 | `/public/system/agreement/privacy` | `/public/system/agreement/privacy` | `src/app/public/system/agreement/privacy/page.tsx` |
 
@@ -174,6 +175,44 @@ Office visuals use the source's HR/approval PNG icons, wiki/mail illustrations,
 and the additional `workHr` / `workApproval` / `workReport` / `workNotice` /
 `workMail` iconfont symbols appended to the shared sprite.
 
+## 物业管理 (A10) — all 31 pages
+
+The property shell selects 物业管理 and reproduces the source's nested sidebar
+(物料管理 → 即时库存/入库/派发退库/调拨/处置/调整/员工申请单据, with nested
+物料盘点/物料设置/我的物料 groups; 空调申请 → 申请管理/空调时间设置).
+Several pages contain their own secondary menu systems:
+
+- 在线报修 / 投诉建议 / 服务工单: 数据看板、工单调度、工单列表、工单归档、
+  参数设置（工单分类/编号设置/工单设置/工时设置）、订单记录、付款单记录、
+  工单费用报表、工单台账、二维码报修.
+- 设备巡检 / 安防巡更 / 品质核查 / 绿化检查 / 保洁检查: 数据看板、
+  巡检台账、巡检计划、巡检任务、参数设置（巡检点/标签/位置/表单/编号）.
+- 服务计划: 数据看板、巡检台账、服务计划、计划任务、参数设置.
+- 水电抄表: 表管理、能耗统计、智能表（电表/水表/网关/充值/阈值）、
+  系统设置（表种类/抄表计划/价格标准）.
+- 出入证管理: 出入证信息、出入记录、黑名单、出入证设置（管理员/编号）.
+- 访客预约 / 物品放行: 申请记录、管理员设置.
+
+| # | Page | Local route |
+| --- | --- | --- |
+| 01–03 | 在线报修 / 投诉建议 / 服务工单 | `/orgs/property/repair`, `complaint`, `service-order` |
+| 04 | 水电抄表 | `/orgs/property/energy` |
+| 05–09 | 设备巡检 / 安防巡更 / 品质核查 / 绿化检查 / 保洁检查 | `patrol-equipment`, `patrol-security`, `patrol-quality`, `patrol-green`, `patrol-clean` |
+| 10 | 服务计划 | `/orgs/property/service-plan` |
+| 11–13 | 出入证管理 / 访客预约 / 物品放行 | `pass`, `visitor`, `release` |
+| 14–20 | 即时库存 / 物料入库 / 派发退库 / 物料调拨 / 物料处置 / 库存调整 / 员工申请单据 | `stock`, `stock-in`, `stock-handout`, `stock-transfer`, `stock-handle`, `stock-adjust`, `stock-receive` |
+| 21–22 | 盘点任务 / 盘点计划 | `inventory-task`, `inventory-plan` |
+| 23–26 | 物料分类 / 档案 / 仓库 / 编码设置 | `category-setting`, `archive-setting`, `warehouse-setting`, `code-setting` |
+| 27–28 | 物料清单 / 申请记录 | `my-material`, `apply-records` |
+| 29–30 | 空调申请管理 / 空调时间设置 | `aircon-management`, `aircon-time` |
+| 31 | 快递代收 | `/orgs/property/express` |
+
+Interactions wired: work-order filters/create drawer, patrol dashboards and
+parameter tabs, meter search/tabs/create drawer, visitor pass/visitor/release
+dialogs, material document creation, inventory plan/task views, category/archive/
+warehouse/code dialogs, material list/application statuses, air-conditioner rule
+creation, and express delivery creation. Page-level data is demo state only.
+
 ## Asset map
 
 | Source | Local | Notes |
@@ -272,7 +311,8 @@ Screenshots live in `docs/design-references/`:
   `kuaijing-workbench-source-collapsed-1440.png`,
   `kuaijing-workbench-source-calendar.png`,
   `settings-source-01.png` … `settings-source-20.png`,
-  `office-source-01.png` … `office-source-16.png`
+  `office-source-01.png` … `office-source-16.png`,
+  `property-source-01/04/06/11/14/25.png`
 - Local: `kuaijing-local-initial.png`, `kuaijing-local-password.png`,
   `kuaijing-local-filled.png`, `kuaijing-local-wechat.png`,
   `kuaijing-local-wecom-modal.png`, `kuaijing-local-lang.png`,
@@ -286,4 +326,5 @@ Screenshots live in `docs/design-references/`:
   `kuaijing-local-workbench-drawer-1440.png`,
   `kuaijing-local-workbench-collapsed-1440.png`,
   `settings-local-01.png` … `settings-local-20.png`,
-  `office-local-01.png` … `office-local-16.png`
+  `office-local-01.png` … `office-local-16.png`,
+  `property-local-01/04/06/11/14.png`

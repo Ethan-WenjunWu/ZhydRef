@@ -216,6 +216,119 @@ export function officeHref(key: string): string | undefined {
   return page ? `/orgs/office/${page.slug}` : undefined;
 }
 
+export const PROPERTY_SIDEBAR: SidebarNode[] = [
+  { type: "page", key: "menu-workOrderRepair-230002", name: "在线报修", icon: "org-menu-repairs" },
+  { type: "page", key: "menu-workOrderPropose-230003", name: "投诉建议", icon: "org-menu-tousujianyi" },
+  { type: "page", key: "menu-workOrderService-230004", name: "服务工单", icon: "org-menu-tousujianyi" },
+  { type: "page", key: "menu-workEnergy-300003", name: "水电抄表", icon: "org-menu-shuidianchaobiao" },
+  { type: "page", key: "menu-workPatrolEquipment-240003", name: "设备巡检", icon: "org-menu-shebeixunjian" },
+  { type: "page", key: "menu-workPatrolSecurity-240004", name: "安防巡更", icon: "org-menu-anfangxungeng" },
+  { type: "page", key: "menu-workPatrolQuality-240005", name: "品质核查", icon: "org-menu-pinzhihecha" },
+  { type: "page", key: "menu-workPatrolGreen-240006", name: "绿化检查", icon: "org-menu-lvhuajiancha" },
+  { type: "page", key: "menu-workPatrolClean-240007", name: "保洁检查", icon: "org-menu-baojiejiancha" },
+  { type: "page", key: "menu-workPatrolServicePlan-241105", name: "服务计划", icon: "org-menu-baojiejiancha" },
+  { type: "page", key: "menu-workVisitorPass-200008", name: "出入证管理", icon: "org-menu-churuzheng" },
+  { type: "page", key: "menu-workVisitorDecoration-200006", name: "访客预约", icon: "org-menu-fangkeyuyue" },
+  { type: "page", key: "menu-workVisitorFreePass-200007", name: "物品放行", icon: "org-menu-wupinfanghang" },
+  {
+    type: "group",
+    key: "menu-workPropertyStockReal-220005",
+    name: "物料管理",
+    icon: "org-menu-wuliaoguanli",
+    children: [
+      { type: "page", key: "menu-workPropertyStockList-220038", name: "即时库存", icon: "org-menu-jishikucun" },
+      { type: "page", key: "menu-workPropertyStockInList-220035", name: "物料入库", icon: "org-wuliaoruku" },
+      { type: "page", key: "menu-workPropertyStockHandoutList-220037", name: "派发/退库", icon: "org-menu-zichanpaifa" },
+      { type: "page", key: "menu-workPropertyStockTransferList-220032", name: "物料调拨", icon: "org-menu-zichantiaobo" },
+      { type: "page", key: "menu-workPropertyStockHandleList-220034", name: "物料处置", icon: "org-menu-zichanchuzhi" },
+      { type: "page", key: "menu-workPropertyStockAdjustList-220033", name: "库存调整", icon: "org-menu-kucuntiaozheng" },
+      { type: "page", key: "menu-workPropertyStockReceiveList-220036", name: "员工申请单据", icon: "org-menu-yuangongshenqingdanju" },
+      {
+        type: "group", key: "menu-workPropertyStuffInventory-221098", name: "物料盘点", icon: "org-menu-kucuntiaozheng",
+        children: [
+          { type: "page", key: "menu-workPropertyStuffInventoryRecord-220097", name: "盘点任务", icon: "org-menu-kucuntiaozheng" },
+          { type: "page", key: "menu-workPropertyStuffInventoryPlan-220098", name: "盘点计划", icon: "org-menu-kucuntiaozheng" },
+        ],
+      },
+      {
+        type: "group", key: "menu-workPropertyStockSetting-220017", name: "物料设置", icon: "org-menu-zichanshezhi",
+        children: [
+          { type: "page", key: "menu-workPropertyStockSettingCategory-220081", name: "物料分类设置", icon: "org-menu-zichanshezhi" },
+          { type: "page", key: "menu-workPropertyStockSettingStuff-220082", name: "物料档案设置", icon: "org-menu-zichanshezhi" },
+          { type: "page", key: "menu-workPropertyStockSettingDepository-220080", name: "物料仓库设置", icon: "org-menu-zichanshezhi" },
+          { type: "page", key: "menu-workStuffNumberRule-220083", name: "物料编码设置", icon: "org-menu-zichanshezhi" },
+        ],
+      },
+      {
+        type: "group", key: "menu-workPropertyStockApply-220016", name: "我的物料", icon: "org-menu-wodezichan",
+        children: [
+          { type: "page", key: "menu-workPropertyStockApplyMyStuffList-220090", name: "物料清单", icon: "org-menu-wodezichan" },
+          { type: "page", key: "menu-workPropertyManageStuffUserApplyList-220078", name: "申请记录", icon: "org-menu-wodezichan" },
+        ],
+      },
+    ],
+  },
+  {
+    type: "group", key: "menu-workNotice_airConditioner-251056", name: "空调申请", icon: "org-menu-kongtiaoshenqing",
+    children: [
+      { type: "page", key: "menu-workNotice_airConditionerManagement-252056", name: "申请管理", icon: "org-kongtiaoshenqingguanli" },
+      { type: "page", key: "menu-workNotice_airConditionerSetting-253056", name: "空调时间设置", icon: "org-kongtiaoshijianshezhi" },
+    ],
+  },
+  { type: "page", key: "menu-express_collection-201019", name: "快递代收", icon: "org-menu-kuaididaishou" },
+];
+
+export type PropertyPage = {
+  id: string;
+  key: string;
+  name: string;
+  icon: string;
+  slug: string;
+};
+
+export const PROPERTY_PAGES: PropertyPage[] = [
+  { id: "01", key: "menu-workOrderRepair-230002", name: "在线报修", icon: "org-menu-repairs", slug: "repair" },
+  { id: "02", key: "menu-workOrderPropose-230003", name: "投诉建议", icon: "org-menu-tousujianyi", slug: "complaint" },
+  { id: "03", key: "menu-workOrderService-230004", name: "服务工单", icon: "org-menu-tousujianyi", slug: "service-order" },
+  { id: "04", key: "menu-workEnergy-300003", name: "水电抄表", icon: "org-menu-shuidianchaobiao", slug: "energy" },
+  { id: "05", key: "menu-workPatrolEquipment-240003", name: "设备巡检", icon: "org-menu-shebeixunjian", slug: "patrol-equipment" },
+  { id: "06", key: "menu-workPatrolSecurity-240004", name: "安防巡更", icon: "org-menu-anfangxungeng", slug: "patrol-security" },
+  { id: "07", key: "menu-workPatrolQuality-240005", name: "品质核查", icon: "org-menu-pinzhihecha", slug: "patrol-quality" },
+  { id: "08", key: "menu-workPatrolGreen-240006", name: "绿化检查", icon: "org-menu-lvhuajiancha", slug: "patrol-green" },
+  { id: "09", key: "menu-workPatrolClean-240007", name: "保洁检查", icon: "org-menu-baojiejiancha", slug: "patrol-clean" },
+  { id: "10", key: "menu-workPatrolServicePlan-241105", name: "服务计划", icon: "org-menu-baojiejiancha", slug: "service-plan" },
+  { id: "11", key: "menu-workVisitorPass-200008", name: "出入证管理", icon: "org-menu-churuzheng", slug: "pass" },
+  { id: "12", key: "menu-workVisitorDecoration-200006", name: "访客预约", icon: "org-menu-fangkeyuyue", slug: "visitor" },
+  { id: "13", key: "menu-workVisitorFreePass-200007", name: "物品放行", icon: "org-menu-wupinfanghang", slug: "release" },
+  { id: "14", key: "menu-workPropertyStockList-220038", name: "即时库存", icon: "org-menu-jishikucun", slug: "stock" },
+  { id: "15", key: "menu-workPropertyStockInList-220035", name: "物料入库", icon: "org-wuliaoruku", slug: "stock-in" },
+  { id: "16", key: "menu-workPropertyStockHandoutList-220037", name: "派发/退库", icon: "org-menu-zichanpaifa", slug: "stock-handout" },
+  { id: "17", key: "menu-workPropertyStockTransferList-220032", name: "物料调拨", icon: "org-menu-zichantiaobo", slug: "stock-transfer" },
+  { id: "18", key: "menu-workPropertyStockHandleList-220034", name: "物料处置", icon: "org-menu-zichanchuzhi", slug: "stock-handle" },
+  { id: "19", key: "menu-workPropertyStockAdjustList-220033", name: "库存调整", icon: "org-menu-kucuntiaozheng", slug: "stock-adjust" },
+  { id: "20", key: "menu-workPropertyStockReceiveList-220036", name: "员工申请单据", icon: "org-menu-yuangongshenqingdanju", slug: "stock-receive" },
+  { id: "21", key: "menu-workPropertyStuffInventoryRecord-220097", name: "盘点任务", icon: "org-menu-kucuntiaozheng", slug: "inventory-task" },
+  { id: "22", key: "menu-workPropertyStuffInventoryPlan-220098", name: "盘点计划", icon: "org-menu-kucuntiaozheng", slug: "inventory-plan" },
+  { id: "23", key: "menu-workPropertyStockSettingCategory-220081", name: "物料分类设置", icon: "org-menu-zichanshezhi", slug: "category-setting" },
+  { id: "24", key: "menu-workPropertyStockSettingStuff-220082", name: "物料档案设置", icon: "org-menu-zichanshezhi", slug: "archive-setting" },
+  { id: "25", key: "menu-workPropertyStockSettingDepository-220080", name: "物料仓库设置", icon: "org-menu-zichanshezhi", slug: "warehouse-setting" },
+  { id: "26", key: "menu-workStuffNumberRule-220083", name: "物料编码设置", icon: "org-menu-zichanshezhi", slug: "code-setting" },
+  { id: "27", key: "menu-workPropertyStockApplyMyStuffList-220090", name: "物料清单", icon: "org-menu-wodezichan", slug: "my-material" },
+  { id: "28", key: "menu-workPropertyManageStuffUserApplyList-220078", name: "申请记录", icon: "org-menu-wodezichan", slug: "apply-records" },
+  { id: "29", key: "menu-workNotice_airConditionerManagement-252056", name: "申请管理", icon: "org-kongtiaoshenqingguanli", slug: "aircon-management" },
+  { id: "30", key: "menu-workNotice_airConditionerSetting-253056", name: "空调时间设置", icon: "org-kongtiaoshijianshezhi", slug: "aircon-time" },
+  { id: "31", key: "menu-express_collection-201019", name: "快递代收", icon: "org-menu-kuaididaishou", slug: "express" },
+];
+
+export const PROPERTY_PAGE_BY_KEY = Object.fromEntries(
+  PROPERTY_PAGES.map((page) => [page.key, page]),
+);
+
+export function propertyHref(key: string): string | undefined {
+  const page = PROPERTY_PAGE_BY_KEY[key];
+  return page ? `/orgs/property/${page.slug}` : undefined;
+}
+
 export const SETTINGS_SIDEBAR: SidebarNode[] = [
   {
     type: "group",
