@@ -4,6 +4,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { CaptchaOverlay } from "./CaptchaOverlay";
 import {
   CloseIcon,
   DownIcon,
@@ -30,10 +31,9 @@ const BANNER_SRC = "/sites/kuaijing/images/banner.png";
 const WECHAT_QR_SRC = "/sites/kuaijing/images/wechat-qr.jpg";
 const WECOM_FRAME_SRC = "/sites/kuaijing/images/wecom-login-frame.png";
 
-const SERVICE_AGREEMENT_URL =
-  "https://asset.kuaijingai.com/public/system/agreement/use";
-const PRIVACY_POLICY_URL =
-  "https://asset.kuaijingai.com/public/system/agreement/privacy";
+const SERVICE_AGREEMENT_URL = "/public/system/agreement/use";
+const PRIVACY_POLICY_URL = "/public/system/agreement/privacy";
+// The ICP mark links to the official MIIT registry, a separate origin.
 const ICP_URL = "https://beian.miit.gov.cn/";
 
 function digitsOnly(value: string) {
@@ -50,8 +50,8 @@ export function KuaijingLoginPage() {
   const [langOpen, setLangOpen] = useState(false);
   const [moreLogin, setMoreLogin] = useState<MoreLogin>("wechat");
   const [wecomOpen, setWecomOpen] = useState(false);
+  const [captchaMode, setCaptchaMode] = useState<"login" | "sms" | null>(null);
   const [countdown, setCountdown] = useState(0);
-  const [codeSent, setCodeSent] = useState(false);
 
   const langRef = useRef<HTMLDivElement>(null);
   const phoneInputRef = useRef<HTMLInputElement>(null);
@@ -116,7 +116,7 @@ export function KuaijingLoginPage() {
     setRevealPassword(false);
     setTab("code");
     setCountdown(0);
-    setCodeSent(false);
+    setCaptchaMode(null);
   };
 
   const showWechatLogin = () => {
@@ -138,16 +138,28 @@ export function KuaijingLoginPage() {
 
   const requestCode = () => {
     if (!phoneValid || countdown > 0) return;
-    setCodeSent(true);
-    setCountdown(COUNTDOWN_SECONDS);
+    // The source shows the slider captcha before sending the SMS code.
+    setCaptchaMode("sms");
+  };
+
+  const handleCaptchaSuccess = () => {
+    const mode = captchaMode;
+    setCaptchaMode(null);
+    if (mode === "sms") {
+      setCountdown(COUNTDOWN_SECONDS);
+    }
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!canSubmit) return;
+    // Password login opens the slider captcha; the code-tab login posts
+    // directly in the source (and has no backend in this clone).
+    if (tab === "password") setCaptchaMode("login");
   };
 
   const getCodeLabel =
-    countdown > 0
-      ? `${countdown} 秒后可重新获取验证码`
-      : codeSent
-        ? "重新获取验证码"
-        : "获取验证码";
+    countdown > 0 ? `获取验证码 (${countdown}s)` : "获取验证码";
 
   return (
     <div className="kuaijing-login">
@@ -205,11 +217,7 @@ export function KuaijingLoginPage() {
         {/* Unstyled flex item: its auto width matches the 476px card. */}
         <div>
           <section className="kj-right">
-            <form
-              className="kj-form"
-              noValidate
-              onSubmit={(event) => event.preventDefault()}
-            >
+            <form className="kj-form" noValidate onSubmit={handleSubmit}>
               <div>
                 <div className="kj-card-header">
                   <h1 className="kj-title">欢迎使用快鲸资产管理运营系统</h1>
@@ -442,6 +450,13 @@ export function KuaijingLoginPage() {
                 </div>
               </div>
             </form>
+
+            {captchaMode ? (
+              <CaptchaOverlay
+                onSuccess={handleCaptchaSuccess}
+                onClose={() => setCaptchaMode(null)}
+              />
+            ) : null}
           </section>
         </div>
       </div>

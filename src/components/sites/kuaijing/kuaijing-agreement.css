@@ -1,0 +1,66 @@
+/* Scoped recreation of the source agreement pages:
+   /public/system/agreement/use and /public/system/agreement/privacy */
+
+.kuaijing-agreement {
+  /* The source declares no font-family, so it renders in the browser default
+     (Times + the platform serif for Chinese). */
+  font-family: initial;
+  font-size: 14px;
+  color: #000;
+}
+
+.kuaijing-agreement .header {
+  height: 50px;
+  line-height: 50px;
+  background: linear-gradient(270deg, #1269db 0%, #0045c6 100%);
+}
+
+.kuaijing-agreement .header_container {
+  position: relative;
+  width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.kuaijing-agreement .header_container img {
+  position: absolute;
+  top: 11px;
+  left: 0;
+  display: block;
+  width: 124px;
+  height: 28px;
+}
+
+.kuaijing-agreement .header_container .title {
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+}
+
+.kuaijing-agreement .body {
+  width: 960px;
+  margin: 20px auto;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 960px) {
+  .kuaijing-agreement .header_container {
+    width: 100%;
+  }
+
+  .kuaijing-agreement .header_container img {
+    top: 15px;
+    left: 10px;
+    width: 100px;
+    height: 20px;
+  }
+
+  .kuaijing-agreement .header_container .title {
+    font-size: 16px;
+  }
+
+  .kuaijing-agreement .body {
+    width: 100%;
+    margin: 20px 10px;
+  }
+}

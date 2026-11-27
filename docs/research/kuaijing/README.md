@@ -1,18 +1,24 @@
-# 快鲸资产管理运营系统 — login page clone
+# 快鲸资产管理运营系统 — login and agreement page clone
 
 Source: `https://asset.kuaijingai.com/orgs/#/user/login?redirect=/index`
+plus the two documents it links to.
 
-Inspected 2026-11-27 in Chrome at 1280×760, 1920×1080, and 390×844 (DPR 3,
-mobile emulation).
+Inspected 2026-11-27 in Chrome at 1280×760, 1920×1080, 2560×1177, and 390×844
+(DPR 3, mobile emulation).
 
 ## Route map
 
 | Source URL | Local route | Owner files |
 | --- | --- | --- |
 | `/orgs/#/user/login?redirect=/index` | `/orgs` (canonical mirror), `/` (alias) | `src/app/orgs/page.tsx`, `src/app/page.tsx`, `src/components/sites/kuaijing/LoginPage.tsx` |
+| `/public/system/agreement/use` | `/public/system/agreement/use` | `src/app/public/system/agreement/use/page.tsx` |
+| `/public/system/agreement/privacy` | `/public/system/agreement/privacy` | `src/app/public/system/agreement/privacy/page.tsx` |
 
-The source is a Vue 3 + Ant Design Vue SPA; the hash segment is a client-side
-route state. One local page owns the whole clone.
+The login source is a Vue 3 + Ant Design Vue SPA; the hash segment is a
+client-side route state. The two agreement pages are plain server-rendered HTML
+with no scripts or stylesheets beyond an inline `<style>`; they share one
+component (`AgreementPage.tsx`) and verbatim body copy extracted from the
+source (`agreement-content.ts`).
 
 ## What the source is
 
@@ -49,7 +55,24 @@ route state. One local page owns the whole clone.
    close by X / mask click / Escape.
 5. Language dropdown: 106px menu, single selected "简体中文" (`#2681f3` on
    `#f0f9ff`), closes on outside click / Escape / item click.
-6. 服务协议 / 隐私政策 / ICP links keep their real source destinations.
+6. 服务协议 and 隐私政策 open the cloned local documents in a new tab, as the
+   source does; the ICP mark keeps its real external MIIT destination.
+7. Slider captcha (`go-captcha`): opens on password-login submit and on
+   "获取验证码"; dragging the block moves the tile with the source's ratio
+   `(350-64)/(350-82)`; the captured challenge's gap is at tile x = 209, so a
+   correct drag snaps the overlay closed. 关闭 / 刷新 / 失败重置 are wired.
+
+## Agreement pages
+
+- 50px header, `linear-gradient(270deg, #1269db, #0045c6)`, `line-height: 50px`.
+- Centered 960px inner container; logo 124×28 at `left: 0; top: 11px`; white
+  20px title. Rendered in the browser default font (Times + platform serif for
+  Chinese) because the source declares no fonts.
+- Body 960px wide, `margin: 20px auto`, 14px/1.5. At ≤960px: container 100%,
+  logo 100×20 at `left: 10px; top: 15px`, title 16px, body `width: 100%;
+  margin: 20px 10px` (the source overflows to 400px at a 390px viewport).
+- Verified identical geometry: use page body 294px tall at 2560; privacy body
+  4011px (scrollH 4101 desktop / 6621 mobile), matching the source exactly.
 
 ## Asset map
 
@@ -61,6 +84,12 @@ route state. One local page owns the whole clone.
 | `.../system_config_img/20250116/67885d7ce591216862.png` | `public/sites/kuaijing/images/favicon.png` | 198×200 favicon |
 | `mp.weixin.qq.com/cgi-bin/showqrcode?ticket=…` | `public/sites/kuaijing/images/wechat-qr.jpg` | captured ticket image |
 | `login.work.weixin.qq.com/wwlogin/sso/login?…` iframe | `public/sites/kuaijing/images/wecom-login-frame.png` | captured 580×440 frame |
+| `/common/captcha/generate` → `data.image` | `public/sites/kuaijing/images/captcha-bg.jpg` | captured 350×200 challenge |
+| `/common/captcha/generate` → `data.thumb` | `public/sites/kuaijing/images/captcha-tile.png` | captured 64×64 puzzle tile |
+
+The captcha chrome (overlay 476×632 at 50% black, modal 376×330, header 36px,
+body 350×200, footer 50px, 82×40 blue drag block, icons) is reproduced from the
+source's computed styles and `go-captcha` CSS variables.
 
 Icon paths were extracted from the rendered Ant Design icons (global, down,
 mobile, lock, eye, eye-invisible, wechat, close) and the page iconfont symbol
@@ -70,13 +99,19 @@ mobile, lock, eye, eye-invisible, wechat, close) and the page iconfont symbol
 
 - No authentication backend: the 登录 button enables/disables correctly but
   submit does not contact the source API.
-- 获取验证码 starts the source's 60-second countdown
-  (`{num} 秒后可重新获取验证码`) locally instead of sending an SMS.
+- 获取验证码 is gated by the slider captcha and then runs the source's
+  60-second countdown in its real button format, `获取验证码 (Ns)`; no SMS is
+  sent.
+- The captcha uses one captured challenge and validates the drag locally
+  against its gap (x = 209). The source fetches a random challenge per attempt
+  and verifies it server-side, so 刷新 reuses the captured image here.
 - The WeChat QR is a captured ticket; the source requests a fresh ticket per
   click and old tickets return 404.
 - The WeCom modal shows a captured screenshot of the third-party
   `login.work.weixin.qq.com` iframe rather than embedding the live SSO widget.
-- Agreement pages and the ICP link intentionally point at the source.
+- The ICP mark links to the official MIIT registry
+  (`https://beian.miit.gov.cn/`), a separate government origin rather than a
+  page of this product; it stays an external link.
 
 ## Evidence
 
@@ -86,9 +121,15 @@ Screenshots live in `docs/design-references/`:
   `kuaijing-login-mobile.png`, `kuaijing-login-password.png`,
   `kuaijing-login-filled-enabled.png`, `kuaijing-lang-dropdown.png`,
   `kuaijing-hover-wecom.png`, `kuaijing-wechat-click.png`,
-  `kuaijing-wecom-click.png`
+  `kuaijing-wecom-click.png`, `kuaijing-agreement-use-desktop.png`,
+  `kuaijing-agreement-use-mobile.png`, `kuaijing-agreement-privacy-desktop.png`,
+  `kuaijing-agreement-privacy-mobile.png`, `kuaijing-captcha-source.png`
 - Local: `kuaijing-local-initial.png`, `kuaijing-local-password.png`,
   `kuaijing-local-filled.png`, `kuaijing-local-wechat.png`,
   `kuaijing-local-wecom-modal.png`, `kuaijing-local-lang.png`,
   `kuaijing-local-mobile.png`, `kuaijing-local-countdown.png`,
-  `kuaijing-local-hover-wecom.png`
+  `kuaijing-local-hover-wecom.png`, `kuaijing-local-agreement-use-2560.png`,
+  `kuaijing-local-agreement-use-mobile.png`,
+  `kuaijing-local-agreement-privacy-2560.png`,
+  `kuaijing-local-agreement-privacy-mobile.png`, `kuaijing-local-captcha.png`,
+  `kuaijing-local-captcha-modal.png`, `kuaijing-local-countdown.png`

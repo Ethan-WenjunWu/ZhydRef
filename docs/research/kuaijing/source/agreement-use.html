@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+    <head>
+        <meta charset="utf-8" />
+        <title>用户协议</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover" />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                font-size: 14px;
+            }
+            .header {
+                background: linear-gradient(270deg, #1269DB 0%, #0045C6 100%);
+                height: 50px;
+                line-height: 50px;
+            }
+            .header_container {
+                width: 960px;
+                margin: 0 auto;
+                position: relative;
+                text-align: center;
+            }
+            .header_container img {
+                position: absolute;
+                left: 0;
+                top: 11px;
+                width: 124px;
+                height: 28px;
+                display: none;
+            }
+            .header_container .title {
+                color: white;
+                text-align: center;
+                font-size: 20px;
+            }
+            .body {
+                width: 960px;
+                margin: 20px auto;
+                line-height: 1.5;
+            }
+
+            @media screen and (max-width: 960px) {
+                .header_container {
+                    width: 100%;
+                }
+                .header_container img {
+                    left: 10px;
+                    top: 15px;
+                    width: 100px;
+                    height: 20px;
+                }
+                .header_container .title {
+                    font-size: 16px;
+                }
+                .body {
+                    width: 100%;
+                    margin: 20px 10px;
+                }
+            }
+        </style>
+        <script type="application/javascript">
+            function getAjax(url, callback) {
+				const xhr = new XMLHttpRequest();
+				xhr.open("GET", url, true);
+				xhr.onload = function() {
+					if (this.status === 200) {
+						callback(null, this.response);
+					} else {
+						callback(new Error(this.statusText), null);
+					}
+				};
+				xhr.send();
+			}
+            getAjax('https://asset.kuaijingai.com/public/system/config?visitPort=org', function(err, res) {
+				if (err) {
+					console.error(err);
+				} else {
+					res = JSON.parse(res);
+                    document.getElementById('systemLogo').src = res.data.basic.system_logo;
+                    document.getElementById('systemLogo').alt = res.data.basic.system_name;
+                    document.getElementById('systemLogo').style.display = 'block';
+                    document.title = '用户协议 - ' + res.data.basic.system_name;
+				}
+			});
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div class="header_container">
+                    <img src="" alt="" id="systemLogo"/>
+                    <div class="title">用户协议</div>
+                </div>
+            </div>
+            <div class="body">
+                1. 特别提示<br />
+欢迎注册本平台。在点击“同意”之前，请务必审慎阅读并充分理解本协议各条款，特别是免责声明、隐私保护及争议解决条款。一旦完成注册，即视为您已代表所在租户单位或作为个人用户接受本协议。<br />
+<br />
+2. 定义与服务内容<br />
+本平台：指由本平台提供的多租户楼宇园区管理系统。<br />
+租户：指在园区内承租办公/生产空间的法人单位。<br />
+用户：指租户授权的管理员及通过该租户认证的个人员工。<br />
+<br />
+服务范围：包括但不限于门禁通行、物业报修、停车管理、账单缴纳、空间预约、访客管理等。<br />
+<br />
+3. 账户注册与安全<br />
+真实身份：用户应提供真实的姓名、手机号及企业所属信息。企业租户需提供营业执照等资质证明。<br />
+账户管理：用户需妥善保管账号及密码。凡通过该账号进行的操作，均视为用户本人行为。
+            </div>
+        </div>
+    </body>
+</html>
