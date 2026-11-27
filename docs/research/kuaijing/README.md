@@ -1,16 +1,17 @@
-# 快鲸资产管理运营系统 — login and agreement page clone
+# 快鲸资产管理运营系统 — login, agreement, and workbench clone
 
 Source: `https://asset.kuaijingai.com/orgs/#/user/login?redirect=/index`
-plus the two documents it links to.
+plus the documents it links to and the post-login `#/index` workbench.
 
-Inspected 2026-11-27 in Chrome at 1280×760, 1920×1080, 2560×1177, and 390×844
-(DPR 3, mobile emulation).
+Inspected 2026-11-27 in Chrome at 1280×760, 1440×900, 1920×1080, 2560×1177,
+and 390×844 (DPR 3, mobile emulation).
 
 ## Route map
 
 | Source URL | Local route | Owner files |
 | --- | --- | --- |
 | `/orgs/#/user/login?redirect=/index` | `/orgs` (canonical mirror), `/` (alias) | `src/app/orgs/page.tsx`, `src/app/page.tsx`, `src/components/sites/kuaijing/LoginPage.tsx` |
+| `/orgs/#/index` | `/orgs/index` | `src/app/orgs/index/page.tsx`, `src/components/sites/kuaijing/app/AppShell.tsx`, `WorkbenchPage.tsx` |
 | `/public/system/agreement/use` | `/public/system/agreement/use` | `src/app/public/system/agreement/use/page.tsx` |
 | `/public/system/agreement/privacy` | `/public/system/agreement/privacy` | `src/app/public/system/agreement/privacy/page.tsx` |
 
@@ -74,6 +75,30 @@ source (`agreement-content.ts`).
 - Verified identical geometry: use page body 294px tall at 2560; privacy body
   4011px (scrollH 4101 desktop / 6621 mobile), matching the source exactly.
 
+## Workbench (`#/index`)
+
+- App shell: 56px header (`linear-gradient(270deg, #1269db, #0045c6)`), 210px
+  logo block, 105px top-menu items (13 modules; overflow becomes 更多 at 1440),
+  180px `#1f283e` sider (68px when collapsed), 40px `#e8edf3` tab strip, and a
+  fixed 380×380 repeated watermark image.
+- Workbench: `#f0f2f5` background; warning alert (`#fffbe6`, `#ffe58f`, red tag);
+  left flex column with 4-column 120px cards (`linear-gradient(90deg,
+  rgba(38,129,243,.1), #fff)`) and 4-column 66px quick-function items; right
+  column fixed at 38% with a 485px schedule/calendar card and a flexible
+  announcement card.
+- Calendar: antd-mini styling (36px header, 24px year/month selects, 4px panel
+  padding + `#f0f0f0` top rule, 48px cells, 24×24 date boxes, today `#2681f3`).
+- Notification drawer: 70% width, 47px header, 336px notice list with
+  全部/未处理/已完成 tabs, 69px message rows, right detail pane empty state, and
+  the watermark repeated over the drawer.
+- Shell interactions implemented: sidebar collapse/expand, group expand/collapse,
+  top-menu overflow menu, tab-bar 更多 dropdown (refresh/maximize/fullscreen/new
+  window/close actions), notification drawer with tab filtering, calendar
+  month/year switching, and tab reload.
+- The captured account data is used on this page: company name, building "2",
+  user "王", the notification list, and the watermark tile (which includes the
+  account name/company/session time).
+
 ## Asset map
 
 | Source | Local | Notes |
@@ -86,6 +111,13 @@ source (`agreement-content.ts`).
 | `login.work.weixin.qq.com/wwlogin/sso/login?…` iframe | `public/sites/kuaijing/images/wecom-login-frame.png` | captured 580×440 frame |
 | `/common/captcha/generate` → `data.image` | `public/sites/kuaijing/images/captcha-bg.jpg` | captured 350×200 challenge |
 | `/common/captcha/generate` → `data.thumb` | `public/sites/kuaijing/images/captcha-tile.png` | captured 64×64 puzzle tile |
+| header logo data URL | `public/sites/kuaijing/images/org-logo.png` | 52×48, rendered 36×36 white tile |
+| `/public_h5/static/images/user/avatar.png` | `public/sites/kuaijing/images/user-avatar.png` | 18×18 header avatar |
+| `#bailing_watermark` background | `public/sites/kuaijing/images/watermark.png` | 380×380 captured watermark tile |
+| iconfont sprite subset | `public/sites/kuaijing/iconfont-sprite.svg` | 45 symbols used on the page |
+| `/public_web/static/images/workbench/*` | `public/sites/kuaijing/workbench/cards/` | 8 card thumbnails |
+| `/public_web/static/images/orgApp/*` | `public/sites/kuaijing/workbench/apps/` | 8 quick-function images |
+| `/public_web/static/images/message/*` | `public/sites/kuaijing/workbench/messages/` | 3 notification avatars |
 
 The captcha chrome (overlay 476×632 at 50% black, modal 376×330, header 36px,
 body 350×200, footer 50px, 82×40 blue drag block, icons) is reproduced from the
@@ -112,6 +144,18 @@ mobile, lock, eye, eye-invisible, wechat, close) and the page iconfont symbol
 - The ICP mark links to the official MIIT registry
   (`https://beian.miit.gov.cn/`), a separate government origin rather than a
   page of this product; it stays an external link.
+- Workbench navigation is visual only for now: top-module switches, sidebar
+  leaf links, card/quick-function links, 自定义, 新建日程, 日程管理/企业公告
+  更多, calendar date selection, the user menu, and the building selector do not
+  navigate or open their source dialogs. They will be wired as each page is
+  cloned.
+- Notification drawer rows select/highlight but do not open the message detail;
+  the 全部/未处理/已完成 filters are implemented against the captured notices.
+- The calendar is anchored to the captured month, November 2026 (27 highlighted);
+  month/year switching works, but "today" and the captured watermark keep the
+  2026-11-27 session time.
+- The page uses the captured account's company name, building, user initial,
+  notices, and watermark.
 
 ## Evidence
 
@@ -123,7 +167,11 @@ Screenshots live in `docs/design-references/`:
   `kuaijing-hover-wecom.png`, `kuaijing-wechat-click.png`,
   `kuaijing-wecom-click.png`, `kuaijing-agreement-use-desktop.png`,
   `kuaijing-agreement-use-mobile.png`, `kuaijing-agreement-privacy-desktop.png`,
-  `kuaijing-agreement-privacy-mobile.png`, `kuaijing-captcha-source.png`
+  `kuaijing-agreement-privacy-mobile.png`, `kuaijing-captcha-source.png`,
+  `kuaijing-workbench-source-1440.png`, `kuaijing-workbench-source-2560.png`,
+  `kuaijing-workbench-source-drawer-1440.png`,
+  `kuaijing-workbench-source-collapsed-1440.png`,
+  `kuaijing-workbench-source-calendar.png`
 - Local: `kuaijing-local-initial.png`, `kuaijing-local-password.png`,
   `kuaijing-local-filled.png`, `kuaijing-local-wechat.png`,
   `kuaijing-local-wecom-modal.png`, `kuaijing-local-lang.png`,
@@ -132,4 +180,7 @@ Screenshots live in `docs/design-references/`:
   `kuaijing-local-agreement-use-mobile.png`,
   `kuaijing-local-agreement-privacy-2560.png`,
   `kuaijing-local-agreement-privacy-mobile.png`, `kuaijing-local-captcha.png`,
-  `kuaijing-local-captcha-modal.png`, `kuaijing-local-countdown.png`
+  `kuaijing-local-captcha-modal.png`, `kuaijing-local-countdown.png`,
+  `kuaijing-local-workbench-1440.png`, `kuaijing-local-workbench-2560.png`,
+  `kuaijing-local-workbench-drawer-1440.png`,
+  `kuaijing-local-workbench-collapsed-1440.png`

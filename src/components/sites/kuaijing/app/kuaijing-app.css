@@ -1,0 +1,1441 @@
+/* Scoped recreation of the logged-in workbench (source #/index). */
+
+.kuaijing-app,
+.kuaijing-app * {
+  box-sizing: border-box;
+}
+
+.kuaijing-app {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 14px;
+  line-height: 1.5715;
+  background-color: #f0f2f5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.kuaijing-app .nowrap {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kuaijing-app .ka-watermark {
+  position: fixed;
+  inset: 0;
+  z-index: 998;
+  pointer-events: none;
+  background-image: url("/sites/kuaijing/images/watermark.png");
+  background-repeat: repeat;
+  background-size: 380px 380px;
+}
+
+/* Header ------------------------------------------------------------------ */
+
+.kuaijing-app .ka-header {
+  position: relative;
+  z-index: 999;
+  display: flex;
+  flex: none;
+  align-items: stretch;
+  height: 56px;
+  color: #fff;
+  background: linear-gradient(270deg, #1269db 0%, #0045c6 100%);
+}
+
+.kuaijing-app .ka-logo-box {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 210px;
+  height: 100%;
+  padding-right: 10px;
+  overflow: hidden;
+}
+
+.kuaijing-app .ka-sider.is-collapsed .ka-fold-btn {
+  width: 68px;
+}
+
+.kuaijing-app .ka-logo-square {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 10px;
+}
+
+.kuaijing-app .ka-logo-square > img {
+  display: block;
+  width: 36px;
+  height: 36px;
+  padding: 10px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.kuaijing-app .ka-title-ctn {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  line-height: 20px;
+  text-align: left;
+}
+
+.kuaijing-app .ka-title-org {
+  height: 20px;
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.kuaijing-app .ka-title-building {
+  display: flex;
+  align-items: center;
+  height: 18px;
+  font-size: 12px;
+  line-height: 18px;
+  white-space: nowrap;
+  transform: scale(0.9);
+  transform-origin: left center;
+}
+
+.kuaijing-app .ka-building-num {
+  margin: 0 4px;
+}
+
+.kuaijing-app .ka-title-caret {
+  width: 12px;
+  height: 12px;
+  margin-left: 2px;
+}
+
+.kuaijing-app .ka-top-menu {
+  display: flex;
+  flex: 1;
+  align-items: stretch;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.kuaijing-app .ka-top-item {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  width: 105px;
+  height: 56px;
+  padding: 0 15px;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 56px;
+  white-space: nowrap;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.kuaijing-app .ka-top-item:hover {
+  color: #fff;
+}
+
+.kuaijing-app .ka-top-item.is-selected {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.kuaijing-app .ka-top-icon {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  color: currentColor;
+}
+
+.kuaijing-app .ka-top-text {
+  margin-left: 5px;
+}
+
+.kuaijing-app .ka-top-more {
+  position: relative;
+  flex: none;
+}
+
+.kuaijing-app .ka-more-dropdown {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  z-index: 1100;
+  min-width: 150px;
+  padding: 4px 0;
+  background: #1f283e;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.kuaijing-app .ka-more-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  padding: 0 15px;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: inherit;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.kuaijing-app .ka-more-item:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.kuaijing-app .ka-more-item svg {
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+}
+
+.kuaijing-app .ka-extra {
+  display: flex;
+  flex: none;
+  align-items: center;
+  height: 56px;
+  padding-right: 20px;
+  color: #fff;
+}
+
+.kuaijing-app .ka-notice-badge-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 56px;
+}
+
+.kuaijing-app .ka-message-btn {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 4px 11px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+}
+
+.kuaijing-app .ka-message-btn svg {
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+}
+
+.kuaijing-app .ka-badge {
+  position: absolute;
+  top: 12px;
+  right: 5px;
+  display: block;
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  background: #ff4d4f;
+  border-radius: 10px;
+}
+
+.kuaijing-app .ka-header-divider {
+  width: 1px;
+  height: 13px;
+  margin: 0 12px 0 8px;
+  background: #ccc;
+}
+
+.kuaijing-app .ka-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 4px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.kuaijing-app .ka-user-avatar {
+  display: block;
+  width: 18px;
+  height: 18px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.kuaijing-app .ka-user-down {
+  width: 10px;
+  height: 10px;
+}
+
+/* Body / sider ------------------------------------------------------------ */
+
+.kuaijing-app .ka-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.kuaijing-app .ka-sider {
+  position: relative;
+  z-index: 999;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  width: 180px;
+  height: 100%;
+  overflow: hidden;
+  background: #1f283e;
+}
+
+.kuaijing-app .ka-sider.is-collapsed {
+  width: 68px;
+}
+
+.kuaijing-app .ka-sider-title {
+  display: flex;
+  flex: none;
+  align-items: center;
+  height: 54px;
+  padding-left: 19px;
+  color: #fff;
+  font-size: 14px;
+  border-top: 1px solid #2c2c2c;
+  border-bottom: 1px solid #2c2c2c;
+}
+
+.kuaijing-app .ka-sider.is-collapsed .ka-sider-title {
+  justify-content: center;
+  padding-left: 0;
+}
+
+.kuaijing-app .ka-sider-title svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+}
+
+.kuaijing-app .ka-sider-title-text {
+  margin-left: 10px;
+  font-weight: 600;
+}
+
+.kuaijing-app .ka-sider-menu {
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.kuaijing-app .ka-sider-menu::-webkit-scrollbar {
+  display: none;
+}
+
+.kuaijing-app .ka-side-item,
+.kuaijing-app .ka-side-group-title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 44px;
+  padding: 0 16px 0 19px;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 44px;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.kuaijing-app .ka-side-item.is-child {
+  padding-left: 38px;
+}
+
+.kuaijing-app .ka-side-item:hover,
+.kuaijing-app .ka-side-group-title:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.kuaijing-app .ka-side-item.is-selected,
+.kuaijing-app .ka-side-item.is-selected:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(270deg, #1269db 0%, #0045c6 100%);
+}
+
+.kuaijing-app .ka-side-icon {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  color: currentColor;
+}
+
+.kuaijing-app .ka-side-text {
+  margin-left: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kuaijing-app .ka-side-group-title {
+  padding-right: 34px;
+}
+
+.kuaijing-app .ka-side-arrow {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  width: 7px;
+  height: 7px;
+  margin-top: -5px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  opacity: 0.45;
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+
+.kuaijing-app .ka-side-group.is-open .ka-side-arrow {
+  margin-top: -2px;
+  transform: rotate(-135deg);
+}
+
+.kuaijing-app .ka-sider.is-collapsed .ka-side-item,
+.kuaijing-app .ka-sider.is-collapsed .ka-side-group-title {
+  justify-content: center;
+  padding: 0;
+}
+
+.kuaijing-app .ka-sider.is-collapsed .ka-side-icon {
+  margin: 0;
+}
+
+.kuaijing-app .ka-sider-footer {
+  display: flex;
+  flex: none;
+  align-items: center;
+  height: 50px;
+  border-top: 1px solid #2c2c2c;
+}
+
+.kuaijing-app .ka-fold-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 50px;
+  padding: 0;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.kuaijing-app .ka-fold-btn:hover {
+  background: #001529;
+}
+
+.kuaijing-app .ka-fold-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Content / tabs ---------------------------------------------------------- */
+
+.kuaijing-app .ka-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #f0f2f5;
+}
+
+.kuaijing-app .ka-tabbar {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: flex-end;
+  height: 40px;
+  padding-left: 10px;
+  background: #e8edf3;
+}
+
+.kuaijing-app .ka-tab {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  min-width: 106px;
+  height: 36px;
+  padding: 8px 12px;
+  color: #2681f3;
+  font-size: 14px;
+  background: #fff;
+  border-radius: 8px 8px 0 0;
+}
+
+.kuaijing-app .ka-tab-icon {
+  flex: none;
+  width: 14px;
+  height: 14px;
+}
+
+.kuaijing-app .ka-tab-text {
+  margin-left: 4px;
+}
+
+.kuaijing-app .ka-tab-reload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  margin-left: 6px;
+  padding: 0;
+  color: #8c8c8c;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.kuaijing-app .ka-tab-reload:hover {
+  color: #595959;
+}
+
+.kuaijing-app .ka-tab-reload svg {
+  width: 14px;
+  height: 14px;
+}
+
+.kuaijing-app .ka-tab-ink {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  z-index: 2;
+  width: 106px;
+  height: 2px;
+  background: #2681f3;
+}
+
+.kuaijing-app .ka-tab-more-wrap {
+  position: relative;
+  align-self: center;
+  margin-right: 13px;
+  margin-left: auto;
+}
+
+.kuaijing-app .ka-tab-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 6px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  background: #2681f3;
+  border: 1px solid #2681f3;
+  border-radius: 2px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.043);
+}
+
+.kuaijing-app .ka-tab-more svg {
+  width: 10px;
+  height: 10px;
+}
+
+.kuaijing-app .ka-tab-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: 1100;
+  min-width: 104px;
+  padding: 4px 0;
+  white-space: nowrap;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow:
+    0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 6px 16px rgba(0, 0, 0, 0.08),
+    0 9px 28px 8px rgba(0, 0, 0, 0.05);
+}
+
+.kuaijing-app .ka-tab-dropdown-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 32px;
+  padding: 5px 8px;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.kuaijing-app .ka-tab-dropdown-item:hover {
+  background: #f5f5f5;
+}
+
+.kuaijing-app .ka-tab-dropdown-item:disabled {
+  color: rgba(0, 0, 0, 0.25);
+  cursor: not-allowed;
+  background: transparent;
+}
+
+.kuaijing-app .ka-tab-dropdown-item svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+}
+
+.kuaijing-app .ka-tab-dropdown-divider {
+  height: 1px;
+  margin: 0;
+  background: #f0f0f0;
+}
+
+.kuaijing-app .ka-route {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* Alert ------------------------------------------------------------------- */
+
+.kuaijing-app .workbench-wrap {
+  min-height: 100%;
+}
+
+.kuaijing-app .workbench-alert {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  padding: 8px 15px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  line-height: 22px;
+  background: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-radius: 2px;
+}
+
+.kuaijing-app .workbench-alert-tag {
+  display: inline-block;
+  padding: 0 7px;
+  margin-right: 8px;
+  color: #ff0000;
+  font-size: 12px;
+  line-height: 20px;
+  background: #fff7e6;
+  border: 1px solid #ff0000;
+  border-radius: 2px;
+}
+
+/* Workbench layout -------------------------------------------------------- */
+
+.kuaijing-app .workbench-box {
+  display: flex;
+  align-items: stretch;
+  min-height: calc(100vh - 96px);
+  padding: 10px;
+}
+
+.kuaijing-app .workbench-left {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding-right: 10px;
+}
+
+.kuaijing-app .workbench-right {
+  display: flex;
+  flex-direction: column;
+  width: 38%;
+}
+
+.kuaijing-app .card-box {
+  margin-bottom: 10px;
+}
+
+.kuaijing-app .card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.kuaijing-app .card-item {
+  display: flex;
+  height: 120px;
+  padding: 8px 12px;
+  overflow: hidden;
+  background: linear-gradient(90deg, rgba(38, 129, 243, 0.1), #fff);
+  border-radius: 4px;
+}
+
+.kuaijing-app .card-left {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.kuaijing-app .card-title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 23.5725px;
+}
+
+.kuaijing-app .card-num {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 40.859px;
+}
+
+.kuaijing-app .show-more {
+  color: #2681f3;
+  font-size: 12px;
+  line-height: 18.858px;
+  cursor: pointer;
+}
+
+.kuaijing-app .card-item .img-box {
+  flex: none;
+  width: 40px;
+}
+
+.kuaijing-app .card-item .img-box img {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.kuaijing-app .app-box {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.kuaijing-app .title-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.kuaijing-app .title-box-dec {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 23.5725px;
+}
+
+.kuaijing-app .app-title-box {
+  flex: none;
+  height: 44px;
+  padding: 10px 14px;
+}
+
+.kuaijing-app .title-box-action {
+  display: inline-flex;
+  align-items: center;
+  color: #2681f3;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.kuaijing-app .title-box-action svg {
+  width: 14px;
+  height: 14px;
+}
+
+.kuaijing-app .title-action-text {
+  margin-left: 2px;
+}
+
+.kuaijing-app .app-content {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+}
+
+.kuaijing-app .app-content-box {
+  position: absolute;
+  inset: 0;
+  padding: 10px 14px;
+  overflow-y: auto;
+}
+
+.kuaijing-app .app-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px 10px;
+}
+
+.kuaijing-app .app-item {
+  display: flex;
+  align-items: center;
+  height: 66px;
+  padding: 10px 12px;
+  overflow: hidden;
+  cursor: pointer;
+  background: linear-gradient(90deg, #fff, rgba(38, 129, 243, 0.1));
+  border: 1px solid #e9e9e9;
+  border-radius: 4px;
+}
+
+.kuaijing-app .app-left {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0;
+  height: 100%;
+}
+
+.kuaijing-app .icon-box {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  min-width: 46px;
+  max-width: 46px;
+  height: 46px;
+  overflow: hidden;
+  color: #fff;
+  font-size: 24px;
+  border-radius: 4px;
+}
+
+.kuaijing-app .icon-box.iconback {
+  background: #2681f3;
+}
+
+.kuaijing-app .icon-box svg {
+  width: 24px;
+  height: 24px;
+}
+
+.kuaijing-app .icon-box .image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kuaijing-app .app-name {
+  padding: 0 6px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.kuaijing-app .app-right {
+  flex: none;
+  margin-left: auto;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+}
+
+/* Schedule ---------------------------------------------------------------- */
+
+.kuaijing-app .schedule-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 10px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.kuaijing-app .schedule-title-box {
+  height: 44px;
+  padding: 10px;
+}
+
+.kuaijing-app .schedule-title-box .title-box-dec {
+  display: inline-flex;
+  align-items: center;
+}
+
+.kuaijing-app .title-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 3px;
+  margin-left: 4px;
+  color: #2681f3;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+}
+
+.kuaijing-app .title-link-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.kuaijing-app .schedule-title-box .title-box-action .title-link-btn {
+  margin: 0 5px 0 0;
+}
+
+.kuaijing-app .schedule-content-box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.kuaijing-app .calendar-box {
+  width: 100%;
+}
+
+.kuaijing-app .calendar-header {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding-bottom: 12px;
+}
+
+.kuaijing-app .calendar-select-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.kuaijing-app .calendar-month-wrap {
+  margin-left: 4px;
+}
+
+.kuaijing-app .calendar-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80px;
+  height: 24px;
+  padding: 0 7px;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+}
+
+.kuaijing-app .calendar-month-wrap .calendar-select {
+  width: 70px;
+}
+
+.kuaijing-app .calendar-select svg {
+  width: 10px;
+  height: 10px;
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.kuaijing-app .calendar-dropdown {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  z-index: 30;
+  width: 100%;
+  min-width: 80px;
+  max-height: 220px;
+  padding: 4px 0;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow:
+    0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.kuaijing-app .calendar-option {
+  display: block;
+  width: 100%;
+  padding: 5px 8px;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.kuaijing-app .calendar-option:hover {
+  background: #f5f5f5;
+}
+
+.kuaijing-app .calendar-option.is-selected {
+  color: #2681f3;
+  background: #f0f9ff;
+}
+
+.kuaijing-app .calendar-table-wrap {
+  width: 100%;
+  padding: 4px 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  text-align: center;
+}
+
+.kuaijing-app .calendar-table th {
+  height: 18px;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: center;
+}
+
+.kuaijing-app .calendar-cell {
+  padding: 12px 0;
+  text-align: center;
+}
+
+.kuaijing-app .calendar-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  line-height: 24px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.kuaijing-app .calendar-cell:not(.is-in-view) .calendar-date {
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.kuaijing-app .calendar-cell.is-today .calendar-date {
+  color: #fff;
+  background: #2681f3;
+}
+
+.kuaijing-app .calendar-dec {
+  width: 100%;
+}
+
+.kuaijing-app .calendar-dec-title {
+  padding: 10px 0;
+}
+
+.kuaijing-app .todo-list {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 10px;
+  background: #f6f6f6;
+}
+
+.kuaijing-app .todo-list-dec {
+  font-size: 14px;
+}
+
+/* Notice box -------------------------------------------------------------- */
+
+.kuaijing-app .notice-box {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  margin-top: 10px;
+  padding: 0 10px 10px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.kuaijing-app .notice-title-box {
+  flex: none;
+  height: 44px;
+  padding: 10px 0;
+}
+
+.kuaijing-app .notice-more {
+  font-size: 14px;
+}
+
+.kuaijing-app .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 8px;
+  text-align: center;
+}
+
+.kuaijing-app .empty-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  margin-bottom: 8px;
+}
+
+.kuaijing-app .empty-image svg {
+  width: auto;
+  height: 100px;
+}
+
+.kuaijing-app .empty-description {
+  margin: 0 0 14px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+}
+
+/* antd empty illustration colors */
+.kuaijing-app .ant-empty-img-default-ellipse {
+  fill: #f5f5f5;
+  fill-opacity: 0.8;
+}
+
+.kuaijing-app .ant-empty-img-default-path-1 {
+  fill: #aeb8c2;
+}
+
+.kuaijing-app .ant-empty-img-default-path-2 {
+  fill: #f5f5f5;
+}
+
+.kuaijing-app .ant-empty-img-default-path-3 {
+  fill: #fff;
+}
+
+.kuaijing-app .ant-empty-img-default-path-4 {
+  fill: #dce0e6;
+}
+
+.kuaijing-app .ant-empty-img-default-path-5 {
+  fill: #dce0e6;
+}
+
+.kuaijing-app .ant-empty-img-default-g {
+  fill: #fff;
+}
+
+/* Notification drawer ----------------------------------------------------- */
+
+.kuaijing-app .ka-drawer-root {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
+
+.kuaijing-app .ka-drawer-mask {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.kuaijing-app .ka-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  height: 100%;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: -6px 0 16px rgba(0, 0, 0, 0.08);
+  animation: ka-drawer-in 0.3s ease-out;
+}
+
+.kuaijing-app .ka-drawer-watermark {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background-image: url("/sites/kuaijing/images/watermark.png");
+  background-repeat: repeat;
+  background-size: 380px 380px;
+}
+
+@keyframes ka-drawer-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.kuaijing-app .ka-drawer-header {
+  display: flex;
+  flex: none;
+  align-items: center;
+  height: 47px;
+  padding: 12px 16px;
+  background: #fff;
+}
+
+.kuaijing-app .ka-drawer-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-right: 12px;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.kuaijing-app .ka-drawer-close:hover {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.kuaijing-app .ka-drawer-close svg {
+  width: 16px;
+  height: 16px;
+}
+
+.kuaijing-app .ka-drawer-title {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.kuaijing-app .ka-drawer-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.kuaijing-app .ka-notice-left {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  width: 336px;
+  overflow: hidden;
+  border-right: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .ka-notice-tabs {
+  display: flex;
+  flex: none;
+  align-items: center;
+  height: 47px;
+  padding: 0 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .ka-notice-tab {
+  position: relative;
+  height: 46px;
+  padding: 12px;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.kuaijing-app .ka-notice-tab.is-active {
+  color: #2681f3;
+}
+
+.kuaijing-app .ka-notice-tab.is-active::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  content: "";
+  background: #2681f3;
+}
+
+.kuaijing-app .ka-notice-list {
+  flex: 1;
+  padding: 0;
+  margin: 0 0 14px;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.kuaijing-app .ka-notice-item {
+  display: flex;
+  align-items: center;
+  height: 69px;
+  padding: 10px 15px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.kuaijing-app .ka-notice-item:hover,
+.kuaijing-app .ka-notice-item.is-selected {
+  background: #f5f5f5;
+}
+
+.kuaijing-app .ka-notice-avatar {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.kuaijing-app .ka-notice-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kuaijing-app .ka-notice-info {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.kuaijing-app .ka-notice-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.kuaijing-app .ka-notice-time {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.kuaijing-app .ka-notice-last {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.kuaijing-app .ka-notice-last > span {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.kuaijing-app .ka-notice-count {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  background: #ff4d4f;
+  border-radius: 10px;
+}
+
+.kuaijing-app .ka-notice-detail {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.kuaijing-app .ka-drawer-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+}
+
+.kuaijing-app .ka-drawer-empty-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  margin-bottom: 8px;
+}
+
+.kuaijing-app .ka-drawer-empty-image svg {
+  width: auto;
+  height: 120px;
+}
+
+@media (max-width: 1200px) {
+  .kuaijing-app .ka-notice-left {
+    width: 280px;
+  }
+}
