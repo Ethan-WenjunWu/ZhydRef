@@ -1,4 +1,4 @@
-# 快鲸资产管理运营系统 — login, agreement, and workbench clone
+# 快鲸资产管理运营系统 — login, agreement, workbench, and settings clone
 
 Source: `https://asset.kuaijingai.com/orgs/#/user/login?redirect=/index`
 plus the documents it links to and the post-login `#/index` workbench.
@@ -12,6 +12,7 @@ and 390×844 (DPR 3, mobile emulation).
 | --- | --- | --- |
 | `/orgs/#/user/login?redirect=/index` | `/orgs` (canonical mirror), `/` (alias) | `src/app/orgs/page.tsx`, `src/app/page.tsx`, `src/components/sites/kuaijing/LoginPage.tsx` |
 | `/orgs/#/index` | `/orgs/index` | `src/app/orgs/index/page.tsx`, `src/components/sites/kuaijing/app/AppShell.tsx`, `WorkbenchPage.tsx` |
+| `/orgs/#/index` → 系统设置 left menu | `/orgs/settings/<slug>` (20 routes) | `src/app/orgs/settings/[slug]/page.tsx`, `app/SettingsShell.tsx`, `SettingsPages.tsx`, `SettingsUI.tsx` |
 | `/public/system/agreement/use` | `/public/system/agreement/use` | `src/app/public/system/agreement/use/page.tsx` |
 | `/public/system/agreement/privacy` | `/public/system/agreement/privacy` | `src/app/public/system/agreement/privacy/page.tsx` |
 
@@ -99,6 +100,40 @@ source (`agreement-content.ts`).
   user "王", the notification list, and the watermark tile (which includes the
   account name/company/session time).
 
+## 系统设置 (A13) — all 20 pages
+
+The settings shell selects 系统设置, uses the settings sidebar (including the
+nested 组织架构 → 通讯录管理 group), and accumulates a tab per visited page
+(client-side store; the tab strip scrolls and 更多 keeps refresh/fullscreen/
+new-window/close actions). The workbench tab stays available.
+
+| # | Page | Local route | Layout |
+| --- | --- | --- | --- |
+| 01 | 企业信息 | `/orgs/settings/company-info` | 240px inner menu (基本/门户/安全/通知) + form, upload tiles |
+| 02 | 公司列表 | `/orgs/settings/company-list` | search card + toolbar + wide table + pagination |
+| 03 | 收支账户 | `/orgs/settings/accounts` | single card: inline search, import/export/add, table |
+| 04 | 支付配置 | `/orgs/settings/payment-config` | toolbar + empty table |
+| 05 | 成员/部门 | `/orgs/settings/members` | 成员/部门/岗位 tabs, department tree + member table |
+| 06 | 角色管理 | `/orgs/settings/roles` | role list + member table split |
+| 07 | 菜单管理 | `/orgs/settings/menus` | info alert + default-menu tree + custom-menu editor |
+| 08 | 查看权限 | `/orgs/settings/contact-auth` | three rule sections with empty tables |
+| 09 | 资料显示 | `/orgs/settings/contact-display` | two policy rows with 修改/查看 |
+| 10 | 基础设置 | `/orgs/settings/ai-basic` | centered 40vw vertical form, checkbox groups |
+| 11 | 模型参数 | `/orgs/settings/ai-model` | 基础配置/知识库 inner menu + model form |
+| 12 | 问题库 | `/orgs/settings/ai-questions` | tabs + search + populated question table |
+| 13 | 智能体 | `/orgs/settings/ai-agents` | tabs + search + empty agent table |
+| 14 | 微信服务号 | `/orgs/settings/wechat-service` | brand inner menu + bind table |
+| 15 | 微信小程序 | `/orgs/settings/wechat-mini` | brand inner menu + bind table |
+| 16 | 企业微信 | `/orgs/settings/wecom` | 企业授权 card + authorize button |
+| 17 | 钉钉 | `/orgs/settings/dingtalk` | bind table |
+| 18 | 飞书 | `/orgs/settings/feishu` | app list table |
+| 19 | APP | `/orgs/settings/app` | app list table |
+| 20 | 操作日志 | `/orgs/settings/operation-log` | inline filters + log table |
+
+Employee names, phone numbers, emails and operation-log IP/phone values were
+**sanitized** in the clone (dummy employee names, masked phones, placeholder IPs).
+The source screenshots for 成员/部门 and 操作日志 are intentionally not stored.
+
 ## Asset map
 
 | Source | Local | Notes |
@@ -156,6 +191,14 @@ mobile, lock, eye, eye-invisible, wechat, close) and the page iconfont symbol
   2026-11-27 session time.
 - The page uses the captured account's company name, building, user initial,
   notices, and watermark.
+- 系统设置 pages are visual clones: search/reset, add/edit/delete, import/export,
+  save, permission dialogs, menu drag-and-drop, and member detail actions are
+  not wired. Inner menus (企业信息 门户/安全/通知, 模型参数 知识库, 成员/部门/岗位)
+  render their default state only; pagination is static.
+- The settings tab strip accumulates pages in a client store and resets on a
+  full reload. It scrolls horizontally rather than reproducing Ant Design's
+  overflow 更多 popup exactly.
+- Sensitive employee/operation-log data was sanitized (see the settings section).
 
 ## Evidence
 
@@ -171,7 +214,8 @@ Screenshots live in `docs/design-references/`:
   `kuaijing-workbench-source-1440.png`, `kuaijing-workbench-source-2560.png`,
   `kuaijing-workbench-source-drawer-1440.png`,
   `kuaijing-workbench-source-collapsed-1440.png`,
-  `kuaijing-workbench-source-calendar.png`
+  `kuaijing-workbench-source-calendar.png`,
+  `settings-source-01.png` … `settings-source-19.png` (05 and 20 omitted for PII)
 - Local: `kuaijing-local-initial.png`, `kuaijing-local-password.png`,
   `kuaijing-local-filled.png`, `kuaijing-local-wechat.png`,
   `kuaijing-local-wecom-modal.png`, `kuaijing-local-lang.png`,
@@ -183,4 +227,5 @@ Screenshots live in `docs/design-references/`:
   `kuaijing-local-captcha-modal.png`, `kuaijing-local-countdown.png`,
   `kuaijing-local-workbench-1440.png`, `kuaijing-local-workbench-2560.png`,
   `kuaijing-local-workbench-drawer-1440.png`,
-  `kuaijing-local-workbench-collapsed-1440.png`
+  `kuaijing-local-workbench-collapsed-1440.png`,
+  `settings-local-01.png` … `settings-local-20.png`

@@ -16,7 +16,7 @@ export type SidebarGroup = {
   key: string;
   name: string;
   icon: string;
-  children: SidebarPage[];
+  children: SidebarNode[];
 };
 
 export type SidebarNode = SidebarPage | SidebarGroup;
@@ -123,6 +123,109 @@ export const SIDEBAR: SidebarNode[] = [
     ],
   },
 ];
+
+export const SETTINGS_SIDEBAR: SidebarNode[] = [
+  {
+    type: "group",
+    key: "menu-companySetting-39998",
+    name: "企业设置",
+    icon: "org-menu-qiyeshezhi",
+    children: [
+      { type: "page", key: "menu-companyBasicInfo-30054", name: "企业信息", icon: "org-menu-qiyexinxi" },
+      { type: "page", key: "menu-orgBranchList-30055", name: "公司列表", icon: "org-menu-gongsiliebiao" },
+      { type: "page", key: "menu-manageAccount-30053", name: "收支账户", icon: "org-menu-shouzhizhanghu" },
+      { type: "page", key: "menu-companyPayList-50003", name: "支付配置", icon: "org-menu-zhifupeizhi" },
+    ],
+  },
+  {
+    type: "group",
+    key: "menu-companyOrganization-30017",
+    name: "组织架构",
+    icon: "org-menu-zuzhijiagou",
+    children: [
+      { type: "page", key: "menu-companyDepartmentUser-30090", name: "成员/部门", icon: "org-menu-chengyuanguanli" },
+      { type: "page", key: "menu-companyRoles-30091", name: "角色管理", icon: "org-menu-jiaoseguanli" },
+      { type: "page", key: "menu-menuManagement-32199", name: "菜单管理", icon: "org-menu-caidanguanli" },
+      {
+        type: "group",
+        key: "menu-departmentUserManagement-31230",
+        name: "通讯录管理",
+        icon: "org-menu-tonxunluguanli",
+        children: [
+          { type: "page", key: "menu-checkAuth-30229", name: "查看权限", icon: "org-menu-chakanquanxian" },
+          { type: "page", key: "menu-displayUserField-30230", name: "资料显示", icon: "org-menu-ziliaoxianshi" },
+        ],
+      },
+    ],
+  },
+  {
+    type: "group",
+    key: "menu-assistantSetting-100010002",
+    name: "AI助手",
+    icon: "org-menu-ai",
+    children: [
+      { type: "page", key: "menu-assistantSettingBasicConfig-100010004", name: "基础设置", icon: "org-menu-aishezhi" },
+      { type: "page", key: "menu-assistantSettingModelConfig-100010005", name: "模型参数", icon: "org-menu-moxingcanshu" },
+      { type: "page", key: "menu-assistantSettingRecommendQuestionCategory-100010006", name: "问题库", icon: "org-menu-wentiku" },
+      { type: "page", key: "menu-assistantSettingAgentCategory-100010003", name: "智能体", icon: "org-menu-zhinengti" },
+    ],
+  },
+  {
+    type: "group",
+    key: "menu-thirdSystem-40002",
+    name: "三方集成",
+    icon: "org-menu-sanfangjicheng",
+    children: [
+      { type: "page", key: "menu-companyThirdWeixin-40003", name: "微信服务号", icon: "org-menu-gongzhonghao" },
+      { type: "page", key: "menu-companyThirdWxapp-40004", name: "微信小程序", icon: "org-menu-weixinxiaochengxu" },
+      { type: "page", key: "menu-companyThirdWorkWeixin-40005", name: "企业微信", icon: "org-menu-qiyeweixin" },
+      { type: "page", key: "menu-companyThirdDingtalk-40007", name: "钉钉", icon: "org-menu-dingding" },
+      { type: "page", key: "menu-companyThirdFeishu-41014", name: "飞书", icon: "org-menu-feishu" },
+      { type: "page", key: "menu-companyThirdApp-40006", name: "APP", icon: "org-menu-app" },
+    ],
+  },
+  { type: "page", key: "menu-companyOperationLogList-30056", name: "操作日志", icon: "org-menu-caozuorizhi" },
+];
+
+export type SettingsPage = {
+  id: string;
+  key: string;
+  name: string;
+  icon: string;
+  slug: string;
+};
+
+export const SETTINGS_PAGES: SettingsPage[] = [
+  { id: "01", key: "menu-companyBasicInfo-30054", name: "企业信息", icon: "org-menu-qiyexinxi", slug: "company-info" },
+  { id: "02", key: "menu-orgBranchList-30055", name: "公司列表", icon: "org-menu-gongsiliebiao", slug: "company-list" },
+  { id: "03", key: "menu-manageAccount-30053", name: "收支账户", icon: "org-menu-shouzhizhanghu", slug: "accounts" },
+  { id: "04", key: "menu-companyPayList-50003", name: "支付配置", icon: "org-menu-zhifupeizhi", slug: "payment-config" },
+  { id: "05", key: "menu-companyDepartmentUser-30090", name: "成员/部门", icon: "org-menu-chengyuanguanli", slug: "members" },
+  { id: "06", key: "menu-companyRoles-30091", name: "角色管理", icon: "org-menu-jiaoseguanli", slug: "roles" },
+  { id: "07", key: "menu-menuManagement-32199", name: "菜单管理", icon: "org-menu-caidanguanli", slug: "menus" },
+  { id: "08", key: "menu-checkAuth-30229", name: "查看权限", icon: "org-menu-chakanquanxian", slug: "contact-auth" },
+  { id: "09", key: "menu-displayUserField-30230", name: "资料显示", icon: "org-menu-ziliaoxianshi", slug: "contact-display" },
+  { id: "10", key: "menu-assistantSettingBasicConfig-100010004", name: "基础设置", icon: "org-menu-aishezhi", slug: "ai-basic" },
+  { id: "11", key: "menu-assistantSettingModelConfig-100010005", name: "模型参数", icon: "org-menu-moxingcanshu", slug: "ai-model" },
+  { id: "12", key: "menu-assistantSettingRecommendQuestionCategory-100010006", name: "问题库", icon: "org-menu-wentiku", slug: "ai-questions" },
+  { id: "13", key: "menu-assistantSettingAgentCategory-100010003", name: "智能体", icon: "org-menu-zhinengti", slug: "ai-agents" },
+  { id: "14", key: "menu-companyThirdWeixin-40003", name: "微信服务号", icon: "org-menu-gongzhonghao", slug: "wechat-service" },
+  { id: "15", key: "menu-companyThirdWxapp-40004", name: "微信小程序", icon: "org-menu-weixinxiaochengxu", slug: "wechat-mini" },
+  { id: "16", key: "menu-companyThirdWorkWeixin-40005", name: "企业微信", icon: "org-menu-qiyeweixin", slug: "wecom" },
+  { id: "17", key: "menu-companyThirdDingtalk-40007", name: "钉钉", icon: "org-menu-dingding", slug: "dingtalk" },
+  { id: "18", key: "menu-companyThirdFeishu-41014", name: "飞书", icon: "org-menu-feishu", slug: "feishu" },
+  { id: "19", key: "menu-companyThirdApp-40006", name: "APP", icon: "org-menu-app", slug: "app" },
+  { id: "20", key: "menu-companyOperationLogList-30056", name: "操作日志", icon: "org-menu-caozuorizhi", slug: "operation-log" },
+];
+
+export const SETTINGS_PAGE_BY_KEY = Object.fromEntries(
+  SETTINGS_PAGES.map((page) => [page.key, page]),
+);
+
+export function settingsHref(key: string): string | undefined {
+  const page = SETTINGS_PAGE_BY_KEY[key];
+  return page ? `/orgs/settings/${page.slug}` : undefined;
+}
 
 export const WORKBENCH_CARDS: WorkbenchCard[] = [
   { title: "合同待审批", value: "0", moreLabel: "查看更多>>", image: "/sites/kuaijing/workbench/cards/approval_contract.jpg" },

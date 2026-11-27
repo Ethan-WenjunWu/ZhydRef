@@ -2,14 +2,22 @@
 
 /* eslint-disable @next/next/no-img-element */
 
-import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import {
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 
 import {
   ACCOUNT,
   NOTICES,
+  SETTINGS_PAGE_BY_KEY,
   SIDEBAR,
   TOP_MODULES,
-  type SidebarPage,
+  settingsHref,
+  type SidebarNode,
 } from "./data";
 import { EMPTY_SVG } from "./empty-svg";
 import {
@@ -30,14 +38,102 @@ import {
 import "./kuaijing-app.css";
 
 const TOP_ITEM_WIDTH = 105;
+const WORKBENCH_TAB = "menu-workbench-999999999";
+const SERVER_TABS = [WORKBENCH_TAB];
+
+const tabStore: {
+  tabs: string[];
+  listeners: Set<() => void>;
+} = {
+  tabs: [WORKBENCH_TAB],
+  listeners: new Set(),
+};
+
+function notifyTabs() {
+  for (const listener of tabStore.listeners) listener();
+}
+
+function subscribeTabs(listener: () => void) {
+  tabStore.listeners.add(listener);
+  return () => tabStore.listeners.delete(listener);
+}
+
+function getTabs() {
+  return tabStore.tabs;
+}
+
+function openSiteTab(key: string) {
+  if (!key || key === WORKBENCH_TAB || tabStore.tabs.includes(key)) return;
+  tabStore.tabs = [...tabStore.tabs, key];
+  notifyTabs();
+}
+
+function closeSiteTab(key: string) {
+  if (!tabStore.tabs.includes(key)) return;
+  tabStore.tabs = tabStore.tabs.filter((item) => item !== key);
+  notifyTabs();
+}
+
+function closeOtherSiteTabs(keep: string | undefined) {
+  const next = keep && keep !== WORKBENCH_TAB ? [WORKBENCH_TAB, keep] : [WORKBENCH_TAB];
+  tabStore.tabs = next;
+  notifyTabs();
+}
+
+function closeAllSiteTabs() {
+  tabStore.tabs = [WORKBENCH_TAB];
+  notifyTabs();
+}
 
 type AppShellProps = {
   children: React.ReactNode;
+  activeTopKey?: string;
+  sidebar?: SidebarNode[];
+  sidebarTitle?: string;
+  sidebarTitleIcon?: string;
+  activeLeafKey?: string;
+  tabTitle?: string;
+  tabIcon?: string;
+  leafHref?: (key: string) => string | undefined;
 };
 
-export function AppShell({ children }: AppShellProps) {
+function collectGroupKeys(
+  nodes: SidebarNode[],
+  targetKey: string | undefined,
+  ancestors: string[] = [],
+): string[] | null {
+  if (!targetKey) return null;
+  for (const node of nodes) {
+    if (node.type === "page") {
+      if (node.key === targetKey) return ancestors;
+    } else {
+      const found = collectGroupKeys(node.children, targetKey, [
+        ...ancestors,
+        node.key,
+      ]);
+      if (found) return found;
+    }
+  }
+  return null;
+}
+
+export function AppShell({
+  children,
+  activeTopKey = "menu-home-30004",
+  sidebar = SIDEBAR,
+  sidebarTitle = "数据中心",
+  sidebarTitleIcon = "org-menu-zonglan-xuanzhong",
+  activeLeafKey = "menu-workbench-999999999",
+  tabTitle = "工作台",
+  tabIcon = "org-menu-gongzuotai",
+  leafHref,
+}: AppShellProps) {
+  const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
-  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
+  const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(() => {
+    const keys = collectGroupKeys(sidebar, activeLeafKey) ?? [];
+    return Object.fromEntries(keys.map((key) => [key, true]));
+  });
   const [visibleCount, setVisibleCount] = useState(TOP_MODULES.length);
   const [overflowOpen, setOverflowOpen] = useState(false);
   const [tabMenuOpen, setTabMenuOpen] = useState(false);
@@ -45,19 +141,33 @@ export function AppShell({ children }: AppShellProps) {
   const [noticeTab, setNoticeTab] = useState(0);
   const [selectedNotice, setSelectedNotice] = useState(0);
 
+  const openTabs = useSyncExternalStore(
+    subscribeTabs,
+    getTabs,
+    () => SERVER_TABS,
+  );
+
   const topMenuRef = useRef<HTMLDivElement>(null);
   const overflowRef = useRef<HTMLDivElement>(null);
   const tabMenuRef = useRef<HTMLDivElement>(null);
+  const activeTabRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (activeTopKey === "menu-setting-30002") {
+      openSiteTab(activeLeafKey);
+    }
+  }, [activeTopKey, activeLeafKey]);
+
+  useEffect(() => {
+    activeTabRef.current?.scrollIntoView({ inline: "nearest", block: "nearest" });
+  }, [activeLeafKey, openTabs]);
 
   useEffect(() => {
     const el = topMenuRef.current;
     if (!el) return;
     const update = () => {
       const fit = Math.floor(el.clientWidth / TOP_ITEM_WIDTH);
-      const next = Math.max(
-        1,
-        Math.min(TOP_MODULES.length, fit - 2),
-      );
+      const next = Math.max(1, Math.min(TOP_MODULES.length, fit - 1));
       setVisibleCount(next);
     };
     update();
@@ -108,14 +218,79 @@ export function AppShell({ children }: AppShellProps) {
     setOpenGroups((current) => ({ ...current, [key]: !current[key] }));
   };
 
+  const navigateLeaf = (key: string) => {
+    const href = leafHref?.(key);
+    if (href) router.push(href);
+  };
+
+  const openTopModule = (key: string) => {
+    if (key === "menu-home-30004") {
+      router.push("/orgs/index");
+    } else if (key === "menu-setting-30002") {
+      router.push("/orgs/settings/company-info");
+    }
+    setOverflowOpen(false);
+  };
+
   const hiddenModules = TOP_MODULES.slice(visibleCount);
   const showMore = hiddenModules.length > 0;
+  const isWorkbench = activeTopKey === "menu-home-30004";
+  const settingsTabKeys = openTabs.filter((key) => key !== WORKBENCH_TAB);
+  if (
+    activeTopKey === "menu-setting-30002" &&
+    activeLeafKey !== WORKBENCH_TAB &&
+    !settingsTabKeys.includes(activeLeafKey)
+  ) {
+    settingsTabKeys.push(activeLeafKey);
+  }
 
   const filteredNotices = NOTICES.filter((item) => {
     if (noticeTab === 1) return item.count > 0;
     if (noticeTab === 2) return item.count === 0;
     return true;
   });
+
+  const renderNodes = (nodes: SidebarNode[], depth = 0) =>
+    nodes.map((node) =>
+      node.type === "page" ? (
+        <SideItem
+          key={node.key}
+          node={node}
+          depth={depth}
+          collapsed={collapsed}
+          selected={node.key === activeLeafKey}
+          onNavigate={navigateLeaf}
+        />
+      ) : (
+        <div
+          key={node.key}
+          className={`ka-side-group${openGroups[node.key] ? " is-open" : ""}`}
+        >
+          <button
+            type="button"
+            className="ka-side-group-title"
+            style={
+              collapsed
+                ? undefined
+                : { paddingLeft: 19 + depth * 19, paddingRight: 34 }
+            }
+            onClick={() => toggleGroup(node.key)}
+            title={collapsed ? node.name : undefined}
+          >
+            <SpriteIcon name={node.icon} className="ka-side-icon" />
+            {collapsed ? null : (
+              <>
+                <span className="ka-side-text">{node.name}</span>
+                <span className="ka-side-arrow" />
+              </>
+            )}
+          </button>
+          {!collapsed && openGroups[node.key]
+            ? renderNodes(node.children, depth + 1)
+            : null}
+        </div>
+      ),
+    );
 
   return (
     <div className="kuaijing-app">
@@ -144,11 +319,14 @@ export function AppShell({ children }: AppShellProps) {
         </section>
 
         <div className="ka-top-menu" ref={topMenuRef}>
-          {TOP_MODULES.slice(0, visibleCount).map((module, index) => (
+          {TOP_MODULES.slice(0, visibleCount).map((module) => (
             <button
               key={module.key}
               type="button"
-              className={`ka-top-item${index === 0 ? " is-selected" : ""}`}
+              className={`ka-top-item${
+                module.key === activeTopKey ? " is-selected" : ""
+              }`}
+              onClick={() => openTopModule(module.key)}
             >
               <SpriteIcon name={module.icon} className="ka-top-icon" />
               <span className="ka-top-text">{module.name}</span>
@@ -171,9 +349,11 @@ export function AppShell({ children }: AppShellProps) {
                     <button
                       key={module.key}
                       type="button"
-                      className="ka-more-item"
+                      className={`ka-more-item${
+                        module.key === activeTopKey ? " is-selected" : ""
+                      }`}
                       role="menuitem"
-                      onClick={() => setOverflowOpen(false)}
+                      onClick={() => openTopModule(module.key)}
                     >
                       <SpriteIcon name={module.icon} />
                       <span>{module.name}</span>
@@ -215,57 +395,13 @@ export function AppShell({ children }: AppShellProps) {
       <div className="ka-body">
         <aside className={`ka-sider${collapsed ? " is-collapsed" : ""}`}>
           <div className="ka-sider-title">
-            <SpriteIcon name="org-menu-zonglan-xuanzhong" />
+            <SpriteIcon name={sidebarTitleIcon} />
             {collapsed ? null : (
-              <span className="ka-sider-title-text">数据中心</span>
+              <span className="ka-sider-title-text">{sidebarTitle}</span>
             )}
           </div>
 
-          <div className="ka-sider-menu">
-            {SIDEBAR.map((node) =>
-              node.type === "page" ? (
-                <SideItem
-                  key={node.key}
-                  page={node}
-                  collapsed={collapsed}
-                  selected={node.key === "menu-workbench-999999999"}
-                />
-              ) : (
-                <div
-                  key={node.key}
-                  className={`ka-side-group${
-                    openGroups[node.key] ? " is-open" : ""
-                  }`}
-                >
-                  <button
-                    type="button"
-                    className="ka-side-group-title"
-                    onClick={() => toggleGroup(node.key)}
-                    title={collapsed ? node.name : undefined}
-                  >
-                    <SpriteIcon name={node.icon} className="ka-side-icon" />
-                    {collapsed ? null : (
-                      <>
-                        <span className="ka-side-text">{node.name}</span>
-                        <span className="ka-side-arrow" />
-                      </>
-                    )}
-                  </button>
-                  {!collapsed && openGroups[node.key]
-                    ? node.children.map((page) => (
-                        <SideItem
-                          key={page.key}
-                          page={page}
-                          collapsed={false}
-                          selected={false}
-                          child
-                        />
-                      ))
-                    : null}
-                </div>
-              ),
-            )}
-          </div>
+          <div className="ka-sider-menu">{renderNodes(sidebar)}</div>
 
           <div className="ka-sider-footer">
             <button
@@ -283,22 +419,76 @@ export function AppShell({ children }: AppShellProps) {
 
         <main className="ka-content">
           <div className="ka-tabbar">
-            <div className="ka-tab is-active">
-              <SpriteIcon
-                name="org-menu-gongzuotai"
-                className="ka-tab-icon"
-              />
-              <span className="ka-tab-text">工作台</span>
-              <button
-                type="button"
-                className="ka-tab-reload"
-                aria-label="reload"
-                onClick={() => window.location.reload()}
+            <div className="ka-tab-list">
+              <div
+                ref={isWorkbench ? activeTabRef : undefined}
+                className={`ka-tab${isWorkbench ? " is-active" : ""}`}
+                onClick={() => router.push("/orgs/index")}
               >
-                <ReloadIcon />
-              </button>
+                <SpriteIcon name="org-menu-gongzuotai" className="ka-tab-icon" />
+                <span className="ka-tab-text">工作台</span>
+                {isWorkbench ? (
+                  <button
+                    type="button"
+                    className="ka-tab-reload"
+                    aria-label="reload"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      window.location.reload();
+                    }}
+                  >
+                    <ReloadIcon />
+                  </button>
+                ) : null}
+              </div>
+
+              {settingsTabKeys.map((key) => {
+                const page = SETTINGS_PAGE_BY_KEY[key];
+                const active = !isWorkbench && key === activeLeafKey;
+                const name = page?.name ?? (active ? tabTitle : key);
+                const icon = page?.icon ?? tabIcon;
+                return (
+                  <div
+                    key={key}
+                    ref={active ? activeTabRef : undefined}
+                    className={`ka-tab${active ? " is-active" : ""}`}
+                    onClick={() => {
+                      const href = settingsHref(key);
+                      if (href) router.push(href);
+                    }}
+                  >
+                    <SpriteIcon name={icon} className="ka-tab-icon" />
+                    <span className="ka-tab-text">{name}</span>
+                    {active ? (
+                      <button
+                        type="button"
+                        className="ka-tab-reload"
+                        aria-label="reload"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          window.location.reload();
+                        }}
+                      >
+                        <ReloadIcon />
+                      </button>
+                    ) : null}
+                    <button
+                      type="button"
+                      className="ka-tab-close"
+                      aria-label="remove"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        closeSiteTab(key);
+                        if (active) router.push("/orgs/index");
+                      }}
+                    >
+                      <CloseIcon />
+                    </button>
+                  </div>
+                );
+              })}
             </div>
-            <div className="ka-tab-ink" />
+
             <div className="ka-tab-more-wrap" ref={tabMenuRef}>
               <button
                 type="button"
@@ -353,7 +543,12 @@ export function AppShell({ children }: AppShellProps) {
                   <button
                     type="button"
                     className="ka-tab-dropdown-item"
-                    disabled
+                    disabled={isWorkbench}
+                    onClick={() => {
+                      setTabMenuOpen(false);
+                      closeSiteTab(activeLeafKey);
+                      router.push("/orgs/index");
+                    }}
                   >
                     <MinusCircleIcon />
                     <span>关闭当前</span>
@@ -361,7 +556,11 @@ export function AppShell({ children }: AppShellProps) {
                   <button
                     type="button"
                     className="ka-tab-dropdown-item"
-                    disabled
+                    disabled={isWorkbench || settingsTabKeys.length <= 1}
+                    onClick={() => {
+                      setTabMenuOpen(false);
+                      closeOtherSiteTabs(activeLeafKey);
+                    }}
                   >
                     <CloseCircleIcon />
                     <span>关闭其他</span>
@@ -369,7 +568,12 @@ export function AppShell({ children }: AppShellProps) {
                   <button
                     type="button"
                     className="ka-tab-dropdown-item"
-                    onClick={() => setTabMenuOpen(false)}
+                    disabled={settingsTabKeys.length === 0}
+                    onClick={() => {
+                      setTabMenuOpen(false);
+                      closeAllSiteTabs();
+                      router.push("/orgs/index");
+                    }}
                   >
                     <FolderIcon />
                     <span>关闭所有</span>
@@ -474,26 +678,28 @@ export function AppShell({ children }: AppShellProps) {
 }
 
 function SideItem({
-  page,
+  node,
+  depth,
   collapsed,
   selected,
-  child = false,
+  onNavigate,
 }: {
-  page: SidebarPage;
+  node: Extract<SidebarNode, { type: "page" }>;
+  depth: number;
   collapsed: boolean;
   selected: boolean;
-  child?: boolean;
+  onNavigate?: (key: string) => void;
 }) {
   return (
     <button
       type="button"
-      className={`ka-side-item${selected ? " is-selected" : ""}${
-        child ? " is-child" : ""
-      }`}
-      title={collapsed ? page.name : undefined}
+      className={`ka-side-item${selected ? " is-selected" : ""}`}
+      style={collapsed ? undefined : { paddingLeft: 19 + depth * 19 }}
+      title={collapsed ? node.name : undefined}
+      onClick={() => onNavigate?.(node.key)}
     >
-      <SpriteIcon name={page.icon} className="ka-side-icon" />
-      {collapsed ? null : <span className="ka-side-text">{page.name}</span>}
+      <SpriteIcon name={node.icon} className="ka-side-icon" />
+      {collapsed ? null : <span className="ka-side-text">{node.name}</span>}
     </button>
   );
 }

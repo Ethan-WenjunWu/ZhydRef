@@ -1,0 +1,1425 @@
+/* Scoped styles for the 系统设置 pages. */
+
+.kuaijing-app .sk-page {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 100%;
+  padding: 10px;
+  background: #f0f2f5;
+}
+
+.kuaijing-app .sk-page-inner {
+  padding: 10px;
+}
+
+.kuaijing-app .sk-page-flush {
+  padding: 10px;
+}
+
+.kuaijing-app .sk-card {
+  background: #fff;
+  border-radius: 2px;
+  padding: 10px 14px;
+}
+
+.kuaijing-app .sk-fill {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: calc(100vh - 116px);
+}
+
+.kuaijing-app .sk-title {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 23.5725px;
+}
+
+.kuaijing-app .sk-title-lg {
+  margin-bottom: 14px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.kuaijing-app .sk-page-title {
+  margin: 4px 0 16px;
+  padding-bottom: 12px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .sk-wecom-title {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+/* Search ---------------------------------------------------------------- */
+
+.kuaijing-app .sk-search-card {
+  padding: 10px 14px;
+}
+
+.kuaijing-app .sk-search-inset {
+  padding: 0;
+}
+
+.kuaijing-app .sk-search-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+}
+
+.kuaijing-app .sk-search-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.kuaijing-app .sk-link {
+  color: #2681f3;
+  cursor: pointer;
+}
+
+.kuaijing-app .sk-collapse {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.kuaijing-app .sk-up-arrow {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-top: 1px solid currentColor;
+  border-left: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.kuaijing-app .sk-search-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.kuaijing-app .sk-search-row .sk-field {
+  flex: 1 1 160px;
+  max-width: 193px;
+  min-width: 0;
+}
+
+.kuaijing-app .sk-search-row-two .sk-field {
+  flex: 1 1 220px;
+  max-width: 220px;
+}
+
+.kuaijing-app .sk-search-buttons {
+  display: flex;
+  gap: 8px;
+  margin-left: 8px;
+}
+
+.kuaijing-app .sk-search-inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.kuaijing-app .sk-search-inline > .sk-input,
+.kuaijing-app .sk-search-inline > .sk-select {
+  width: 190px;
+}
+
+.kuaijing-app .sk-inline-spacer {
+  flex: 1;
+}
+
+.kuaijing-app .sk-search-icon {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  position: relative;
+  margin-right: 2px;
+}
+
+.kuaijing-app .sk-search-icon::after {
+  position: absolute;
+  right: -5px;
+  bottom: -3px;
+  width: 5px;
+  height: 1.5px;
+  content: "";
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+/* Fields ---------------------------------------------------------------- */
+
+.kuaijing-app .sk-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.kuaijing-app .sk-field-label {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.kuaijing-app .sk-input,
+.kuaijing-app .sk-select {
+  box-sizing: border-box;
+  width: 100%;
+  height: 32px;
+  padding: 4px 7px;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.kuaijing-app .sk-input:focus {
+  border-color: #0055ff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(22, 100, 255, 0.3);
+}
+
+.kuaijing-app .sk-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  cursor: pointer;
+}
+
+.kuaijing-app .sk-select svg {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.kuaijing-app .sk-placeholder {
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.kuaijing-app .sk-textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 98px;
+  padding: 4px 7px;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  resize: none;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+}
+
+/* Buttons --------------------------------------------------------------- */
+
+.kuaijing-app .sk-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 32px;
+  padding: 4px 11px;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 22px;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
+}
+
+.kuaijing-app .sk-btn:hover {
+  color: #2681f3;
+  border-color: #2681f3;
+}
+
+.kuaijing-app .sk-btn-primary {
+  color: #fff;
+  background: #2681f3;
+  border-color: #2681f3;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.043);
+}
+
+.kuaijing-app .sk-btn-primary:hover {
+  color: #fff;
+  background: #4281ff;
+  border-color: #2681f3;
+}
+
+.kuaijing-app .sk-btn-outline {
+  color: #2681f3;
+  border-color: #2681f3;
+}
+
+.kuaijing-app .sk-btn-outline:hover {
+  color: #4281ff;
+  border-color: #4281ff;
+}
+
+.kuaijing-app .sk-btn:disabled,
+.kuaijing-app .sk-btn[disabled] {
+  color: rgba(0, 0, 0, 0.25);
+  cursor: not-allowed;
+  background: #f5f5f5;
+  border-color: #d9d9d9;
+}
+
+.kuaijing-app .sk-btn-sm {
+  height: 24px;
+  padding: 0 7px;
+  font-size: 12px;
+}
+
+.kuaijing-app .sk-plus {
+  margin-right: 2px;
+  font-size: 14px;
+}
+
+.kuaijing-app .sk-save-btn {
+  min-width: 100px;
+  height: 40px;
+  font-size: 16px;
+}
+
+/* Toolbar --------------------------------------------------------------- */
+
+.kuaijing-app .sk-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 44px;
+  margin-bottom: 10px;
+}
+
+.kuaijing-app .sk-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kuaijing-app .sk-list-toolbar {
+  min-height: 36px;
+  margin: 16px 0 10px;
+}
+
+/* Tables ---------------------------------------------------------------- */
+
+.kuaijing-app .sk-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.kuaijing-app .sk-table {
+  width: 100%;
+  min-width: 0;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.kuaijing-app .sk-table.sk-table-wide {
+  min-width: 1300px;
+}
+
+.kuaijing-app .sk-table th,
+.kuaijing-app .sk-table td {
+  height: 39px;
+  padding: 8px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  line-height: 22px;
+  text-align: left;
+  vertical-align: middle;
+  background: #fff;
+  border: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .sk-table th {
+  font-weight: 500;
+  white-space: nowrap;
+  background: #fafafa;
+}
+
+.kuaijing-app .sk-empty-cell {
+  padding: 20px 0 !important;
+  text-align: center;
+}
+
+.kuaijing-app .sk-table .sk-empty {
+  padding: 10px 0;
+}
+
+.kuaijing-app .sk-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.kuaijing-app .sk-empty-image {
+  height: 60px;
+  margin-bottom: 8px;
+}
+
+.kuaijing-app .sk-empty-image svg {
+  width: auto;
+  height: 60px;
+}
+
+.kuaijing-app .sk-empty p {
+  margin: 0;
+}
+
+.kuaijing-app .sk-checkbox-box {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+}
+
+.kuaijing-app .sk-switch {
+  position: relative;
+  width: 44px;
+  height: 22px;
+  padding: 0;
+  vertical-align: middle;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.25);
+  border: 0;
+  border-radius: 11px;
+  transition: background 0.2s;
+}
+
+.kuaijing-app .sk-switch.is-checked {
+  background: #2681f3;
+}
+
+.kuaijing-app .sk-switch-handle {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: left 0.2s;
+}
+
+.kuaijing-app .sk-switch.is-checked .sk-switch-handle {
+  left: 24px;
+}
+
+.kuaijing-app .sk-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.kuaijing-app .sk-checkbox-box {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+}
+
+.kuaijing-app .sk-checkbox.is-checked .sk-checkbox-box {
+  background: #2681f3;
+  border-color: #2681f3;
+}
+
+.kuaijing-app .sk-checkbox.is-checked .sk-checkbox-box::after {
+  position: absolute;
+  top: 1px;
+  left: 5px;
+  width: 5px;
+  height: 9px;
+  content: "";
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(45deg);
+}
+
+.kuaijing-app .sk-action-link {
+  margin-right: 8px;
+  padding: 0;
+  color: #2681f3;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.kuaijing-app .sk-action-link.is-danger {
+  color: #ff4d4f;
+}
+
+.kuaijing-app .sk-action-link.is-disabled {
+  color: rgba(0, 0, 0, 0.25);
+  cursor: not-allowed;
+}
+
+.kuaijing-app .sk-status-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kuaijing-app .sk-status-dot::before {
+  width: 6px;
+  height: 6px;
+  content: "";
+  background: #52c41a;
+  border-radius: 50%;
+}
+
+/* Pagination ------------------------------------------------------------ */
+
+.kuaijing-app .sk-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+}
+
+.kuaijing-app .sk-pagination-total {
+  margin-right: 8px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.kuaijing-app .sk-page-btn {
+  min-width: 32px;
+  height: 24px;
+  padding: 0 4px;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+}
+
+.kuaijing-app .sk-page-btn.is-active {
+  color: #2681f3;
+  border-color: #2681f3;
+}
+
+.kuaijing-app .sk-page-btn:disabled {
+  color: rgba(0, 0, 0, 0.25);
+  cursor: not-allowed;
+}
+
+.kuaijing-app .sk-page-size {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 8px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+}
+
+.kuaijing-app .sk-page-size svg {
+  width: 10px;
+  height: 10px;
+  color: rgba(0, 0, 0, 0.25);
+}
+
+/* Tabs ------------------------------------------------------------------ */
+
+.kuaijing-app .sk-page-tabs {
+  display: flex;
+  gap: 32px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .sk-page-tab {
+  position: relative;
+  padding: 12px 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 24px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.kuaijing-app .sk-page-tab.is-active {
+  color: #2681f3;
+}
+
+.kuaijing-app .sk-page-tab.is-active::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  content: "";
+  background: #2681f3;
+}
+
+.kuaijing-app .sk-card-tabs-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 6px;
+}
+
+.kuaijing-app .sk-card-tabs-row .sk-page-tabs {
+  flex: 1;
+}
+
+/* Inner layout / forms -------------------------------------------------- */
+
+.kuaijing-app .sk-inner-layout {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 116px);
+  background: #fff;
+}
+
+.kuaijing-app .sk-inner-menu {
+  flex: none;
+  width: 240px;
+  padding: 14px;
+  background: #fff;
+}
+
+.kuaijing-app .sk-inner-item {
+  display: block;
+  width: 100%;
+  height: 40px;
+  padding: 0 16px;
+  margin: 4px 0 8px;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 40px;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.kuaijing-app .sk-inner-item.is-active {
+  color: #2681f3;
+  background: #f0f9ff;
+}
+
+.kuaijing-app .sk-inner-content {
+  flex: 1;
+  min-width: 0;
+  padding: 20px 0;
+  background: #fff;
+}
+
+.kuaijing-app .sk-form {
+  width: 986px;
+  max-width: calc(100% - 20px);
+}
+
+.kuaijing-app .sk-form-centered {
+  width: 735px;
+  max-width: calc(100% - 20px);
+  margin: 0 auto;
+}
+
+.kuaijing-app .sk-form-centered .sk-form-label {
+  width: 160px;
+}
+
+.kuaijing-app .sk-form-centered .sk-form-actions {
+  margin-left: 160px;
+}
+
+.kuaijing-app .sk-form-row {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.kuaijing-app .sk-form-label {
+  flex: none;
+  width: 123.3px;
+  padding-right: 8px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  line-height: 32px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.kuaijing-app .sk-form-control {
+  flex: none;
+  width: 575.2px;
+  max-width: calc(100% - 130px);
+}
+
+.kuaijing-app .sk-form-actions {
+  margin-left: 123.3px;
+}
+
+.kuaijing-app .sk-form-hint {
+  margin-top: 4px;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.kuaijing-app .sk-required-mark {
+  margin-right: 4px;
+  color: #ff4d4f;
+}
+
+.kuaijing-app .sk-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 96px;
+  height: 96px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  cursor: pointer;
+  background: #fafafa;
+  border: 1px dashed #d9d9d9;
+  border-radius: 2px;
+}
+
+.kuaijing-app .sk-upload.is-square {
+  height: 96px;
+}
+
+.kuaijing-app .sk-upload-plus {
+  font-size: 20px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.kuaijing-app .sk-invite-code {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+}
+
+.kuaijing-app .sk-invite-code > span:first-child {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 16px;
+  line-height: 32px;
+}
+
+.kuaijing-app .sk-invite-sync {
+  color: #2681f3;
+  cursor: pointer;
+}
+
+.kuaijing-app .sk-copy-icon {
+  display: inline-block;
+  width: 12px;
+  height: 14px;
+  border: 1px solid currentColor;
+  border-radius: 1px;
+  position: relative;
+}
+
+/* Info alert ------------------------------------------------------------ */
+
+.kuaijing-app .sk-info-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding: 8px 15px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  line-height: 22px;
+  background: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-radius: 2px;
+}
+
+.kuaijing-app .sk-alert-close {
+  flex: none;
+  margin-left: auto;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 16px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+/* Members --------------------------------------------------------------- */
+
+.kuaijing-app .sk-members-card {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 116px);
+  padding: 8px 14px 14px;
+}
+
+.kuaijing-app .sk-members-layout {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .sk-members-tree {
+  flex: none;
+  width: 240px;
+  padding: 10px 10px 0 0;
+  overflow: auto;
+}
+
+.kuaijing-app .sk-tree-search {
+  display: flex;
+  margin: 10px 0;
+}
+
+.kuaijing-app .sk-tree-search .sk-input {
+  border-right: 0;
+  border-radius: 2px 0 0 2px;
+}
+
+.kuaijing-app .sk-tree-search-btn {
+  flex: none;
+  width: 40px;
+  height: 32px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  background: #2681f3;
+  border: 1px solid #2681f3;
+  border-radius: 0 2px 2px 0;
+}
+
+.kuaijing-app .sk-tree-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 34px;
+  padding: 0 4px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.kuaijing-app .sk-tree-row.is-selected {
+  background: #f0f9ff;
+}
+
+.kuaijing-app .sk-tree-caret {
+  width: 10px;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 10px;
+}
+
+.kuaijing-app .sk-tree-more {
+  margin-left: auto;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.kuaijing-app .sk-tree-group {
+  padding-left: 16px;
+}
+
+.kuaijing-app .sk-tree-row.is-leaf {
+  padding-left: 14px;
+}
+
+.kuaijing-app .sk-tree-person {
+  margin-right: 4px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.kuaijing-app .sk-members-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: 10px 0 0 10px;
+  border-left: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .sk-members-toolbar {
+  min-height: 32px;
+}
+
+.kuaijing-app .sk-members-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 16px;
+}
+
+.kuaijing-app .sk-edit-icon {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.kuaijing-app .sk-member-count {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+}
+
+.kuaijing-app .sk-help-icon {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+}
+
+.kuaijing-app .sk-member-status {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+}
+
+.kuaijing-app .sk-status-pill {
+  cursor: pointer;
+}
+
+.kuaijing-app .sk-status-pill.is-active {
+  padding: 2px 10px;
+  color: #fff;
+  background: #2681f3;
+  border-radius: 2px;
+}
+
+.kuaijing-app .sk-grid-icon {
+  margin-left: auto;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 16px;
+}
+
+.kuaijing-app .sk-members-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+}
+
+/* Roles ----------------------------------------------------------------- */
+
+.kuaijing-app .sk-roles-layout {
+  display: flex;
+  min-height: calc(100vh - 116px);
+}
+
+.kuaijing-app .sk-roles-side {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  width: 280px;
+  margin-right: 10px;
+  padding: 14px;
+}
+
+.kuaijing-app .sk-roles-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: 14px;
+}
+
+.kuaijing-app .sk-role-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 12px;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.kuaijing-app .sk-role-item.is-active {
+  color: #2681f3;
+  background: #f0f9ff;
+}
+
+.kuaijing-app .sk-role-icon {
+  color: currentColor;
+}
+
+.kuaijing-app .sk-role-tag {
+  padding: 0 7px;
+  color: #2681f3;
+  font-size: 12px;
+  line-height: 20px;
+  background: #f0f9ff;
+  border: 1px solid #2681f3;
+  border-radius: 2px;
+}
+
+.kuaijing-app .sk-role-tag.is-green {
+  color: #52c41a;
+  background: #f6ffed;
+  border-color: #b7eb8f;
+}
+
+.kuaijing-app .sk-roles-add {
+  margin-top: auto;
+}
+
+.kuaijing-app .sk-roles-add-btn {
+  width: 100%;
+}
+
+.kuaijing-app .sk-role-search {
+  display: flex;
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+.kuaijing-app .sk-role-search .sk-input {
+  border-right: 0;
+  border-radius: 2px 0 0 2px;
+}
+
+.kuaijing-app .sk-role-search .sk-btn {
+  flex: none;
+  border-radius: 0 2px 2px 0;
+}
+
+/* Menus ----------------------------------------------------------------- */
+
+.kuaijing-app .sk-menus-layout {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.kuaijing-app .sk-menus-side {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  width: 240px;
+  margin-right: 10px;
+  padding: 10px 0;
+}
+
+.kuaijing-app .sk-menu-side-title {
+  padding: 4px 14px 10px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.kuaijing-app .sk-menu-list {
+  flex: 1;
+  overflow: auto;
+}
+
+.kuaijing-app .sk-menu-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 44px;
+  padding: 0 14px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+}
+
+.kuaijing-app .sk-menu-caret {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 10px;
+}
+
+.kuaijing-app .sk-menu-plus {
+  margin-left: auto;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 16px;
+}
+
+.kuaijing-app .sk-menus-add {
+  padding: 10px 14px;
+}
+
+.kuaijing-app .sk-menus-add-btn {
+  width: 100%;
+}
+
+.kuaijing-app .sk-menus-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: 10px 14px;
+}
+
+.kuaijing-app .sk-menu-editor {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+}
+
+.kuaijing-app .sk-menu-editor-row {
+  display: flex;
+  flex: 1;
+  min-height: 70px;
+  border: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .sk-menu-editor-label {
+  flex: none;
+  width: 80px;
+  padding: 12px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-weight: 600;
+  background: #fafafa;
+  border-right: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .sk-menu-drop {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+}
+
+.kuaijing-app .sk-menu-drop-top {
+  min-height: 50px;
+  background: #fafafa;
+}
+
+.kuaijing-app .sk-menu-drop-left {
+  align-items: center;
+}
+
+/* Contact auth ---------------------------------------------------------- */
+
+.kuaijing-app .sk-auth-section {
+  margin-top: 18px;
+}
+
+.kuaijing-app .sk-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+
+.kuaijing-app .sk-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.kuaijing-app .sk-section-bar {
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  background: #2681f3;
+}
+
+.kuaijing-app .sk-display-head {
+  margin-top: 6px;
+}
+
+.kuaijing-app .sk-display-table {
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+}
+
+.kuaijing-app .sk-display-row {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  padding: 0 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .sk-display-row:last-child {
+  border-bottom: 0;
+}
+
+.kuaijing-app .sk-display-label {
+  flex: none;
+  width: 220px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+}
+
+.kuaijing-app .sk-display-value {
+  flex: 1;
+  min-width: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+}
+
+/* AI -------------------------------------------------------------------- */
+
+.kuaijing-app .sk-ai-page {
+  min-height: calc(100vh - 96px);
+  padding: 10px;
+  background: #fff;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.kuaijing-app .sk-ai-form {
+  width: 40vw;
+  min-width: 480px;
+  padding-top: 8px;
+}
+
+.kuaijing-app .sk-ai-form .sk-field {
+  margin-bottom: 20px;
+}
+
+.kuaijing-app .sk-check-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 32px;
+}
+
+.kuaijing-app .sk-check-grid.is-five {
+  max-width: 520px;
+}
+
+.kuaijing-app .sk-ai-save {
+  margin-top: 8px;
+}
+
+/* Integrations ---------------------------------------------------------- */
+
+.kuaijing-app .sk-integration-page {
+  min-height: calc(100vh - 116px);
+}
+
+.kuaijing-app .sk-integration-layout {
+  display: flex;
+  flex: 1;
+  min-height: calc(100vh - 116px);
+}
+
+.kuaijing-app .sk-integration-menu {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  width: 240px;
+  margin-right: 10px;
+  padding: 0;
+}
+
+.kuaijing-app .sk-integration-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 54px;
+  padding: 0 14px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .sk-brand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  color: #fff;
+  background: #52c41a;
+  border-radius: 4px;
+}
+
+.kuaijing-app .sk-integration-inner {
+  width: auto;
+  padding: 14px;
+}
+
+.kuaijing-app .sk-integration-main {
+  flex: 1;
+  min-width: 0;
+  padding: 14px;
+}
+
+.kuaijing-app .sk-plain-card {
+  padding: 14px;
+}
+
+.kuaijing-app .sk-wecom-card {
+  min-height: 168px;
+  padding: 10px 14px;
+}
+
+.kuaijing-app .sk-wecom-title {
+  margin: 6px 0 0;
+  font-size: 16px;
+}
+
+.kuaijing-app .sk-wecom-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 44px 0;
+}
+
+/* Operation log --------------------------------------------------------- */
+
+.kuaijing-app .sk-log-card {
+  padding: 10px 14px;
+  overflow: hidden;
+}
+
+.kuaijing-app .sk-log-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+  padding: 8px 0 14px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+}
+
+.kuaijing-app .sk-log-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.kuaijing-app .sk-log-input-wrap {
+  position: relative;
+  display: inline-flex;
+  width: 190px;
+}
+
+.kuaijing-app .sk-log-input-wrap .sk-input {
+  padding-right: 26px;
+}
+
+.kuaijing-app .sk-log-search {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+}
+
+.kuaijing-app .sk-log-select {
+  width: 190px;
+}
+
+.kuaijing-app .sk-date-range {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 280px;
+  height: 32px;
+  padding: 0 8px;
+  color: rgba(0, 0, 0, 0.45);
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+}
+
+.kuaijing-app .sk-date-arrow {
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.kuaijing-app .sk-date-icon {
+  margin-left: auto;
+}
+
+.kuaijing-app .sk-log-card .sk-table {
+  min-width: 1200px;
+}
+
+/* Small screens --------------------------------------------------------- */
+
+@media (max-width: 1200px) {
+  .kuaijing-app .sk-ai-form {
+    width: 80vw;
+  }
+
+  .kuaijing-app .sk-inner-menu {
+    width: 200px;
+  }
+
+  .kuaijing-app .sk-members-tree {
+    width: 200px;
+  }
+}

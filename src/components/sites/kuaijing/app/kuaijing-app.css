@@ -204,7 +204,8 @@
   border: 0;
 }
 
-.kuaijing-app .ka-more-item:hover {
+.kuaijing-app .ka-more-item:hover,
+.kuaijing-app .ka-more-item.is-selected {
   color: #fff;
   background: rgba(255, 255, 255, 0.1);
 }
@@ -494,6 +495,25 @@
   background: #e8edf3;
 }
 
+.kuaijing-app .ka-tab-list {
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  min-width: 0;
+  height: 40px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.kuaijing-app .ka-tab-list::-webkit-scrollbar {
+  display: none;
+}
+
+.kuaijing-app .ka-tab-list .ka-tab {
+  flex: none;
+}
+
 .kuaijing-app .ka-tab {
   position: relative;
   z-index: 1;
@@ -502,10 +522,27 @@
   min-width: 106px;
   height: 36px;
   padding: 8px 12px;
-  color: #2681f3;
+  color: rgba(0, 0, 0, 0.65);
   font-size: 14px;
-  background: #fff;
+  cursor: pointer;
+  background: transparent;
   border-radius: 8px 8px 0 0;
+}
+
+.kuaijing-app .ka-tab.is-active {
+  color: #2681f3;
+  cursor: default;
+  background: #fff;
+}
+
+.kuaijing-app .ka-tab.is-active::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  content: "";
+  background: #2681f3;
 }
 
 .kuaijing-app .ka-tab-icon {
@@ -539,6 +576,29 @@
 .kuaijing-app .ka-tab-reload svg {
   width: 14px;
   height: 14px;
+}
+
+.kuaijing-app .ka-tab-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
+  margin-left: 6px;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.kuaijing-app .ka-tab-close:hover {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.kuaijing-app .ka-tab-close svg {
+  width: 10px;
+  height: 10px;
 }
 
 .kuaijing-app .ka-tab-ink {
