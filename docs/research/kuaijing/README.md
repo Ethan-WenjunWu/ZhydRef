@@ -14,6 +14,7 @@ and 390×844 (DPR 3, mobile emulation).
 | `/orgs/#/index` | `/orgs/index` | `src/app/orgs/index/page.tsx`, `src/components/sites/kuaijing/app/AppShell.tsx`, `WorkbenchPage.tsx` |
 | `/orgs/#/index` → 数据中心 left menu | `/orgs/data/<slug>` (19 routes) | `src/app/orgs/data/[slug]/page.tsx`, `app/DataShell.tsx`, `data/DataPages.tsx`, `data/*.tsx` |
 | 数据可视化 submenu | `/datav` and `/datav/<slug>` (5 routes) | `src/app/datav/page.tsx`, `src/app/datav/[slug]/page.tsx`, `datav/DataVizScreen.tsx` |
+| `/orgs/#/index` → 资产管理 left menu | `/orgs/asset/<slug>` (37 routes) | `src/app/orgs/asset/[slug]/page.tsx`, `app/AssetShell.tsx`, `asset/AssetPages.tsx`, `asset/*.tsx` |
 | `/orgs/#/index` → 系统设置 left menu | `/orgs/settings/<slug>` (20 routes) | `src/app/orgs/settings/[slug]/page.tsx`, `app/SettingsShell.tsx`, `SettingsPages.tsx`, `SettingsUI.tsx` |
 | `/orgs/#/index` → 行政办公 left menu | `/orgs/office/<slug>` (16 routes) | `src/app/orgs/office/[slug]/page.tsx`, `app/OfficeShell.tsx`, `office/OfficePages.tsx`, `office/*.tsx` |
 | `/orgs/#/index` → 物业管理 left menu | `/orgs/property/<slug>` (31 routes) | `src/app/orgs/property/[slug]/page.tsx`, `app/PropertyShell.tsx`, `property/PropertyPages.tsx`, `property/*.tsx` |
@@ -275,6 +276,34 @@ Implemented details:
   header, project strip, left/right chart panels, map canvas, bottom KPI cards
   and notification drawer. The 4 sidebar entries open in a new tab.
 
+## 资产管理 (A2) — all 37 pages
+
+The asset shell selects 资产管理 and reproduces the nested 固定资产 / 资产设置 /
+我的资产 groups, plus 资产巡检、资产盘点、资产合同、合同设置、采购管理.
+
+| Group | Pages / local routes |
+| --- | --- |
+| 固定资产 | 资产概览 `overview`、资产清单 `list`、派发/退库 `dispatch`、资产入库 `storage`、借出/归还 `handout`、变更领用人 `change-receiver`、资产调拨 `transfer`、资产维修 `repair`、资产处置 `handle`、资产保养 `maintain`、员工申请单据 `employee-apply` |
+| 资产设置 | 分类 `asset-category`、编码 `asset-code`、位置 `asset-location`、标签 `asset-label`、保养 `asset-maintain-setting` |
+| 我的资产 | 仪表盘 `my-dashboard`、清单 `my-list`、申请记录 `my-applications`、审批记录 `my-approvals` |
+| 资产巡检 | `patrol`（数据看板/巡检台账/巡检计划/巡检任务/参数设置） |
+| 资产盘点 | 盘点计划 `inventory-plan`、盘点任务 `inventory-task` |
+| 资产合同 | 采购合同 `purchase-contract`、租售合同 `sale-contract`、资产账单 `asset-bill`、合同终止 `contract-stop` |
+| 合同设置 | 打印模板 `contract-print`、退租协议 `contract-retreat`、到期提醒 `contract-expire`、条款类型 `contract-clause`、创建模板 `contract-template` |
+| 采购管理 | 仪表盘 `purchase-dashboard`、采购申请单 `purchase-request`、采购订单 `purchase-order`、供应商 `supplier`、招标 `tender` |
+
+Major interaction work:
+
+- 资产概览 reproduces the 14 colored pending-approval tiles, 资产概况 donut
+  with 数量/金额 toggle, and the three tabs (资产分类统计/资产位置统计/使用部门统计).
+- 资产巡检 reuses the captured inspection shell; 巡检台账/计划/任务/参数设置
+  switch after the source-side 5-second wait.
+- Asset documents and settings use their captured filters, toolbar actions, table
+  columns; 资产标签设置 reproduces template selection, field checkboxes and print
+  size settings.
+- My-assets dashboard, applications and approvals are wired; purchase dashboard
+  keeps the captured statistics and pending-approval summary.
+
 ## Asset map
 
 | Source | Local | Notes |
@@ -376,7 +405,8 @@ Screenshots live in `docs/design-references/`:
   `office-source-01.png` … `office-source-16.png`,
   `property-source-01/04/06/11/14/25.png`,
   `operation-source-01.png`, `operation-source-01-modal.png`,
-  `data-source-overview.png`, `data-source-datav-select.png`, `data-source-datav-lease.png`
+  `data-source-overview.png`, `data-source-datav-select.png`, `data-source-datav-lease.png`,
+  `asset-source-overview.png`
 - Local: `kuaijing-local-initial.png`, `kuaijing-local-password.png`,
   `kuaijing-local-filled.png`, `kuaijing-local-wechat.png`,
   `kuaijing-local-wecom-modal.png`, `kuaijing-local-lang.png`,
@@ -393,4 +423,5 @@ Screenshots live in `docs/design-references/`:
   `office-local-01.png` … `office-local-16.png`,
   `property-local-01/04/06/11/14.png`,
   `operation-local-01/04/13/30.png`,
-  `data-local-overview.png`, `data-local-floorplan.png`, `data-local-financial.png`, `data-local-datav-overview.png`
+  `data-local-overview.png`, `data-local-floorplan.png`, `data-local-financial.png`, `data-local-datav-overview.png`,
+  `asset-local-overview.png`, `asset-local-list.png`, `asset-local-label.png`

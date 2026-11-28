@@ -387,6 +387,119 @@ export function propertyHref(key: string): string | undefined {
   return page ? `/orgs/property/${page.slug}` : undefined;
 }
 
+export const ASSET_SIDEBAR: SidebarNode[] = [
+  { type: "group", key: "menu-assetgroup-gudingzichan", name: "固定资产", icon: "org-menu-gudingzichan", children: [
+    { type: "page", key: "menu-asset-overview", name: "资产概览", icon: "org-menu-zichangailan" },
+    { type: "page", key: "menu-asset-list", name: "资产清单", icon: "org-menu-zichanqingdan" },
+    { type: "page", key: "menu-asset-dispatch", name: "派发/退库", icon: "org-menu-zichanpaifa" },
+    { type: "page", key: "menu-asset-storage", name: "资产入库", icon: "org-menu-zichanruku" },
+    { type: "page", key: "menu-asset-handout", name: "借出/归还", icon: "org-menu-zichanjiechu" },
+    { type: "page", key: "menu-asset-change-receiver", name: "变更领用人", icon: "org-menu-biangenglingyongren" },
+    { type: "page", key: "menu-asset-transfer", name: "资产调拨", icon: "org-menu-zichantiaobo" },
+    { type: "page", key: "menu-asset-repair", name: "资产维修", icon: "org-menu-zichanweixiu" },
+    { type: "page", key: "menu-asset-handle", name: "资产处置", icon: "org-menu-zichanchuzhi" },
+    { type: "page", key: "menu-asset-maintain", name: "资产保养", icon: "org-menu-zichanbaoyang" },
+    { type: "page", key: "menu-asset-employee-apply", name: "员工申请单据", icon: "org-menu-yuangongshenqingdanju" },
+    { type: "group", key: "menu-assetsub-zichanshezhi", name: "资产设置", icon: "org-menu-zichanshezhi", children: [
+    { type: "page", key: "menu-asset-asset-category", name: "资产分类设置", icon: "org-menu-shenpifenlei" },
+    { type: "page", key: "menu-asset-asset-code", name: "资产编码设置", icon: "org-menu-zichanbianma" },
+    { type: "page", key: "menu-asset-asset-location", name: "资产位置设置", icon: "org-menu-zichanweizhisheding" },
+    { type: "page", key: "menu-asset-asset-label", name: "资产标签设置", icon: "org-menu-biaoqianguanli" },
+    { type: "page", key: "menu-asset-asset-maintain-setting", name: "资产保养设置", icon: "org-menu-zichanbaoyang" },
+    ] },
+    { type: "group", key: "menu-assetsub-wodezichan", name: "我的资产", icon: "org-menu-wodezichan", children: [
+    { type: "page", key: "menu-asset-my-dashboard", name: "资产仪表盘", icon: "org-menu-gongzuotai" },
+    { type: "page", key: "menu-asset-my-list", name: "资产清单", icon: "org-menu-zichanqingdan" },
+    { type: "page", key: "menu-asset-my-applications", name: "申请记录", icon: "org-menu-fapiaojilu" },
+    { type: "page", key: "menu-asset-my-approvals", name: "审批记录", icon: "org-menu-wodeshenpi" },
+    ] },
+  ] },
+  { type: "group", key: "menu-assetgroup-zichanxunjian", name: "资产巡检", icon: "org-menu-zichanxunjian", children: [
+    { type: "page", key: "menu-asset-patrol", name: "资产巡检", icon: "org-menu-zichanxunjian" },
+  ] },
+  { type: "group", key: "menu-assetgroup-zichanpandian", name: "资产盘点", icon: "org-menu-zichanpandian", children: [
+    { type: "page", key: "menu-asset-inventory-plan", name: "盘点计划", icon: "org-menu-zichanpandian" },
+    { type: "page", key: "menu-asset-inventory-task", name: "盘点任务", icon: "org-menu-pandianrenwu" },
+  ] },
+  { type: "group", key: "menu-assetgroup-zichanhetong", name: "资产合同", icon: "org-menu-zichanhetong", children: [
+    { type: "page", key: "menu-asset-purchase-contract", name: "采购合同", icon: "org-menu-caigouhetong" },
+    { type: "page", key: "menu-asset-sale-contract", name: "租售合同", icon: "org-menu-zushouhetong" },
+    { type: "page", key: "menu-asset-asset-bill", name: "资产账单", icon: "org-menu-zichanzhangdan" },
+    { type: "page", key: "menu-asset-contract-stop", name: "资产合同终止", icon: "org-menu-zichanhetongzhongzhi" },
+  ] },
+  { type: "group", key: "menu-assetgroup-hetongshezhi", name: "合同设置", icon: "org-menu-hetongshezhi", children: [
+    { type: "page", key: "menu-asset-contract-print", name: "合同打印模板", icon: "org-menu-hetongdayinmoban" },
+    { type: "page", key: "menu-asset-contract-retreat", name: "合同退租协议", icon: "org-menu-hetongtuizuxieyi" },
+    { type: "page", key: "menu-asset-contract-expire", name: "合同到期提醒", icon: "org-menu-hetongdaoqitixing" },
+    { type: "page", key: "menu-asset-contract-clause", name: "合同条款类型", icon: "org-menu-hetongtiaokuanleixing" },
+    { type: "page", key: "menu-asset-contract-template", name: "合同创建模板", icon: "org-menu-hetongchuangjianmuban" },
+  ] },
+  { type: "group", key: "menu-assetgroup-caigouguanli", name: "采购管理", icon: "org-menu-caigouguanli", children: [
+    { type: "page", key: "menu-asset-purchase-dashboard", name: "仪表盘", icon: "org-menu-yibiaopan" },
+    { type: "page", key: "menu-asset-purchase-request", name: "采购申请单", icon: "org-menu-qinggoushenqingdan" },
+    { type: "page", key: "menu-asset-purchase-order", name: "采购订单", icon: "org-menu-caigoudingdan" },
+    { type: "page", key: "menu-asset-supplier", name: "供应商管理", icon: "org-menu-gongyingshangguanli" },
+    { type: "page", key: "menu-asset-tender", name: "招标管理", icon: "org-menu-zhaobiaoguanli" },
+  ] },
+];
+
+export type AssetPage = {
+  id: string;
+  key: string;
+  name: string;
+  icon: string;
+  slug: string;
+};
+
+export const ASSET_PAGES: AssetPage[] = [
+  { id: "01", key: "menu-asset-overview", name: "资产概览", icon: "org-menu-zichangailan", slug: "overview" },
+  { id: "02", key: "menu-asset-list", name: "资产清单", icon: "org-menu-zichanqingdan", slug: "list" },
+  { id: "03", key: "menu-asset-dispatch", name: "派发/退库", icon: "org-menu-zichanpaifa", slug: "dispatch" },
+  { id: "04", key: "menu-asset-storage", name: "资产入库", icon: "org-menu-zichanruku", slug: "storage" },
+  { id: "05", key: "menu-asset-handout", name: "借出/归还", icon: "org-menu-zichanjiechu", slug: "handout" },
+  { id: "06", key: "menu-asset-change-receiver", name: "变更领用人", icon: "org-menu-biangenglingyongren", slug: "change-receiver" },
+  { id: "07", key: "menu-asset-transfer", name: "资产调拨", icon: "org-menu-zichantiaobo", slug: "transfer" },
+  { id: "08", key: "menu-asset-repair", name: "资产维修", icon: "org-menu-zichanweixiu", slug: "repair" },
+  { id: "09", key: "menu-asset-handle", name: "资产处置", icon: "org-menu-zichanchuzhi", slug: "handle" },
+  { id: "10", key: "menu-asset-maintain", name: "资产保养", icon: "org-menu-zichanbaoyang", slug: "maintain" },
+  { id: "11", key: "menu-asset-employee-apply", name: "员工申请单据", icon: "org-menu-yuangongshenqingdanju", slug: "employee-apply" },
+  { id: "21", key: "menu-asset-patrol", name: "资产巡检", icon: "org-menu-zichanxunjian", slug: "patrol" },
+  { id: "22", key: "menu-asset-inventory-plan", name: "盘点计划", icon: "org-menu-zichanpandian", slug: "inventory-plan" },
+  { id: "23", key: "menu-asset-inventory-task", name: "盘点任务", icon: "org-menu-pandianrenwu", slug: "inventory-task" },
+  { id: "24", key: "menu-asset-purchase-contract", name: "采购合同", icon: "org-menu-caigouhetong", slug: "purchase-contract" },
+  { id: "25", key: "menu-asset-sale-contract", name: "租售合同", icon: "org-menu-zushouhetong", slug: "sale-contract" },
+  { id: "26", key: "menu-asset-asset-bill", name: "资产账单", icon: "org-menu-zichanzhangdan", slug: "asset-bill" },
+  { id: "27", key: "menu-asset-contract-stop", name: "资产合同终止", icon: "org-menu-zichanhetongzhongzhi", slug: "contract-stop" },
+  { id: "28", key: "menu-asset-contract-print", name: "合同打印模板", icon: "org-menu-hetongdayinmoban", slug: "contract-print" },
+  { id: "29", key: "menu-asset-contract-retreat", name: "合同退租协议", icon: "org-menu-hetongtuizuxieyi", slug: "contract-retreat" },
+  { id: "30", key: "menu-asset-contract-expire", name: "合同到期提醒", icon: "org-menu-hetongdaoqitixing", slug: "contract-expire" },
+  { id: "31", key: "menu-asset-contract-clause", name: "合同条款类型", icon: "org-menu-hetongtiaokuanleixing", slug: "contract-clause" },
+  { id: "32", key: "menu-asset-contract-template", name: "合同创建模板", icon: "org-menu-hetongchuangjianmuban", slug: "contract-template" },
+  { id: "33", key: "menu-asset-purchase-dashboard", name: "仪表盘", icon: "org-menu-yibiaopan", slug: "purchase-dashboard" },
+  { id: "34", key: "menu-asset-purchase-request", name: "采购申请单", icon: "org-menu-qinggoushenqingdan", slug: "purchase-request" },
+  { id: "35", key: "menu-asset-purchase-order", name: "采购订单", icon: "org-menu-caigoudingdan", slug: "purchase-order" },
+  { id: "36", key: "menu-asset-supplier", name: "供应商管理", icon: "org-menu-gongyingshangguanli", slug: "supplier" },
+  { id: "37", key: "menu-asset-tender", name: "招标管理", icon: "org-menu-zhaobiaoguanli", slug: "tender" },
+
+  { id: "29", key: "menu-asset-asset-category", name: "资产分类设置", icon: "org-menu-shenpifenlei", slug: "asset-category" },
+  { id: "30", key: "menu-asset-asset-code", name: "资产编码设置", icon: "org-menu-zichanbianma", slug: "asset-code" },
+  { id: "31", key: "menu-asset-asset-location", name: "资产位置设置", icon: "org-menu-zichanweizhisheding", slug: "asset-location" },
+  { id: "32", key: "menu-asset-asset-label", name: "资产标签设置", icon: "org-menu-biaoqianguanli", slug: "asset-label" },
+  { id: "33", key: "menu-asset-asset-maintain-setting", name: "资产保养设置", icon: "org-menu-zichanbaoyang", slug: "asset-maintain-setting" },
+  { id: "34", key: "menu-asset-my-dashboard", name: "资产仪表盘", icon: "org-menu-gongzuotai", slug: "my-dashboard" },
+  { id: "35", key: "menu-asset-my-list", name: "资产清单", icon: "org-menu-zichanqingdan", slug: "my-list" },
+  { id: "36", key: "menu-asset-my-applications", name: "申请记录", icon: "org-menu-fapiaojilu", slug: "my-applications" },
+  { id: "37", key: "menu-asset-my-approvals", name: "审批记录", icon: "org-menu-wodeshenpi", slug: "my-approvals" },];
+
+export const ASSET_PAGE_BY_KEY = Object.fromEntries(
+  ASSET_PAGES.map((page) => [page.key, page]),
+);
+
+export function assetHref(key: string): string | undefined {
+  const page = ASSET_PAGE_BY_KEY[key];
+  return page ? `/orgs/asset/${page.slug}` : undefined;
+}
+
 export const OPERATION_SIDEBAR: SidebarNode[] = [
   { type: "group", key: "menu-opgroup-jinchuchang", name: "进退场管理", icon: "org-menu-jinchuchang", children: [
     { type: "page", key: "menu-op-checkin", name: "进场管理", icon: "org-menu-jinchang" },

@@ -1,0 +1,344 @@
+/* Scoped styles for 资产管理 (A2). */
+
+.kuaijing-app .asset-pending-panel {
+  padding: 10px 14px;
+}
+
+.kuaijing-app .asset-pending-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+}
+
+.kuaijing-app .asset-pending-head strong {
+  color: #ff4d4f;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.kuaijing-app .asset-pending-gear {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 18px;
+}
+
+.kuaijing-app .asset-pending-row {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding: 14px 0 4px;
+}
+
+.kuaijing-app .asset-pending-card {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 78px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.kuaijing-app .asset-pending-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  margin-bottom: 4px;
+  color: #fff;
+  font-size: 24px;
+  border-radius: 6px;
+}
+
+.kuaijing-app .asset-pending-card strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.kuaijing-app .asset-total {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+}
+
+.kuaijing-app .asset-overview-panels {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 10px;
+}
+
+.kuaijing-app .asset-overview-left,
+.kuaijing-app .asset-overview-right {
+  min-height: 420px;
+}
+
+.kuaijing-app .asset-overview-toggle {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin: 4px 0 8px;
+}
+
+.kuaijing-app .asset-overview-tabs {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.kuaijing-app .asset-overview-donut {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  padding-top: 26px;
+}
+
+.kuaijing-app .asset-donut-ring {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, #fff 0 55%, transparent 56%),
+    conic-gradient(#e8f3ff 0 100%);
+  border-radius: 50%;
+}
+
+.kuaijing-app .asset-donut-ring span {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+}
+
+.kuaijing-app .asset-donut-ring strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.kuaijing-app .asset-donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+}
+
+.kuaijing-app .asset-donut-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kuaijing-app .asset-donut-legend i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.kuaijing-app .asset-donut-legend em {
+  font-style: normal;
+}
+
+.kuaijing-app .asset-chart-placeholder {
+  display: flex;
+  min-height: 360px;
+  align-items: center;
+  justify-content: center;
+  background: repeating-linear-gradient(0deg, transparent 0 59px, #fafafa 59px 60px);
+}
+
+.kuaijing-app .asset-pagination {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  padding-top: 12px;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+}
+
+.kuaijing-app .asset-label-page {
+  min-height: calc(100vh - 120px);
+}
+
+.kuaijing-app .asset-label-head {
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.kuaijing-app .asset-template-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.kuaijing-app .asset-template-row button {
+  width: 130px;
+  height: 94px;
+  color: rgba(0, 0, 0, 0.65);
+  font-family: inherit;
+  cursor: pointer;
+  background: #fafafa;
+  border: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .asset-template-row button.is-active {
+  border-color: #2681f3;
+  box-shadow: 0 0 0 1px #2681f3;
+}
+
+.kuaijing-app .asset-label-grid {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.kuaijing-app .asset-label-preview {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 240px;
+  background: #fafafa;
+  border: 1px dashed #d9d9d9;
+}
+
+.kuaijing-app .asset-label-preview span {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+}
+
+.kuaijing-app .asset-label-preview small {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.kuaijing-app .asset-label-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 24px;
+  width: 380px;
+  align-content: start;
+}
+
+.kuaijing-app .asset-label-fields > strong {
+  grid-column: 1 / -1;
+  margin-bottom: 4px;
+}
+
+.kuaijing-app .asset-label-print {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .asset-label-print > strong {
+  flex-basis: 100%;
+}
+
+.kuaijing-app .asset-label-print .of-field {
+  width: 220px;
+}
+
+.kuaijing-app .asset-label-size {
+  display: flex;
+  gap: 12px;
+}
+
+.kuaijing-app .asset-label-size .of-field {
+  width: 140px;
+}
+
+.kuaijing-app .asset-task-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.kuaijing-app .asset-task-filter .sk-select {
+  width: 220px;
+}
+
+.kuaijing-app .asset-section-title {
+  margin: 0 0 10px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.kuaijing-app .asset-todo-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.kuaijing-app .asset-my-head {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 14px 18px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  background: #fff;
+}
+
+.kuaijing-app .asset-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  background: #2681f3;
+  border-radius: 50%;
+}
+
+.kuaijing-app .asset-action-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.kuaijing-app .asset-action-tile {
+  min-height: 110px;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .asset-action-tile:hover {
+  color: #2681f3;
+  border-color: #91caff;
+}
+
+@media (max-width: 1200px) {
+  .kuaijing-app .asset-label-grid {
+    flex-direction: column;
+  }
+
+  .kuaijing-app .asset-label-fields {
+    width: 100%;
+  }
+
+  .kuaijing-app .asset-action-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
