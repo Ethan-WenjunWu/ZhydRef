@@ -163,6 +163,25 @@ export function dataHref(key: string): string | undefined {
   return page ? `/orgs/data/${page.slug}` : undefined;
 }
 
+export const DATA_NEW_TAB_KEYS = [
+  "menu-dataDashboardVisualization-40252",
+  "menu-leaseManagement-39252",
+  "menu-merchantManagement-37252",
+  "menu-propertyDataDashboard-38252",
+];
+
+export const DATAV_URLS: Record<string, string> = {
+  "menu-dataDashboardVisualization-40252": "/datav/overview",
+  "menu-leaseManagement-39252": "/datav/lease",
+  "menu-merchantManagement-37252": "/datav/merchant",
+  "menu-propertyDataDashboard-38252": "/datav/property",
+};
+
+export function dataSidebarHref(key: string): string | undefined {
+  if (key === "menu-workbench-999999999") return "/orgs/index";
+  return DATAV_URLS[key] ?? dataHref(key);
+}
+
 export const OFFICE_SIDEBAR: SidebarNode[] = [
   {
     type: "page",

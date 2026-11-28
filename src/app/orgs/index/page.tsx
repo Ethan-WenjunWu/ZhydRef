@@ -1,11 +1,11 @@
-import { AppShell } from "@/components/sites/kuaijing/app/AppShell";
 import { WorkbenchPage } from "@/components/sites/kuaijing/app/WorkbenchPage";
+import { WorkbenchShell } from "@/components/sites/kuaijing/app/WorkbenchShell";
 
 // Mirrors the post-login source route: /orgs/#/index
 export default function WorkbenchRoute() {
   return (
-    <AppShell>
+    <WorkbenchShell>
       <WorkbenchPage />
-    </AppShell>
+    </WorkbenchShell>
   );
 }
