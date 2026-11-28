@@ -12,6 +12,7 @@ import {
 
 import {
   ACCOUNT,
+  DATA_PAGE_BY_KEY,
   NOTICES,
   OFFICE_PAGE_BY_KEY,
   OPERATION_PAGE_BY_KEY,
@@ -19,6 +20,7 @@ import {
   SETTINGS_PAGE_BY_KEY,
   SIDEBAR,
   TOP_MODULES,
+  dataHref,
   officeHref,
   operationHref,
   propertyHref,
@@ -101,6 +103,7 @@ type AppShellProps = {
   tabTitle?: string;
   tabIcon?: string;
   leafHref?: (key: string) => string | undefined;
+  newTabKeys?: string[];
 };
 
 function collectGroupKeys(
@@ -133,6 +136,7 @@ export function AppShell({
   tabTitle = "工作台",
   tabIcon = "org-menu-gongzuotai",
   leafHref,
+  newTabKeys = [],
 }: AppShellProps) {
   const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
@@ -163,7 +167,8 @@ export function AppShell({
       activeTopKey === "menu-setting-30002" ||
       activeTopKey === "menu-office-30010" ||
       activeTopKey === "menu-property-30009" ||
-      activeTopKey === "menu-operationManage-30006"
+      activeTopKey === "menu-operationManage-30006" ||
+      (activeTopKey === "menu-home-30004" && DATA_PAGE_BY_KEY[activeLeafKey])
     ) {
       openSiteTab(activeLeafKey);
     }
@@ -231,7 +236,9 @@ export function AppShell({
 
   const navigateLeaf = (key: string) => {
     const href = leafHref?.(key);
-    if (href) router.push(href);
+    if (!href) return;
+    if (newTabKeys.includes(key)) window.open(href, "_blank", "noopener");
+    else router.push(href);
   };
 
   const openTopModule = (key: string) => {
@@ -251,12 +258,16 @@ export function AppShell({
 
   const hiddenModules = TOP_MODULES.slice(visibleCount);
   const showMore = hiddenModules.length > 0;
-  const isWorkbench = activeTopKey === "menu-home-30004";
+  const isDataPage =
+    activeTopKey === "menu-home-30004" && Boolean(DATA_PAGE_BY_KEY[activeLeafKey]);
+  const isWorkbench = activeTopKey === "menu-home-30004" && !isDataPage;
+  const showWorkbenchTab = activeTopKey === "menu-home-30004";
   const isModulePage =
     activeTopKey === "menu-setting-30002" ||
     activeTopKey === "menu-office-30010" ||
     activeTopKey === "menu-property-30009" ||
-    activeTopKey === "menu-operationManage-30006";
+    activeTopKey === "menu-operationManage-30006" ||
+    isDataPage;
   const moduleTabKeys = openTabs.filter((key) => key !== WORKBENCH_TAB);
   if (
     isModulePage &&
@@ -442,30 +453,32 @@ export function AppShell({
         <main className="ka-content">
           <div className="ka-tabbar">
             <div className="ka-tab-list">
-              {isWorkbench ? (
+              {showWorkbenchTab ? (
                 <div
-                  ref={activeTabRef}
-                  className="ka-tab is-active"
+                  ref={isWorkbench ? activeTabRef : undefined}
+                  className={`ka-tab${isWorkbench ? " is-active" : ""}`}
                   onClick={() => router.push("/orgs/index")}
                 >
                   <SpriteIcon name="org-menu-gongzuotai" className="ka-tab-icon" />
                   <span className="ka-tab-text">工作台</span>
-                  <button
-                    type="button"
-                    className="ka-tab-reload"
-                    aria-label="reload"
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      window.location.reload();
-                    }}
-                  >
-                    <ReloadIcon />
-                  </button>
+                  {isWorkbench ? (
+                    <button
+                      type="button"
+                      className="ka-tab-reload"
+                      aria-label="reload"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        window.location.reload();
+                      }}
+                    >
+                      <ReloadIcon />
+                    </button>
+                  ) : null}
                 </div>
               ) : null}
 
               {moduleTabKeys.map((key) => {
-                const page = SETTINGS_PAGE_BY_KEY[key] ?? OFFICE_PAGE_BY_KEY[key] ?? PROPERTY_PAGE_BY_KEY[key] ?? OPERATION_PAGE_BY_KEY[key];
+                const page = SETTINGS_PAGE_BY_KEY[key] ?? OFFICE_PAGE_BY_KEY[key] ?? PROPERTY_PAGE_BY_KEY[key] ?? OPERATION_PAGE_BY_KEY[key] ?? DATA_PAGE_BY_KEY[key];
                 const active = !isWorkbench && key === activeLeafKey;
                 const name = page?.name ?? (active ? tabTitle : key);
                 const icon = page?.icon ?? tabIcon;
@@ -475,7 +488,7 @@ export function AppShell({
                     ref={active ? activeTabRef : undefined}
                     className={`ka-tab${active ? " is-active" : ""}`}
                     onClick={() => {
-                      const href = settingsHref(key) ?? officeHref(key) ?? propertyHref(key) ?? operationHref(key);
+                      const href = settingsHref(key) ?? officeHref(key) ?? propertyHref(key) ?? operationHref(key) ?? dataHref(key);
                       if (href) router.push(href);
                     }}
                   >

@@ -129,7 +129,7 @@ function WoLineChart({
   );
 }
 
-function WorkOrderDashboard() {
+export function WorkOrderDashboard() {
   const [dept, setDept] = useState("");
   return (
     <div className="wo-dashboard">

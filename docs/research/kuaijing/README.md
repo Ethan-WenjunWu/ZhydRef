@@ -12,6 +12,8 @@ and 390×844 (DPR 3, mobile emulation).
 | --- | --- | --- |
 | `/orgs/#/user/login?redirect=/index` | `/orgs` (canonical mirror), `/` (alias) | `src/app/orgs/page.tsx`, `src/app/page.tsx`, `src/components/sites/kuaijing/LoginPage.tsx` |
 | `/orgs/#/index` | `/orgs/index` | `src/app/orgs/index/page.tsx`, `src/components/sites/kuaijing/app/AppShell.tsx`, `WorkbenchPage.tsx` |
+| `/orgs/#/index` → 数据中心 left menu | `/orgs/data/<slug>` (19 routes) | `src/app/orgs/data/[slug]/page.tsx`, `app/DataShell.tsx`, `data/DataPages.tsx`, `data/*.tsx` |
+| 数据可视化 submenu | `/datav` and `/datav/<slug>` (5 routes) | `src/app/datav/page.tsx`, `src/app/datav/[slug]/page.tsx`, `datav/DataVizScreen.tsx` |
 | `/orgs/#/index` → 系统设置 left menu | `/orgs/settings/<slug>` (20 routes) | `src/app/orgs/settings/[slug]/page.tsx`, `app/SettingsShell.tsx`, `SettingsPages.tsx`, `SettingsUI.tsx` |
 | `/orgs/#/index` → 行政办公 left menu | `/orgs/office/<slug>` (16 routes) | `src/app/orgs/office/[slug]/page.tsx`, `app/OfficeShell.tsx`, `office/OfficePages.tsx`, `office/*.tsx` |
 | `/orgs/#/index` → 物业管理 left menu | `/orgs/property/<slug>` (31 routes) | `src/app/orgs/property/[slug]/page.tsx`, `app/PropertyShell.tsx`, `property/PropertyPages.tsx`, `property/*.tsx` |
@@ -243,6 +245,36 @@ wide collection table); 营业额看板 uses floor/room cards; 会议室/场地�
 their internal side menus; qualification/C-end/origin pages use their captured
 filters, statistics and table columns.
 
+## 数据中心 (A1) — all pages and visualisation screens
+
+The data shell selects 数据中心 and keeps the source's 数据看板 / 剖面图 /
+报表统计 / 数据可视化 groups. The workbench tab remains available.
+
+| Group | Pages / local routes |
+| --- | --- |
+| 数据看板 | 数据总览 `overview`、项目概况 `project`、资产评估 `asset`、资源分析 `resource`、租赁分析 `lease-analysis`、租客分析 `tenant-analysis`、物业分析 `property-analysis` |
+| 剖面图 | 资管房态图 `lease-drawing`、物管房态图 `property-drawing`、公寓房态图 `apartment-drawing`、车位房态图 `parking-drawing` |
+| 报表统计 | 财务报表 `financial-report`、收入报表 `income-report`、退房报表 `retreat-report`、物业报表 `property-report` |
+| 数据可视化 | `/datav/overview`、`/datav/lease`、`/datav/merchant`、`/datav/property`（源站以新窗口打开；入口页 `/datav`） |
+
+Implemented details:
+
+- 数据总览: expiring alert, 8 KPI cards, occupancy warning bars, room donut,
+  rate/price panel, contract execution, smart devices, and the bottom
+  approval/notice/merchant panels.
+- Other data dashboards: captured statistics and panel headings, chart slots
+  and data tables; 物业分析 exposes 工单看板/巡检看板/能源看板/在线报修 tabs.
+- Floor plans: company/project/building/floor tree, 7 KPI cards, status legend,
+  and 50 rooms per floor rendered as the source's room grid; 2D-plan/更多 actions.
+- 财务报表: all nine horizontal tabs (应收/应支/调整单据/结转报表/收入单据/
+  租赁收益/支付方式/费用类型/开票统计) with captured columns and row data,
+  表格/图表 switch and export.
+- 收入报表/退房报表/物业报表: captured tabs, filters, statistics and tables.
+- 数据可视化: standalone dark-screen projection pages. `/datav` reproduces the
+  project-selection screen; the four `/datav/*` routes reproduce the big-screen
+  header, project strip, left/right chart panels, map canvas, bottom KPI cards
+  and notification drawer. The 4 sidebar entries open in a new tab.
+
 ## Asset map
 
 | Source | Local | Notes |
@@ -343,7 +375,8 @@ Screenshots live in `docs/design-references/`:
   `settings-source-01.png` … `settings-source-20.png`,
   `office-source-01.png` … `office-source-16.png`,
   `property-source-01/04/06/11/14/25.png`,
-  `operation-source-01.png`, `operation-source-01-modal.png`
+  `operation-source-01.png`, `operation-source-01-modal.png`,
+  `data-source-overview.png`, `data-source-datav-select.png`, `data-source-datav-lease.png`
 - Local: `kuaijing-local-initial.png`, `kuaijing-local-password.png`,
   `kuaijing-local-filled.png`, `kuaijing-local-wechat.png`,
   `kuaijing-local-wecom-modal.png`, `kuaijing-local-lang.png`,
@@ -359,4 +392,5 @@ Screenshots live in `docs/design-references/`:
   `settings-local-01.png` … `settings-local-20.png`,
   `office-local-01.png` … `office-local-16.png`,
   `property-local-01/04/06/11/14.png`,
-  `operation-local-01/04/13/30.png`
+  `operation-local-01/04/13/30.png`,
+  `data-local-overview.png`, `data-local-floorplan.png`, `data-local-financial.png`, `data-local-datav-overview.png`

@@ -1,0 +1,413 @@
+/* Standalone data-visualisation screens. */
+
+html, body { margin: 0; background: #031027; }
+
+.datav-screen {
+  position: relative;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  padding: 0 12px 100px;
+  overflow: hidden;
+  color: #d8f3ff;
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(20, 92, 170, 0.42), transparent 55%),
+    linear-gradient(180deg, #041c39 0%, #03132b 48%, #020b1b 100%);
+}
+
+.datav-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  border-bottom: 1px solid rgba(66, 187, 255, 0.24);
+}
+
+.datav-header::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, transparent, #37c6ff, transparent);
+}
+
+.datav-header h1 {
+  position: absolute;
+  left: 50%;
+  margin: 0;
+  color: #e9fbff;
+  font-size: 27px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-shadow: 0 0 18px rgba(58, 197, 255, 0.75);
+  transform: translateX(-50%);
+}
+
+.datav-time, .datav-weather, .datav-location {
+  color: #7bd6ff;
+  font-size: 14px;
+}
+
+.datav-project-row {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+  height: 38px;
+  padding: 0 6px;
+  color: #7d9cba;
+  font-size: 12px;
+}
+
+.datav-project-row .is-active {
+  color: #5ad6ff;
+}
+
+.datav-layout {
+  display: flex;
+  height: calc(100vh - 210px);
+  gap: 10px;
+}
+
+.datav-nav-column {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 8px;
+  width: 76px;
+  padding-top: 60px;
+}
+
+.datav-nav-column button {
+  height: 70px;
+  color: #79a9c8;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  cursor: pointer;
+  background: rgba(9, 48, 88, 0.45);
+  border: 1px solid rgba(45, 153, 222, 0.35);
+}
+
+.datav-nav-column button.is-active {
+  color: #fff;
+  background: rgba(16, 111, 188, 0.8);
+  border-color: #40c7ff;
+}
+
+.datav-side {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 10px;
+  width: 390px;
+}
+
+.datav-panel {
+  flex: 1;
+  min-height: 0;
+  padding: 8px 12px;
+  background: rgba(5, 32, 65, 0.66);
+  border: 1px solid rgba(44, 153, 222, 0.38);
+  box-shadow: inset 0 0 28px rgba(0, 114, 199, 0.16);
+}
+
+.datav-panel h2 {
+  position: relative;
+  margin: 0 0 6px;
+  padding-left: 12px;
+  color: #9ce4ff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.datav-panel h2::before {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 0;
+  width: 3px;
+  content: "";
+  background: #2dc9ff;
+}
+
+.datav-panel-content {
+  position: relative;
+  height: calc(100% - 24px);
+  overflow: hidden;
+}
+
+.datav-line {
+  position: absolute;
+  inset: 14px 10px 20px;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 49px, rgba(77, 151, 199, 0.14) 49px 50px),
+    linear-gradient(90deg, transparent 0 98%, rgba(45, 201, 255, 0.5) 100%);
+  border-bottom: 1px solid rgba(86, 181, 235, 0.25);
+}
+
+.datav-line::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 38%;
+  height: 62%;
+  content: "";
+  background: linear-gradient(180deg, rgba(48, 211, 255, 0.4), transparent);
+  clip-path: polygon(0 100%, 30% 68%, 52% 80%, 76% 22%, 100% 0, 100% 100%);
+}
+
+.datav-donut {
+  width: 130px;
+  height: 130px;
+  margin: 20px auto;
+  background: conic-gradient(#2dc9ff 0 60%, #1b6f9d 60% 82%, #16405d 82% 100%);
+  border-radius: 50%;
+  mask: radial-gradient(circle, transparent 0 44px, #000 45px);
+}
+
+.datav-dynamic {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 8px;
+  color: #c7efff;
+  font-size: 12px;
+  background: rgba(14, 72, 122, 0.55);
+}
+
+.datav-dynamic span { color: #ffb64d; }
+.datav-dynamic i { margin-left: auto; color: #62e9b5; font-style: normal; }
+
+.datav-gauge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  margin: 18px auto;
+  border: 9px solid #2dc9ff;
+  border-radius: 50%;
+  box-shadow: 0 0 18px rgba(45, 201, 255, 0.5);
+}
+
+.datav-gauge strong { font-size: 22px; }
+.datav-gauge span { color: #79bfe2; font-size: 11px; }
+
+.datav-receipt {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.datav-receipt > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  color: #82bddc;
+}
+
+.datav-receipt b { color: #62e9b5; font-weight: 400; }
+
+.datav-map {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  background: radial-gradient(circle at 52% 48%, rgba(67, 158, 213, 0.3), rgba(2, 20, 43, 0.66) 68%);
+  border: 1px solid rgba(44, 153, 222, 0.28);
+}
+
+.datav-map-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(67, 160, 214, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(67, 160, 214, 0.08) 1px, transparent 1px);
+  background-size: 56px 56px;
+  transform: perspective(500px) rotateX(12deg) scale(1.2);
+}
+
+.datav-city {
+  position: absolute;
+  color: rgba(200, 232, 246, 0.7);
+  font-size: 11px;
+}
+
+.datav-city.is-hrb { top: 6%; left: 66%; }
+.datav-city.is-cc { top: 22%; left: 63%; }
+.datav-city.is-sy { top: 32%; left: 58%; }
+.datav-city.is-bj { top: 42%; left: 46%; }
+.datav-city.is-tj { top: 50%; left: 47%; }
+.datav-city.is-hhht { top: 40%; left: 18%; }
+.datav-city.is-ty { top: 55%; left: 28%; }
+.datav-city.is-jn { top: 55%; left: 48%; }
+.datav-city.is-zz { top: 66%; left: 39%; }
+.datav-city.is-xa { top: 67%; left: 22%; }
+
+.datav-map-pin {
+  position: absolute;
+  padding: 8px 10px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 18px;
+  background: rgba(8, 68, 122, 0.85);
+  border-left: 3px solid #35c8ff;
+  box-shadow: 0 0 18px rgba(42, 185, 255, 0.3);
+}
+
+.datav-map-pin small { color: #a8d7ea; font-size: 10px; }
+.datav-map-pin.is-one { top: 49%; left: 51%; }
+.datav-map-pin.is-two { top: 38%; left: 44%; }
+
+.datav-map-controls {
+  position: absolute;
+  right: 12px;
+  bottom: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.datav-map-controls button {
+  width: 24px;
+  height: 24px;
+  color: #8bd6ff;
+  background: rgba(5, 37, 72, 0.8);
+  border: 1px solid rgba(50, 164, 225, 0.4);
+}
+
+.datav-map-source {
+  position: absolute;
+  bottom: 8px;
+  left: 12px;
+  color: rgba(129, 171, 198, 0.55);
+  font-size: 9px;
+  line-height: 14px;
+}
+
+.datav-map-settings {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  color: #6fc5e8;
+  font-size: 11px;
+}
+
+.datav-bottom {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  left: 98px;
+  display: flex;
+  gap: 10px;
+}
+
+.datav-bottom-card {
+  flex: 1;
+  padding: 10px 14px;
+  background: rgba(5, 32, 65, 0.8);
+  border: 1px solid rgba(44, 153, 222, 0.38);
+}
+
+.datav-bottom-card span { display: block; color: #7dbbd9; font-size: 11px; }
+.datav-bottom-card strong { color: #fff; font-size: 22px; font-weight: 500; }
+.datav-bottom-card small { display: block; margin-top: 3px; color: #72aecd; font-size: 10px; }
+
+.datav-notice {
+  position: fixed;
+  right: -360px;
+  bottom: 100px;
+  width: 340px;
+  padding: 14px;
+  background: rgba(4, 27, 55, 0.96);
+  border: 1px solid #2a94c9;
+  transition: right 0.25s;
+}
+
+.datav-notice h3 { margin: 0 0 8px; font-size: 15px; }
+.datav-notice div { color: #7bbbd6; font-size: 12px; }
+.datav-notice p, .datav-notice small { color: #6d9fb5; font-size: 12px; }
+
+.datav-select-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(23, 100, 177, 0.45), transparent 55%),
+    linear-gradient(135deg, #071c36, #020a18 55%, #062244);
+}
+
+.datav-select-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 86vw;
+  height: 80vh;
+  background: radial-gradient(circle at 50% 45%, rgba(21, 88, 157, 0.5), rgba(2, 13, 31, 0.9) 70%);
+  border: 2px solid rgba(51, 180, 245, 0.4);
+  box-shadow: inset 0 0 80px rgba(0, 107, 178, 0.3);
+  clip-path: polygon(0 0, 42% 0, 44% 6%, 56% 6%, 58% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.datav-select-panel h1 {
+  position: absolute;
+  top: 24px;
+  margin: 0;
+  color: #e7f9ff;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.datav-select-projects {
+  position: absolute;
+  top: 76px;
+  left: 44px;
+  display: flex;
+  gap: 16px;
+}
+
+.datav-select-projects button {
+  min-width: 96px;
+  height: 38px;
+  padding: 0 18px;
+  color: #9dc8de;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  background: rgba(7, 38, 73, 0.7);
+  border: 1px solid rgba(50, 166, 231, 0.4);
+  clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+}
+
+.datav-select-projects button.is-active {
+  color: #fff;
+  background: rgba(15, 96, 168, 0.8);
+  border-color: #4dd3ff;
+  box-shadow: 0 0 14px rgba(55, 199, 255, 0.45);
+}
+
+.datav-enter {
+  position: absolute;
+  bottom: 52px;
+  min-width: 170px;
+  height: 50px;
+  color: #dff8ff;
+  font-family: inherit;
+  font-size: 18px;
+  letter-spacing: 4px;
+  cursor: pointer;
+  background: rgba(7, 45, 84, 0.8);
+  border: 1px solid #36c4f5;
+  clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 14px 100%, 0 50%);
+  box-shadow: 0 0 22px rgba(48, 194, 250, 0.35);
+}

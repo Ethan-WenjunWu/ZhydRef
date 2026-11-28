@@ -124,6 +124,45 @@ export const SIDEBAR: SidebarNode[] = [
   },
 ];
 
+export type DataPage = {
+  id: string;
+  key: string;
+  name: string;
+  icon: string;
+  slug: string;
+};
+
+export const DATA_PAGES: DataPage[] = [
+  { id: "01", key: "menu-homeOverview-30092", name: "数据总览", icon: "org-menu-shujuzonglan", slug: "overview" },
+  { id: "02", key: "menu-homeOverviewProject-30093", name: "项目概况", icon: "org-menu-xiangmugaikuang", slug: "project" },
+  { id: "03", key: "menu-homeOverviewProperty-30094", name: "资产评估", icon: "org-menu-zichanpinggu", slug: "asset" },
+  { id: "04", key: "menu-homeOverviewRoom-30095", name: "资源分析", icon: "org-menu-ziyuanfenxi", slug: "resource" },
+  { id: "05", key: "menu-homeLeaseOverview-30096", name: "租赁分析", icon: "org-menu-zulinfenxi", slug: "lease-analysis" },
+  { id: "06", key: "menu-homeOwnerOverview-30097", name: "租客分析", icon: "org-menu-zukefenxi", slug: "tenant-analysis" },
+  { id: "07", key: "menu-homeEstateOverview-247105", name: "物业分析", icon: "org-menu-wuyejichushuju", slug: "property-analysis" },
+  { id: "08", key: "menu-homeLeaseDrawing-30176", name: "资管房态图", icon: "org-menu-ziguanpoumiantu", slug: "lease-drawing" },
+  { id: "09", key: "menu-homePropertyDrawing-30175", name: "物管房态图", icon: "org-menu-wuguanpoumiantu", slug: "property-drawing" },
+  { id: "10", key: "menu-apartmentLayoutDrawing-31254", name: "公寓房态图", icon: "org-menu-gongyufangtai", slug: "apartment-drawing" },
+  { id: "11", key: "menu-parkSpaceDrawing-10030", name: "车位房态图", icon: "org-menu-cheweifangtaitu", slug: "parking-drawing" },
+  { id: "12", key: "menu-homeReportLease-30190", name: "财务报表", icon: "org-menu-caiwubaobiao", slug: "financial-report" },
+  { id: "13", key: "menu-homeReportIncome-30192", name: "收入报表", icon: "org-menu-shouru", slug: "income-report" },
+  { id: "14", key: "menu-retreatReportList-30191", name: "退房报表", icon: "org-menu-tuifangbaobiao", slug: "retreat-report" },
+  { id: "15", key: "menu-propertyReport-31253", name: "物业报表", icon: "org-menu-wuyefenxi", slug: "property-report" },
+  { id: "16", key: "menu-dataDashboardVisualization-40252", name: "综合数据大屏", icon: "org-menu-datav", slug: "datav-overview" },
+  { id: "17", key: "menu-leaseManagement-39252", name: "租赁数据大屏", icon: "org-menu-zulinguanli", slug: "datav-lease" },
+  { id: "18", key: "menu-merchantManagement-37252", name: "招商数据大屏", icon: "org-menu-zhaoshangguanli", slug: "datav-merchant" },
+  { id: "19", key: "menu-propertyDataDashboard-38252", name: "物业数据大屏", icon: "org-menu-wuyeshujudaping", slug: "datav-property" },
+];
+
+export const DATA_PAGE_BY_KEY = Object.fromEntries(
+  DATA_PAGES.map((page) => [page.key, page]),
+);
+
+export function dataHref(key: string): string | undefined {
+  const page = DATA_PAGE_BY_KEY[key];
+  return page ? `/orgs/data/${page.slug}` : undefined;
+}
+
 export const OFFICE_SIDEBAR: SidebarNode[] = [
   {
     type: "page",
