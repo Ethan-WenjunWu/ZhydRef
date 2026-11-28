@@ -14,6 +14,7 @@ export type AssetConfig = {
   tabs?: string[];
   stats?: Array<[string, string]>;
   note?: string;
+  rows?: React.ReactNode[][];
 };
 
 export function AssetGeneric({ config }: { config: AssetConfig }) {
@@ -35,11 +36,10 @@ export function AssetGeneric({ config }: { config: AssetConfig }) {
         </div>
       ) : null}
       <div className="op-card">
-        <div className="op-card-head"><strong>{config.title}</strong><div className="op-actions">{(config.buttons ?? []).map((button, index) => <SkButton key={button} variant={index === (config.buttons?.length ?? 0) - 1 ? "primary" : "default"} onClick={() => show(button)}>{button}</SkButton>)}</div></div>
+        <div className="op-card-head"><strong>{config.title}</strong><div className="op-actions">{(config.buttons?.length ? config.buttons : ["刷新", "更多"]).map((button, index, list) => <SkButton key={button} variant={index === list.length - 1 ? "primary" : "default"} onClick={() => show(button)}>{button}</SkButton>)}</div></div>
         {config.tabs ? <div className="op-table-tabs">{config.tabs.map((item, index) => <button key={item} type="button" className={index === tab ? "is-active" : ""} onClick={() => setTab(index)}>{item}</button>)}</div> : null}
         {config.note ? <div className="op-note">{config.note}</div> : null}
-        <div className="op-table-toolbar"><span /><div className="op-actions"><SkButton onClick={() => show("刷新成功")}>刷新</SkButton><SkButton>更多 ⌄</SkButton></div></div>
-        <SkTable className="op-wide-table is-huge" columns={config.columns.map((value, index) => ({ key: String(index), title: value }))} rows={[]} />
+        <SkTable className="op-wide-table is-huge" columns={config.columns.map((value, index) => ({ key: String(index), title: value }))} rows={config.rows ?? []} />
       </div>
       {node}
     </OpPage>

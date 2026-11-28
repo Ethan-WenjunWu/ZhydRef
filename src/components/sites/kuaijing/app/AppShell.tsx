@@ -18,6 +18,7 @@ import {
   OFFICE_PAGE_BY_KEY,
   OPERATION_PAGE_BY_KEY,
   PROPERTY_PAGE_BY_KEY,
+  RESOURCE_PAGE_BY_KEY,
   SETTINGS_PAGE_BY_KEY,
   SIDEBAR,
   TOP_MODULES,
@@ -26,6 +27,7 @@ import {
   officeHref,
   operationHref,
   propertyHref,
+  resourceHref,
   settingsHref,
   type SidebarNode,
 } from "./data";
@@ -171,6 +173,7 @@ export function AppShell({
       activeTopKey === "menu-property-30009" ||
       activeTopKey === "menu-operationManage-30006" ||
       activeTopKey === "menu-workProperty-220001" ||
+      activeTopKey === "menu-orgLouyu-30005" ||
       (activeTopKey === "menu-home-30004" && DATA_PAGE_BY_KEY[activeLeafKey])
     ) {
       openSiteTab(activeLeafKey);
@@ -257,6 +260,8 @@ export function AppShell({
       router.push("/orgs/operation/checkin");
     } else if (key === "menu-workProperty-220001") {
       router.push("/orgs/asset/overview");
+    } else if (key === "menu-orgLouyu-30005") {
+      router.push("/orgs/resource/rent-control");
     }
     setOverflowOpen(false);
   };
@@ -273,6 +278,7 @@ export function AppShell({
     activeTopKey === "menu-property-30009" ||
     activeTopKey === "menu-operationManage-30006" ||
     activeTopKey === "menu-workProperty-220001" ||
+    activeTopKey === "menu-orgLouyu-30005" ||
     isDataPage;
   const moduleTabKeys = openTabs.filter((key) => key !== WORKBENCH_TAB);
   if (
@@ -484,7 +490,7 @@ export function AppShell({
               ) : null}
 
               {moduleTabKeys.map((key) => {
-                const page = SETTINGS_PAGE_BY_KEY[key] ?? OFFICE_PAGE_BY_KEY[key] ?? PROPERTY_PAGE_BY_KEY[key] ?? OPERATION_PAGE_BY_KEY[key] ?? DATA_PAGE_BY_KEY[key] ?? ASSET_PAGE_BY_KEY[key];
+                const page = SETTINGS_PAGE_BY_KEY[key] ?? OFFICE_PAGE_BY_KEY[key] ?? PROPERTY_PAGE_BY_KEY[key] ?? OPERATION_PAGE_BY_KEY[key] ?? DATA_PAGE_BY_KEY[key] ?? ASSET_PAGE_BY_KEY[key] ?? RESOURCE_PAGE_BY_KEY[key];
                 const active = !isWorkbench && key === activeLeafKey;
                 const name = page?.name ?? (active ? tabTitle : key);
                 const icon = page?.icon ?? tabIcon;
@@ -494,7 +500,7 @@ export function AppShell({
                     ref={active ? activeTabRef : undefined}
                     className={`ka-tab${active ? " is-active" : ""}`}
                     onClick={() => {
-                      const href = settingsHref(key) ?? officeHref(key) ?? propertyHref(key) ?? operationHref(key) ?? dataHref(key) ?? assetHref(key);
+                      const href = settingsHref(key) ?? officeHref(key) ?? propertyHref(key) ?? operationHref(key) ?? dataHref(key) ?? assetHref(key) ?? resourceHref(key);
                       if (href) router.push(href);
                     }}
                   >

@@ -387,6 +387,59 @@ export function propertyHref(key: string): string | undefined {
   return page ? `/orgs/property/${page.slug}` : undefined;
 }
 
+export const RESOURCE_SIDEBAR: SidebarNode[] = [
+  { type: "page", key: "menu-res-rent-control", name: "租控管理", icon: "org-menu-zukongguanli" },
+  { type: "page", key: "menu-res-projects", name: "房产项目", icon: "org-menu-xiangmuliebiao" },
+  { type: "page", key: "menu-res-property-projects", name: "物管项目", icon: "org-menu-wuguanxiangmu" },
+  { type: "page", key: "menu-res-property-house", name: "产权房屋", icon: "org-menu-chanquanfangwu" },
+  { type: "page", key: "menu-res-business", name: "房产资料（商业）", icon: "org-menu-shangyeziliao" },
+  { type: "page", key: "menu-res-residence", name: "房产资料（住宅）", icon: "org-menu-zhuzhaiziliao" },
+  { type: "page", key: "menu-res-apartment", name: "房产资料（公寓）", icon: "org-menu-gongyuziliao" },
+  { type: "page", key: "menu-res-food-market", name: "房产资料（菜场）", icon: "org-menu-caichangziliao" },
+  { type: "page", key: "menu-res-station", name: "房产资料（工位）", icon: "org-menu-gongweiziliao" },
+  { type: "page", key: "menu-res-bed", name: "房产资料（床位）", icon: "org-menu-chuangweiziliao" },
+  { type: "page", key: "menu-res-venue", name: "场地资料", icon: "org-menu-changdiziliao" },
+  { type: "page", key: "menu-res-ad-space", name: "广告位资料", icon: "org-menu-guanggaoweiziliao" },
+  { type: "page", key: "menu-res-parking", name: "车位资料", icon: "org-menu-cheweiziliao" },
+  { type: "page", key: "menu-res-vehicle", name: "车辆资料", icon: "org-menu-cheliangziliao" },
+  { type: "page", key: "menu-res-warehouse", name: "仓库资料", icon: "org-menu-lengkuziliao" },
+];
+
+export type ResourcePage = {
+  id: string;
+  key: string;
+  name: string;
+  icon: string;
+  slug: string;
+};
+
+export const RESOURCE_PAGES: ResourcePage[] = [
+  { id: "01", key: "menu-res-rent-control", name: "租控管理", icon: "org-menu-zukongguanli", slug: "rent-control" },
+  { id: "02", key: "menu-res-projects", name: "房产项目", icon: "org-menu-xiangmuliebiao", slug: "projects" },
+  { id: "03", key: "menu-res-property-projects", name: "物管项目", icon: "org-menu-wuguanxiangmu", slug: "property-projects" },
+  { id: "04", key: "menu-res-property-house", name: "产权房屋", icon: "org-menu-chanquanfangwu", slug: "property-house" },
+  { id: "05", key: "menu-res-business", name: "房产资料（商业）", icon: "org-menu-shangyeziliao", slug: "business" },
+  { id: "06", key: "menu-res-residence", name: "房产资料（住宅）", icon: "org-menu-zhuzhaiziliao", slug: "residence" },
+  { id: "07", key: "menu-res-apartment", name: "房产资料（公寓）", icon: "org-menu-gongyuziliao", slug: "apartment" },
+  { id: "08", key: "menu-res-food-market", name: "房产资料（菜场）", icon: "org-menu-caichangziliao", slug: "food-market" },
+  { id: "09", key: "menu-res-station", name: "房产资料（工位）", icon: "org-menu-gongweiziliao", slug: "station" },
+  { id: "10", key: "menu-res-bed", name: "房产资料（床位）", icon: "org-menu-chuangweiziliao", slug: "bed" },
+  { id: "11", key: "menu-res-venue", name: "场地资料", icon: "org-menu-changdiziliao", slug: "venue" },
+  { id: "12", key: "menu-res-ad-space", name: "广告位资料", icon: "org-menu-guanggaoweiziliao", slug: "ad-space" },
+  { id: "13", key: "menu-res-parking", name: "车位资料", icon: "org-menu-cheweiziliao", slug: "parking" },
+  { id: "14", key: "menu-res-vehicle", name: "车辆资料", icon: "org-menu-cheliangziliao", slug: "vehicle" },
+  { id: "15", key: "menu-res-warehouse", name: "仓库资料", icon: "org-menu-lengkuziliao", slug: "warehouse" },
+];
+
+export const RESOURCE_PAGE_BY_KEY = Object.fromEntries(
+  RESOURCE_PAGES.map((page) => [page.key, page]),
+);
+
+export function resourceHref(key: string): string | undefined {
+  const page = RESOURCE_PAGE_BY_KEY[key];
+  return page ? `/orgs/resource/${page.slug}` : undefined;
+}
+
 export const ASSET_SIDEBAR: SidebarNode[] = [
   { type: "group", key: "menu-assetgroup-gudingzichan", name: "固定资产", icon: "org-menu-gudingzichan", children: [
     { type: "page", key: "menu-asset-overview", name: "资产概览", icon: "org-menu-zichangailan" },

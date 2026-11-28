@@ -15,6 +15,7 @@ and 390×844 (DPR 3, mobile emulation).
 | `/orgs/#/index` → 数据中心 left menu | `/orgs/data/<slug>` (19 routes) | `src/app/orgs/data/[slug]/page.tsx`, `app/DataShell.tsx`, `data/DataPages.tsx`, `data/*.tsx` |
 | 数据可视化 submenu | `/datav` and `/datav/<slug>` (5 routes) | `src/app/datav/page.tsx`, `src/app/datav/[slug]/page.tsx`, `datav/DataVizScreen.tsx` |
 | `/orgs/#/index` → 资产管理 left menu | `/orgs/asset/<slug>` (37 routes) | `src/app/orgs/asset/[slug]/page.tsx`, `app/AssetShell.tsx`, `asset/AssetPages.tsx`, `asset/*.tsx` |
+| `/orgs/#/index` → 资源管理 left menu | `/orgs/resource/<slug>` (15 routes) | `src/app/orgs/resource/[slug]/page.tsx`, `app/ResourceShell.tsx`, `resource/ResourcePages.tsx`, `resource/*.tsx` |
 | `/orgs/#/index` → 系统设置 left menu | `/orgs/settings/<slug>` (20 routes) | `src/app/orgs/settings/[slug]/page.tsx`, `app/SettingsShell.tsx`, `SettingsPages.tsx`, `SettingsUI.tsx` |
 | `/orgs/#/index` → 行政办公 left menu | `/orgs/office/<slug>` (16 routes) | `src/app/orgs/office/[slug]/page.tsx`, `app/OfficeShell.tsx`, `office/OfficePages.tsx`, `office/*.tsx` |
 | `/orgs/#/index` → 物业管理 left menu | `/orgs/property/<slug>` (31 routes) | `src/app/orgs/property/[slug]/page.tsx`, `app/PropertyShell.tsx`, `property/PropertyPages.tsx`, `property/*.tsx` |
@@ -304,6 +305,33 @@ Major interaction work:
 - My-assets dashboard, applications and approvals are wired; purchase dashboard
   keeps the captured statistics and pending-approval summary.
 
+## 资源管理 (A3) — all 15 pages
+
+The resource shell selects 资源管理 with the source's flat sidebar:
+
+| Page | Local route |
+| --- | --- |
+| 租控管理 | `/orgs/resource/rent-control` |
+| 房产项目 / 物管项目 | `projects`, `property-projects` |
+| 产权房屋 | `property-house` |
+| 房产资料（商业/住宅/公寓/菜场/工位/床位） | `business`, `residence`, `apartment`, `food-market`, `station`, `bed` |
+| 场地资料 / 广告位资料 / 车位资料 / 车辆资料 / 仓库资料 | `venue`, `ad-space`, `parking`, `vehicle`, `warehouse` |
+
+Deep-page work:
+
+- 租控管理: project/building tree with search and 新建项目/新建楼宇; project delete/edit;
+  thirteen horizontal tabs – 项目概况、楼栋楼层、车库车位、配套资源、出租床位、
+  工单动态、资产记录、智能硬件、水电能耗、项目信息、项目进展、常用电话、
+  项目周边 – each clicked with the 5-second wait and reproduced.
+- 项目概况 KPI grid, 业户分析 panels and 租金单价排行; 楼栋楼层/车库车位 dual tables;
+  配套资源 categories/search/table; 床位/工单/资产/硬件/能耗/项目信息/进展/电话/周边
+  sections.
+- 房产项目 and 物管项目 keep the captured KPI cards, filters, full column sets and
+  the two real project rows; property-type pages reproduce their type-specific
+  filters, columns and sample rows (商业 20 rows, 床位 one row).
+- Each list page keeps 放大/刷新/添加/批量删除/更多 actions and the appropriate
+  add buttons.
+
 ## Asset map
 
 | Source | Local | Notes |
@@ -406,7 +434,8 @@ Screenshots live in `docs/design-references/`:
   `property-source-01/04/06/11/14/25.png`,
   `operation-source-01.png`, `operation-source-01-modal.png`,
   `data-source-overview.png`, `data-source-datav-select.png`, `data-source-datav-lease.png`,
-  `asset-source-overview.png`
+  `asset-source-overview.png`,
+  `resource-source-rent.png`, `resource-source-projects.png`
 - Local: `kuaijing-local-initial.png`, `kuaijing-local-password.png`,
   `kuaijing-local-filled.png`, `kuaijing-local-wechat.png`,
   `kuaijing-local-wecom-modal.png`, `kuaijing-local-lang.png`,
@@ -424,4 +453,5 @@ Screenshots live in `docs/design-references/`:
   `property-local-01/04/06/11/14.png`,
   `operation-local-01/04/13/30.png`,
   `data-local-overview.png`, `data-local-floorplan.png`, `data-local-financial.png`, `data-local-datav-overview.png`,
-  `asset-local-overview.png`, `asset-local-list.png`, `asset-local-label.png`
+  `asset-local-overview.png`, `asset-local-list.png`, `asset-local-label.png`,
+  `resource-local-rent.png`, `resource-local-projects.png`

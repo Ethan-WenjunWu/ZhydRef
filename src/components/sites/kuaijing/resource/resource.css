@@ -1,0 +1,230 @@
+/* Scoped styles for 资源管理 (A3). */
+
+.kuaijing-app .res-rent-page {
+  flex-direction: row;
+  gap: 0;
+  padding: 0;
+  background: #fff;
+}
+
+.kuaijing-app .res-rent-tree {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  width: 240px;
+  min-height: calc(100vh - 96px);
+  padding: 12px 10px;
+  border-right: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .res-tree-search {
+  display: flex;
+}
+
+.kuaijing-app .res-tree-search .sk-input {
+  border-right: 0;
+  border-radius: 2px 0 0 2px;
+}
+
+.kuaijing-app .res-tree-search .sk-btn {
+  flex: none;
+  width: 44px;
+  border-radius: 0 2px 2px 0;
+}
+
+.kuaijing-app .res-tree-root {
+  padding: 12px 6px;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 13px;
+}
+
+.kuaijing-app .res-tree-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 8px 0 20px;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: inherit;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: 2px;
+}
+
+.kuaijing-app .res-tree-item.is-active {
+  color: #2681f3;
+  background: #e6f4ff;
+}
+
+.kuaijing-app .res-tree-bottom {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid #f5f5f5;
+}
+
+.kuaijing-app .res-rent-main {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 16px 20px;
+}
+
+.kuaijing-app .res-rent-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.kuaijing-app .res-rent-head h2 {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.kuaijing-app .res-rent-tabs {
+  margin: 6px 0 10px;
+}
+
+.kuaijing-app .res-rent-tabs .sk-page-tabs {
+  gap: 22px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.kuaijing-app .res-rent-tabs .sk-page-tab {
+  flex: none;
+  padding: 10px 0;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.kuaijing-app .res-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .res-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 16px;
+  border-right: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .res-kpi span { color: rgba(0, 0, 0, 0.55); font-size: 12px; }
+.kuaijing-app .res-kpi strong { color: rgba(0, 0, 0, 0.85); font-size: 23px; font-weight: 500; }
+.kuaijing-app .res-kpi small { color: #2681f3; font-size: 12px; }
+
+.kuaijing-app .res-section-title {
+  margin-bottom: 10px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.kuaijing-app .res-analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.kuaijing-app .res-analysis-panel {
+  min-height: 220px;
+}
+
+.kuaijing-app .res-analysis-panel strong {
+  color: #2681f3;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.kuaijing-app .res-pagination {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  padding-top: 12px;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+}
+
+.kuaijing-app .res-note {
+  margin: 8px 0;
+  padding: 9px 14px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+  background: #fafafa;
+}
+
+.kuaijing-app .res-subtabs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kuaijing-app .res-subtabs .sk-page-tabs {
+  border-bottom: 0;
+}
+
+.kuaijing-app .res-filter-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+  margin: 8px 0;
+}
+
+.kuaijing-app .res-filter-inline .sk-select {
+  width: 180px;
+}
+
+.kuaijing-app .res-energy-chart {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  min-height: 300px;
+}
+
+.kuaijing-app .res-energy-chart > div {
+  padding: 10px;
+  border: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .res-energy-chart strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+}
+
+.kuaijing-app .res-info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 18px;
+  border: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .res-info-grid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 58px;
+  padding: 8px 12px;
+  border-right: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .res-info-grid span { color: rgba(0, 0, 0, 0.45); font-size: 12px; }
+.kuaijing-app .res-info-grid strong { color: rgba(0, 0, 0, 0.85); font-size: 13px; font-weight: 400; }
+
+@media (max-width: 1200px) {
+  .kuaijing-app .res-rent-tree { width: 200px; }
+  .kuaijing-app .res-kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kuaijing-app .res-analysis-grid { grid-template-columns: 1fr; }
+  .kuaijing-app .res-info-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
