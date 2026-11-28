@@ -16,6 +16,8 @@ and 390×844 (DPR 3, mobile emulation).
 | 数据可视化 submenu | `/datav` and `/datav/<slug>` (5 routes) | `src/app/datav/page.tsx`, `src/app/datav/[slug]/page.tsx`, `datav/DataVizScreen.tsx` |
 | `/orgs/#/index` → 资产管理 left menu | `/orgs/asset/<slug>` (37 routes) | `src/app/orgs/asset/[slug]/page.tsx`, `app/AssetShell.tsx`, `asset/AssetPages.tsx`, `asset/*.tsx` |
 | `/orgs/#/index` → 资源管理 left menu | `/orgs/resource/<slug>` (15 routes) | `src/app/orgs/resource/[slug]/page.tsx`, `app/ResourceShell.tsx`, `resource/ResourcePages.tsx`, `resource/*.tsx` |
+| `/orgs/#/index` → 招商管理 left menu | `/orgs/investment/<slug>` (19 routes) | `src/app/orgs/investment/[slug]/page.tsx`, `app/InvestShell.tsx`, `investment/InvestPages.tsx`, `investment/*.tsx` |
+| 招商平台 (new window) | `/platform` | `src/app/platform/page.tsx`, `platform/PlatformPage.tsx` |
 | `/orgs/#/index` → 系统设置 left menu | `/orgs/settings/<slug>` (20 routes) | `src/app/orgs/settings/[slug]/page.tsx`, `app/SettingsShell.tsx`, `SettingsPages.tsx`, `SettingsUI.tsx` |
 | `/orgs/#/index` → 行政办公 left menu | `/orgs/office/<slug>` (16 routes) | `src/app/orgs/office/[slug]/page.tsx`, `app/OfficeShell.tsx`, `office/OfficePages.tsx`, `office/*.tsx` |
 | `/orgs/#/index` → 物业管理 left menu | `/orgs/property/<slug>` (31 routes) | `src/app/orgs/property/[slug]/page.tsx`, `app/PropertyShell.tsx`, `property/PropertyPages.tsx`, `property/*.tsx` |
@@ -332,6 +334,36 @@ Deep-page work:
 - Each list page keeps 放大/刷新/添加/批量删除/更多 actions and the appropriate
   add buttons.
 
+## 招商管理 (A4) — all pages and the招商 portal
+
+The investment shell selects 招商管理 with the captured flat menu plus the
+招商配置 group (招商人员/标签管理/页面配置); 招商平台 opens a standalone
+browser tab at `/platform`.
+
+| Group | Pages / local routes |
+| --- | --- |
+| 招商资源 | 招商项目 `investment-projects`、招商公寓 `investment-apartments`、招商房源 `investment-rooms`、招商车位 `investment-parking`、招商场地 `investment-sites`、招商合同 `investment-contracts` |
+| 客户与线索 | 线索管理 `clues`、意向客户 `customers`、客户跟进 `follow-ups`、客户带看 `viewings` |
+| 销售与渠道 | 销售计划 `sales-plans`、渠道管理 `channels`、佣金管理 `commissions` |
+| 分析/品牌 | 招商分析 `analysis`、品牌库 `brands` |
+| 招商配置 | 招商人员 `staff`、标签管理 `tags`、页面配置 `page-config` |
+| 招商平台 | `/platform`（源站新窗口） |
+
+Deep work:
+
+- 线索管理: five horizontal tabs (我的线索/全部线索/线索公海/线索审核/跟进状态)
+  each clicked with a 5-second wait; KPI cards, filters, toolbars and the
+  自建线索 drawer with 意向项目/客户/手机号/公司/需求面积/来源 fields.
+- 意向客户: five tabs (我的客户/全部客户/客户看板/客户公海/客户状态), KPI cards,
+  filters, table and add-customer modal fields.
+- 销售计划 has 未开始/进行中/已完成/未完成 columns; 渠道管理 has 7 KPI cards and
+  渠道信息/待审核/渠道类型/黑名单 tabs; 佣金管理 has three tabs.
+- 招商分析 has five captured analysis tabs; 页面配置 reproduces the public-page
+  editor preview, image replacement, yes/no switches and 应用 action.
+- `/platform` reproduces the public 招商 homepage: header navigation, 1920×680
+  banner, search panel, area/price selectors, feature icons, project cards, news
+  and footer.
+
 ## Asset map
 
 | Source | Local | Notes |
@@ -435,7 +467,8 @@ Screenshots live in `docs/design-references/`:
   `operation-source-01.png`, `operation-source-01-modal.png`,
   `data-source-overview.png`, `data-source-datav-select.png`, `data-source-datav-lease.png`,
   `asset-source-overview.png`,
-  `resource-source-rent.png`, `resource-source-projects.png`
+  `resource-source-rent.png`, `resource-source-projects.png`,
+  `invest-source-clues.png`, `invest-source-platform.png`
 - Local: `kuaijing-local-initial.png`, `kuaijing-local-password.png`,
   `kuaijing-local-filled.png`, `kuaijing-local-wechat.png`,
   `kuaijing-local-wecom-modal.png`, `kuaijing-local-lang.png`,
@@ -454,4 +487,5 @@ Screenshots live in `docs/design-references/`:
   `operation-local-01/04/13/30.png`,
   `data-local-overview.png`, `data-local-floorplan.png`, `data-local-financial.png`, `data-local-datav-overview.png`,
   `asset-local-overview.png`, `asset-local-list.png`, `asset-local-label.png`,
-  `resource-local-rent.png`, `resource-local-projects.png`
+  `resource-local-rent.png`, `resource-local-projects.png`,
+  `invest-local-clues.png`, `invest-local-platform.png`

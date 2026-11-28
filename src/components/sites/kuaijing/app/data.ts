@@ -387,6 +387,69 @@ export function propertyHref(key: string): string | undefined {
   return page ? `/orgs/property/${page.slug}` : undefined;
 }
 
+export const INVEST_SIDEBAR: SidebarNode[] = [
+  { type: "page", key: "menu-inv-investment-projects", name: "招商项目", icon: "org-menu-zhaoshangxiangmu" },
+  { type: "page", key: "menu-inv-investment-apartments", name: "招商公寓", icon: "org-menu-zhaoshanggongyu" },
+  { type: "page", key: "menu-inv-investment-rooms", name: "招商房源", icon: "org-menu-zhaoshangfangyuan" },
+  { type: "page", key: "menu-inv-investment-parking", name: "招商车位", icon: "org-menu-zhaoshangchewei" },
+  { type: "page", key: "menu-inv-investment-sites", name: "招商场地", icon: "org-menu-zhaoshangchangdi" },
+  { type: "page", key: "menu-inv-investment-contracts", name: "招商合同", icon: "org-menu-zhaoshanghetong" },
+  { type: "page", key: "menu-inv-clues", name: "线索管理", icon: "org-menu-xiansuoguanli" },
+  { type: "page", key: "menu-inv-customers", name: "意向客户", icon: "org-menu-yixiangkehu" },
+  { type: "page", key: "menu-inv-sales-plans", name: "销售计划", icon: "org-menu-xiaoshoujihua" },
+  { type: "page", key: "menu-inv-channels", name: "渠道管理", icon: "org-menu-qudaoguanli" },
+  { type: "page", key: "menu-inv-analysis", name: "招商分析", icon: "org-menu-zhaoshangfenxi" },
+  { type: "page", key: "menu-inv-brands", name: "品牌库", icon: "org-menu-pingpaiku" },
+  { type: "page", key: "menu-inv-follow-ups", name: "客户跟进", icon: "org-menu-kehugenjing" },
+  { type: "page", key: "menu-inv-viewings", name: "客户带看", icon: "org-menu-kehudaikan" },
+  { type: "page", key: "menu-inv-commissions", name: "佣金管理", icon: "org-menu-yongjinguanli" },
+  { type: "group", key: "menu-invgroup-config", name: "招商配置", icon: "org-menu-zhaoshangpeizhi", children: [
+    { type: "page", key: "menu-inv-staff", name: "招商人员", icon: "org-menu-zhaoshangrenyuan" },
+    { type: "page", key: "menu-inv-tags", name: "标签管理", icon: "org-menu-biaoqianguanli" },
+    { type: "page", key: "menu-inv-page-config", name: "页面配置", icon: "org-zhaoshangjiameng" }
+  ] },
+  { type: "page", key: "menu-inv-platform", name: "招商平台", icon: "org-menu-zhaoshangpingtai" },
+];
+
+export type InvestPage = {
+  id: string;
+  key: string;
+  name: string;
+  icon: string;
+  slug: string;
+};
+
+export const INVEST_PAGES: InvestPage[] = [
+  { id: "01", key: "menu-inv-investment-projects", name: "招商项目", icon: "org-menu-zhaoshangxiangmu", slug: "investment-projects" },
+  { id: "02", key: "menu-inv-investment-apartments", name: "招商公寓", icon: "org-menu-zhaoshanggongyu", slug: "investment-apartments" },
+  { id: "03", key: "menu-inv-investment-rooms", name: "招商房源", icon: "org-menu-zhaoshangfangyuan", slug: "investment-rooms" },
+  { id: "04", key: "menu-inv-investment-parking", name: "招商车位", icon: "org-menu-zhaoshangchewei", slug: "investment-parking" },
+  { id: "05", key: "menu-inv-investment-sites", name: "招商场地", icon: "org-menu-zhaoshangchangdi", slug: "investment-sites" },
+  { id: "06", key: "menu-inv-investment-contracts", name: "招商合同", icon: "org-menu-zhaoshanghetong", slug: "investment-contracts" },
+  { id: "07", key: "menu-inv-clues", name: "线索管理", icon: "org-menu-xiansuoguanli", slug: "clues" },
+  { id: "08", key: "menu-inv-customers", name: "意向客户", icon: "org-menu-yixiangkehu", slug: "customers" },
+  { id: "09", key: "menu-inv-sales-plans", name: "销售计划", icon: "org-menu-xiaoshoujihua", slug: "sales-plans" },
+  { id: "10", key: "menu-inv-channels", name: "渠道管理", icon: "org-menu-qudaoguanli", slug: "channels" },
+  { id: "11", key: "menu-inv-analysis", name: "招商分析", icon: "org-menu-zhaoshangfenxi", slug: "analysis" },
+  { id: "12", key: "menu-inv-brands", name: "品牌库", icon: "org-menu-pingpaiku", slug: "brands" },
+  { id: "13", key: "menu-inv-follow-ups", name: "客户跟进", icon: "org-menu-kehugenjing", slug: "follow-ups" },
+  { id: "14", key: "menu-inv-viewings", name: "客户带看", icon: "org-menu-kehudaikan", slug: "viewings" },
+  { id: "15", key: "menu-inv-commissions", name: "佣金管理", icon: "org-menu-yongjinguanli", slug: "commissions" },
+  { id: "16", key: "menu-inv-staff", name: "招商人员", icon: "org-menu-zhaoshangrenyuan", slug: "staff" },
+  { id: "17", key: "menu-inv-tags", name: "标签管理", icon: "org-menu-biaoqianguanli", slug: "tags" },
+  { id: "18", key: "menu-inv-page-config", name: "页面配置", icon: "org-zhaoshangjiameng", slug: "page-config" },
+  { id: "19", key: "menu-inv-platform", name: "招商平台", icon: "org-menu-zhaoshangpingtai", slug: "platform" },
+];
+
+export const INVEST_PAGE_BY_KEY = Object.fromEntries(
+  INVEST_PAGES.map((page) => [page.key, page]),
+);
+
+export function investHref(key: string): string | undefined {
+  const page = INVEST_PAGE_BY_KEY[key];
+  return page ? `/orgs/investment/${page.slug}` : undefined;
+}
+
 export const RESOURCE_SIDEBAR: SidebarNode[] = [
   { type: "page", key: "menu-res-rent-control", name: "租控管理", icon: "org-menu-zukongguanli" },
   { type: "page", key: "menu-res-projects", name: "房产项目", icon: "org-menu-xiangmuliebiao" },

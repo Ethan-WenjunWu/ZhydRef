@@ -14,6 +14,7 @@ import {
   ACCOUNT,
   ASSET_PAGE_BY_KEY,
   DATA_PAGE_BY_KEY,
+  INVEST_PAGE_BY_KEY,
   NOTICES,
   OFFICE_PAGE_BY_KEY,
   OPERATION_PAGE_BY_KEY,
@@ -24,6 +25,7 @@ import {
   TOP_MODULES,
   assetHref,
   dataHref,
+  investHref,
   officeHref,
   operationHref,
   propertyHref,
@@ -174,6 +176,7 @@ export function AppShell({
       activeTopKey === "menu-operationManage-30006" ||
       activeTopKey === "menu-workProperty-220001" ||
       activeTopKey === "menu-orgLouyu-30005" ||
+      activeTopKey === "menu-attractInvestment-30001" ||
       (activeTopKey === "menu-home-30004" && DATA_PAGE_BY_KEY[activeLeafKey])
     ) {
       openSiteTab(activeLeafKey);
@@ -262,6 +265,8 @@ export function AppShell({
       router.push("/orgs/asset/overview");
     } else if (key === "menu-orgLouyu-30005") {
       router.push("/orgs/resource/rent-control");
+    } else if (key === "menu-attractInvestment-30001") {
+      router.push("/orgs/investment/investment-projects");
     }
     setOverflowOpen(false);
   };
@@ -279,6 +284,7 @@ export function AppShell({
     activeTopKey === "menu-operationManage-30006" ||
     activeTopKey === "menu-workProperty-220001" ||
     activeTopKey === "menu-orgLouyu-30005" ||
+    activeTopKey === "menu-attractInvestment-30001" ||
     isDataPage;
   const moduleTabKeys = openTabs.filter((key) => key !== WORKBENCH_TAB);
   if (
@@ -490,7 +496,7 @@ export function AppShell({
               ) : null}
 
               {moduleTabKeys.map((key) => {
-                const page = SETTINGS_PAGE_BY_KEY[key] ?? OFFICE_PAGE_BY_KEY[key] ?? PROPERTY_PAGE_BY_KEY[key] ?? OPERATION_PAGE_BY_KEY[key] ?? DATA_PAGE_BY_KEY[key] ?? ASSET_PAGE_BY_KEY[key] ?? RESOURCE_PAGE_BY_KEY[key];
+                const page = SETTINGS_PAGE_BY_KEY[key] ?? OFFICE_PAGE_BY_KEY[key] ?? PROPERTY_PAGE_BY_KEY[key] ?? OPERATION_PAGE_BY_KEY[key] ?? DATA_PAGE_BY_KEY[key] ?? ASSET_PAGE_BY_KEY[key] ?? RESOURCE_PAGE_BY_KEY[key] ?? INVEST_PAGE_BY_KEY[key];
                 const active = !isWorkbench && key === activeLeafKey;
                 const name = page?.name ?? (active ? tabTitle : key);
                 const icon = page?.icon ?? tabIcon;
@@ -500,7 +506,7 @@ export function AppShell({
                     ref={active ? activeTabRef : undefined}
                     className={`ka-tab${active ? " is-active" : ""}`}
                     onClick={() => {
-                      const href = settingsHref(key) ?? officeHref(key) ?? propertyHref(key) ?? operationHref(key) ?? dataHref(key) ?? assetHref(key) ?? resourceHref(key);
+                      const href = settingsHref(key) ?? officeHref(key) ?? propertyHref(key) ?? operationHref(key) ?? dataHref(key) ?? assetHref(key) ?? resourceHref(key) ?? investHref(key);
                       if (href) router.push(href);
                     }}
                   >

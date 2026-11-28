@@ -1,0 +1,229 @@
+/* Scoped styles for 招商管理 (A4). */
+
+.kuaijing-app .inv-clue-card {
+  padding: 0 14px 14px;
+  background: #fff;
+}
+
+.kuaijing-app .inv-clue-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.kuaijing-app .inv-clue-tabs .sk-page-tabs {
+  border-bottom: 0;
+}
+
+.kuaijing-app .inv-filter-row {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: end;
+  gap: 12px 16px;
+  padding: 10px 0;
+}
+
+.kuaijing-app .inv-follow-status {
+  padding: 12px 0;
+}
+
+.kuaijing-app .inv-analysis-body {
+  display: flex;
+  min-height: 480px;
+  align-items: center;
+  justify-content: center;
+}
+
+.kuaijing-app .inv-config-page {
+  display: flex;
+  gap: 10px;
+  min-height: calc(100vh - 96px);
+  padding: 10px;
+  background: #f0f2f5;
+}
+
+.kuaijing-app .inv-config-preview {
+  flex: 1;
+  min-width: 0;
+  background: #fff;
+  box-shadow: 0 0 0 1px #f0f0f0;
+}
+
+.kuaijing-app .inv-preview-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 56px;
+  padding: 0 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .inv-preview-header > strong {
+  color: #2681f3;
+  font-size: 20px;
+}
+
+.kuaijing-app .inv-preview-header nav {
+  display: flex;
+  flex: 1;
+  gap: 14px;
+  color: #666;
+  font-size: 12px;
+}
+
+.kuaijing-app .inv-preview-hero {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.kuaijing-app .inv-preview-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+}
+
+.kuaijing-app .inv-preview-search {
+  position: absolute;
+  top: 22px;
+  left: 30px;
+  width: 260px;
+  padding: 12px;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.kuaijing-app .inv-preview-search strong { display: block; margin-bottom: 6px; font-size: 12px; }
+.kuaijing-app .inv-preview-bar { height: 6px; margin-bottom: 8px; background: #e8e8e8; }
+.kuaijing-app .inv-preview-chips { display: flex; gap: 6px; margin-bottom: 8px; color: #999; font-size: 10px; }
+.kuaijing-app .inv-preview-search .sk-input { height: 28px; font-size: 11px; }
+.kuaijing-app .inv-preview-search .sk-btn { width: 100%; margin-top: 6px; height: 28px; font-size: 12px; }
+
+.kuaijing-app .inv-preview-slogan {
+  position: absolute;
+  top: 110px;
+  left: 46%;
+  color: #fff;
+  font-size: 34px;
+  font-weight: 800;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.kuaijing-app .inv-promo-row {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 18px 0;
+  color: #555;
+  font-size: 12px;
+  background: #fafafa;
+}
+
+.kuaijing-app .inv-preview-section {
+  padding: 18px 24px;
+  border-top: 1px solid #f5f5f5;
+}
+
+.kuaijing-app .inv-preview-section > strong {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.kuaijing-app .inv-news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.kuaijing-app .inv-news-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px;
+  background: #fafafa;
+}
+
+.kuaijing-app .inv-news-card strong { font-size: 13px; }
+.kuaijing-app .inv-news-card span { color: #999; font-size: 10px; }
+.kuaijing-app .inv-news-card p { margin: 0; color: #777; font-size: 11px; line-height: 18px; }
+
+.kuaijing-app .inv-building-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 190px;
+  padding: 10px;
+  border: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .inv-building-card span { color: #f5222d; font-size: 12px; }
+
+.kuaijing-app .inv-reassure {
+  display: flex;
+  gap: 20px;
+  color: #666;
+  font-size: 13px;
+}
+
+.kuaijing-app .inv-preview-footer {
+  display: flex;
+  gap: 30px;
+  padding: 16px 24px;
+  color: #999;
+  font-size: 11px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .inv-config-panel {
+  flex: none;
+  width: 300px;
+  padding: 14px;
+  background: #fff;
+}
+
+.kuaijing-app .inv-config-panel h3 {
+  margin: 0 0 16px;
+  font-size: 16px;
+}
+
+.kuaijing-app .inv-config-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.kuaijing-app .inv-config-block strong { font-size: 13px; }
+.kuaijing-app .inv-config-block span { color: #999; font-size: 11px; }
+
+.kuaijing-app .inv-radio-row {
+  display: flex;
+  gap: 8px;
+}
+
+.kuaijing-app .inv-radio-row button {
+  min-width: 56px;
+  height: 28px;
+  color: #666;
+  font-family: inherit;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+}
+
+.kuaijing-app .inv-radio-row button.is-active {
+  color: #2681f3;
+  border-color: #2681f3;
+}
+
+@media (max-width: 1200px) {
+  .kuaijing-app .inv-filter-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .kuaijing-app .inv-config-page { flex-direction: column; }
+  .kuaijing-app .inv-config-panel { width: 100%; }
+}
