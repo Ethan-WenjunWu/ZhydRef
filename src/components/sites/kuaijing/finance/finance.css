@@ -1,0 +1,1082 @@
+/* Scoped styles for 业务财务 (A7). */
+
+.kuaijing-app .fin-page {
+  gap: 10px;
+}
+
+.kuaijing-app .fin-page .sk-switch-inner {
+  display: none;
+}
+
+.kuaijing-app .fin-search-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.kuaijing-app .fin-search-input {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  max-width: 420px;
+}
+
+.kuaijing-app .fin-search-input .sk-input {
+  height: 32px;
+  border-radius: 2px 0 0 2px;
+}
+
+.kuaijing-app .fin-search-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 32px;
+  color: rgba(0, 0, 0, 0.55);
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-left: none;
+  border-radius: 0 2px 2px 0;
+  cursor: pointer;
+}
+
+.kuaijing-app .fin-chips-card {
+  padding: 8px 12px;
+}
+
+.kuaijing-app .fin-chips {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.kuaijing-app .fin-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.kuaijing-app .fin-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 8px;
+  color: #1677ff;
+  font-size: 13px;
+  background: #f0f7ff;
+  border: 1px solid #b7d9ff;
+  border-radius: 2px;
+}
+
+.kuaijing-app .fin-chip i {
+  font-style: normal;
+  cursor: pointer;
+}
+
+.kuaijing-app .fin-chip-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+}
+
+.kuaijing-app .fin-clear {
+  color: #ff4d4f;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.kuaijing-app .fin-link {
+  padding: 0;
+  color: #1677ff;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.kuaijing-app .fin-collapse {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: rgba(0, 0, 0, 0.75);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.kuaijing-app .fin-collapse svg {
+  font-size: 10px;
+}
+
+.kuaijing-app .fin-filter-card {
+  padding: 12px 14px 10px;
+}
+
+.kuaijing-app .fin-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
+  gap: 12px 18px;
+  align-items: end;
+}
+
+.kuaijing-app .fin-filter-grid.is-six {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.kuaijing-app .fin-filter-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 12px;
+}
+
+.kuaijing-app .fin-inline-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 12px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+}
+
+.kuaijing-app .fin-stats {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
+  gap: 0;
+  padding: 8px 0;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.kuaijing-app .fin-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 62px;
+  padding: 6px 18px;
+  border-right: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .fin-stat:last-child {
+  border-right: none;
+}
+
+.kuaijing-app .fin-stat-label {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+}
+
+.kuaijing-app .fin-stat strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.kuaijing-app .fin-stat-sub {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+}
+
+.kuaijing-app .fin-table-card {
+  padding: 0;
+}
+
+.kuaijing-app .fin-table-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+}
+
+.kuaijing-app .fin-table-head-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.kuaijing-app .fin-table-head-left strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.kuaijing-app .fin-tip {
+  padding: 2px 8px;
+  color: #52c41a;
+  font-size: 12px;
+  background: #f6ffed;
+  border: 1px solid #b7eb8f;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.kuaijing-app .fin-tabs {
+  display: flex;
+  gap: 20px;
+  padding: 0 14px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .fin-tabs button {
+  padding: 10px 0;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.kuaijing-app .fin-tabs button.is-active {
+  color: #1677ff;
+  border-bottom-color: #1677ff;
+}
+
+.kuaijing-app .fin-table-card .sk-table-wrap {
+  border-top: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .fin-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 10px 14px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+}
+
+.kuaijing-app .fin-page-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  color: #1677ff;
+  border: 1px solid #1677ff;
+  border-radius: 2px;
+}
+
+.kuaijing-app .fin-links {
+  display: inline-flex;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.kuaijing-app .fin-status-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.kuaijing-app .fin-status-dot i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.kuaijing-app .fin-status-dot.is-success i {
+  background: #52c41a;
+}
+
+.kuaijing-app .fin-status-dot.is-warn i {
+  background: #faad14;
+}
+
+.kuaijing-app .fin-status-dot.is-muted i {
+  background: #bfbfbf;
+}
+
+.kuaijing-app .fin-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.kuaijing-app .fin-toggle-track {
+  display: inline-flex;
+  align-items: center;
+  width: 28px;
+  height: 16px;
+  padding: 2px;
+  background: #bfbfbf;
+  border-radius: 8px;
+}
+
+.kuaijing-app .fin-toggle.is-on .fin-toggle-track {
+  justify-content: flex-end;
+  background: #1677ff;
+}
+
+.kuaijing-app .fin-toggle-track i {
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.kuaijing-app .fin-more {
+  position: relative;
+}
+
+.kuaijing-app .fin-caret {
+  margin-left: 4px;
+  font-size: 10px;
+}
+
+.kuaijing-app .fin-more-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: 40;
+  min-width: 120px;
+  padding: 4px 0;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.kuaijing-app .fin-more-list button {
+  display: block;
+  width: 100%;
+  padding: 6px 14px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 13px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.kuaijing-app .fin-more-list button:hover {
+  background: #f5f5f5;
+}
+
+/* Split layout ----------------------------------------------------------- */
+
+.kuaijing-app .fin-split {
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.kuaijing-app .fin-split-side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 8px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.kuaijing-app .fin-status-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.kuaijing-app .fin-status-item {
+  padding: 8px 12px;
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 14px;
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.kuaijing-app .fin-status-item.is-active {
+  color: #1677ff;
+  background: #e6f4ff;
+}
+
+.kuaijing-app .fin-split-main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.kuaijing-app .fin-org-select {
+  width: 100%;
+}
+
+.kuaijing-app .fin-org-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px 0;
+}
+
+.kuaijing-app .fin-org-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 13px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.kuaijing-app .fin-org-row.is-root {
+  font-weight: 500;
+}
+
+.kuaijing-app .fin-org-row.is-child {
+  padding-left: 22px;
+}
+
+.kuaijing-app .fin-org-row.is-active {
+  color: #1677ff;
+  background: #e6f4ff;
+}
+
+/* Hero / setting pages --------------------------------------------------- */
+
+.kuaijing-app .fin-page-hero {
+  padding: 16px;
+}
+
+.kuaijing-app .fin-hero-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.kuaijing-app .fin-hero-head strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.kuaijing-app .fin-page-hero p {
+  margin: 10px 0 0;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+  line-height: 22px;
+}
+
+.kuaijing-app .fin-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 260px;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+}
+
+.kuaijing-app .fin-empty-icon {
+  font-size: 34px;
+  opacity: 0.5;
+}
+
+.kuaijing-app .fin-card-tabs {
+  padding: 0 14px;
+}
+
+.kuaijing-app .fin-setting-card {
+  padding: 12px 16px 20px;
+}
+
+.kuaijing-app .fin-inline-links {
+  display: flex;
+  gap: 16px;
+  padding: 0 4px;
+}
+
+.kuaijing-app .fin-two-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.kuaijing-app .fin-sub-card {
+  margin-top: 12px;
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+}
+
+.kuaijing-app .fin-sub-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+}
+
+.kuaijing-app .fin-sub-head strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+}
+
+.kuaijing-app .fin-company-row {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.kuaijing-app .fin-company-row .sk-select {
+  width: 240px;
+}
+
+/* Fee types -------------------------------------------------------------- */
+
+.kuaijing-app .fin-fee-layout {
+  display: grid;
+  grid-template-columns: 236px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.kuaijing-app .fin-fee-side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+}
+
+.kuaijing-app .fin-fee-side > strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+}
+
+.kuaijing-app .fin-fee-side .fin-search-input {
+  max-width: none;
+}
+
+.kuaijing-app .fin-category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.kuaijing-app .fin-category {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 13px;
+  background: none;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.kuaijing-app .fin-category.is-active {
+  color: #1677ff;
+  background: #f0f7ff;
+}
+
+.kuaijing-app .fin-category i {
+  font-style: normal;
+  opacity: 0.5;
+}
+
+.kuaijing-app .fin-wide-btn {
+  width: 100%;
+}
+
+.kuaijing-app .fin-fee-main {
+  padding: 0;
+}
+
+.kuaijing-app .fin-fee-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+}
+
+.kuaijing-app .fin-fee-toolbar .fin-search-input {
+  max-width: 280px;
+}
+
+.kuaijing-app .fin-important {
+  padding: 1px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+}
+
+/* Voucher ---------------------------------------------------------------- */
+
+.kuaijing-app .fin-voucher-layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.kuaijing-app .fin-voucher-side {
+  padding: 14px;
+}
+
+.kuaijing-app .fin-voucher-side > strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+}
+
+.kuaijing-app .fin-voucher-main {
+  padding: 0 0 6px;
+}
+
+.kuaijing-app .fin-voucher-main .fin-company-row {
+  padding: 12px 14px;
+}
+
+/* Cashier ---------------------------------------------------------------- */
+
+.kuaijing-app .fin-cashier-page {
+  min-height: calc(100vh - 96px);
+}
+
+.kuaijing-app .fin-cashier {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  padding-top: 120px;
+}
+
+.kuaijing-app .fin-cashier h1 {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 38px;
+  font-weight: 600;
+}
+
+.kuaijing-app .fin-cashier-tabs {
+  display: flex;
+  width: 596px;
+  max-width: 100%;
+  border: 1px solid #d9d9d9;
+}
+
+.kuaijing-app .fin-cashier-tabs button {
+  flex: 1;
+  padding: 11px 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+  background: #fff;
+  border: none;
+  border-right: 1px solid #d9d9d9;
+  cursor: pointer;
+}
+
+.kuaijing-app .fin-cashier-tabs button:last-child {
+  border-right: none;
+}
+
+.kuaijing-app .fin-cashier-tabs button.is-active {
+  color: #1677ff;
+  border: 1px solid #1677ff;
+  margin: -1px;
+}
+
+.kuaijing-app .fin-cashier-search {
+  display: flex;
+  width: 596px;
+  max-width: 100%;
+}
+
+.kuaijing-app .fin-cashier-search .sk-select {
+  width: 160px;
+  flex: none;
+}
+
+.kuaijing-app .fin-cashier-search .sk-input {
+  flex: 1;
+  border-left: none;
+  border-radius: 0;
+}
+
+.kuaijing-app .fin-cashier-search-btn {
+  width: 46px;
+  color: #fff;
+  font-size: 16px;
+  background: #1677ff;
+  border: 1px solid #1677ff;
+  cursor: pointer;
+}
+
+/* Bill form -------------------------------------------------------------- */
+
+.kuaijing-app .fin-form-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.kuaijing-app .fin-form-title strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.kuaijing-app .fin-form-card,
+.kuaijing-app .fin-form-side {
+  padding: 0 16px 16px;
+}
+
+.kuaijing-app .fin-form-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .fin-form-head strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.kuaijing-app .fin-form-toggle {
+  display: flex;
+}
+
+.kuaijing-app .fin-form-toggle button {
+  padding: 6px 16px;
+  color: rgba(0, 0, 0, 0.65);
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  cursor: pointer;
+}
+
+.kuaijing-app .fin-form-toggle button.is-active {
+  color: #1677ff;
+  border-color: #1677ff;
+}
+
+.kuaijing-app .fin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px 20px;
+  padding-top: 16px;
+}
+
+.kuaijing-app .fin-amount-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.kuaijing-app .fin-amount-row .sk-radio {
+  white-space: nowrap;
+}
+
+.kuaijing-app .fin-textarea {
+  height: 74px;
+  resize: vertical;
+}
+
+.kuaijing-app .fin-attach-section {
+  margin-top: 18px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .fin-form-side .fin-alert {
+  margin: 12px 0;
+}
+
+.kuaijing-app .fin-form-side .fin-search-input {
+  max-width: none;
+  margin: 10px 0;
+}
+
+.kuaijing-app .fin-small-select {
+  width: 100px;
+}
+
+.kuaijing-app .fin-form-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Drawers ---------------------------------------------------------------- */
+
+.kuaijing-app .fin-drawer-section {
+  margin: 16px 0 10px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.kuaijing-app .fin-drawer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.kuaijing-app .fin-drawer-form.is-two,
+.kuaijing-app .fin-drawer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 18px;
+}
+
+.kuaijing-app .fin-drawer-grid.is-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.kuaijing-app .fin-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kuaijing-app .fin-inline .sk-input,
+.kuaijing-app .fin-inline .sk-select {
+  flex: 1;
+  min-width: 0;
+}
+
+.kuaijing-app .fin-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px 20px;
+  padding: 14px 16px;
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+}
+
+.kuaijing-app .fin-detail-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kuaijing-app .fin-detail-field span {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+}
+
+.kuaijing-app .fin-detail-field strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* Collection status ------------------------------------------------------ */
+
+.kuaijing-app .fin-collection {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.kuaijing-app .fin-collection-side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.kuaijing-app .fin-collection-main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  background: #fff;
+  border-radius: 2px;
+  min-height: 520px;
+}
+
+.kuaijing-app .fin-collection-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  padding: 4px 0;
+}
+
+.kuaijing-app .fin-collection-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kuaijing-app .fin-collection-stat span {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 12px;
+}
+
+.kuaijing-app .fin-collection-stat strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.kuaijing-app .fin-collection-controls {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .fin-collection-controls .of-field {
+  width: 160px;
+}
+
+.kuaijing-app .fin-view-toggle {
+  display: flex;
+}
+
+.kuaijing-app .fin-view-toggle button {
+  padding: 5px 12px;
+  color: rgba(0, 0, 0, 0.65);
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  cursor: pointer;
+}
+
+.kuaijing-app .fin-view-toggle button.is-active {
+  color: #1677ff;
+  border-color: #1677ff;
+}
+
+.kuaijing-app .fin-legend {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 12px;
+}
+
+.kuaijing-app .fin-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.kuaijing-app .fin-legend i {
+  width: 10px;
+  height: 10px;
+  border: 1px solid #e8e8e8;
+  border-radius: 2px;
+}
+
+.kuaijing-app .fin-room-summary {
+  display: flex;
+  gap: 22px;
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 13px;
+}
+
+.kuaijing-app .fin-rooms {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 560px;
+  overflow-y: auto;
+}
+
+.kuaijing-app .fin-floor {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.kuaijing-app .fin-floor-label {
+  flex: none;
+  width: 22px;
+  padding-top: 6px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 12px;
+  text-align: right;
+}
+
+.kuaijing-app .fin-floor-rooms {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: 6px;
+  flex: 1;
+}
+
+.kuaijing-app .fin-room {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 6px 8px;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.55);
+  background: #fafafa;
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+}
+
+.kuaijing-app .fin-room strong {
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.kuaijing-app .fin-collection-empty {
+  padding: 20px;
+}
+
+.kuaijing-app .fin-title-line strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+@media (max-width: 1280px) {
+  .kuaijing-app .fin-filter-grid,
+  .kuaijing-app .fin-filter-grid.is-six {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .kuaijing-app .fin-form-grid,
+  .kuaijing-app .fin-drawer-grid.is-three {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .kuaijing-app .fin-split,
+  .kuaijing-app .fin-fee-layout,
+  .kuaijing-app .fin-voucher-layout,
+  .kuaijing-app .fin-form-layout,
+  .kuaijing-app .fin-collection {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .kuaijing-app .fin-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

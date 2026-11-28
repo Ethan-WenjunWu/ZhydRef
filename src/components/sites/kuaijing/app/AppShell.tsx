@@ -14,6 +14,7 @@ import {
   ACCOUNT,
   ASSET_PAGE_BY_KEY,
   CUSTOMER_PAGE_BY_KEY,
+  FINANCE_PAGE_BY_KEY,
   DATA_PAGE_BY_KEY,
   INVEST_PAGE_BY_KEY,
   NOTICES,
@@ -26,6 +27,7 @@ import {
   TOP_MODULES,
   assetHref,
   customerHref,
+  financeHref,
   dataHref,
   investHref,
   officeHref,
@@ -77,6 +79,8 @@ function subscribeTabs(listener: () => void) {
 function getTabs() {
   return tabStore.tabs;
 }
+
+const subscribeNoop = () => () => {};
 
 function openSiteTab(key: string) {
   if (!key || key === WORKBENCH_TAB || tabStore.tabs.includes(key)) return;
@@ -167,6 +171,9 @@ export function AppShell({
     getTabs,
     () => SERVER_TABS,
   );
+  // Tabs keyed by activeTabKey are opened from an effect, so keep them out of
+  // the hydration pass to avoid a server/client mismatch on first paint.
+  const hydrated = useSyncExternalStore(subscribeNoop, () => true, () => false);
 
   const topMenuRef = useRef<HTMLDivElement>(null);
   const overflowRef = useRef<HTMLDivElement>(null);
@@ -183,6 +190,7 @@ export function AppShell({
       activeTopKey === "menu-orgLouyu-30005" ||
       activeTopKey === "menu-attractInvestment-30001" ||
       activeTopKey === "menu-owner-39999" ||
+      activeTopKey === "menu-bill-30007" ||
       (activeTopKey === "menu-home-30004" && DATA_PAGE_BY_KEY[activeLeafKey])
     ) {
       openSiteTab(currentTabKey);
@@ -275,6 +283,8 @@ export function AppShell({
       router.push("/orgs/investment/investment-projects");
     } else if (key === "menu-owner-39999") {
       router.push("/orgs/customer/tenants");
+    } else if (key === "menu-bill-30007") {
+      router.push("/orgs/finance/receivable");
     }
     setOverflowOpen(false);
   };
@@ -294,6 +304,7 @@ export function AppShell({
     activeTopKey === "menu-orgLouyu-30005" ||
     activeTopKey === "menu-attractInvestment-30001" ||
     activeTopKey === "menu-owner-39999" ||
+    activeTopKey === "menu-bill-30007" ||
     isDataPage;
   const moduleTabKeys = openTabs.filter((key) => key !== WORKBENCH_TAB);
   if (
@@ -504,8 +515,8 @@ export function AppShell({
                 </div>
               ) : null}
 
-              {moduleTabKeys.map((key) => {
-                const page = SETTINGS_PAGE_BY_KEY[key] ?? OFFICE_PAGE_BY_KEY[key] ?? PROPERTY_PAGE_BY_KEY[key] ?? OPERATION_PAGE_BY_KEY[key] ?? DATA_PAGE_BY_KEY[key] ?? ASSET_PAGE_BY_KEY[key] ?? RESOURCE_PAGE_BY_KEY[key] ?? INVEST_PAGE_BY_KEY[key] ?? CUSTOMER_PAGE_BY_KEY[key];
+              {(hydrated || !activeTabKey ? moduleTabKeys : []).map((key) => {
+                const page = SETTINGS_PAGE_BY_KEY[key] ?? OFFICE_PAGE_BY_KEY[key] ?? PROPERTY_PAGE_BY_KEY[key] ?? OPERATION_PAGE_BY_KEY[key] ?? DATA_PAGE_BY_KEY[key] ?? ASSET_PAGE_BY_KEY[key] ?? RESOURCE_PAGE_BY_KEY[key] ?? INVEST_PAGE_BY_KEY[key] ?? CUSTOMER_PAGE_BY_KEY[key] ?? FINANCE_PAGE_BY_KEY[key];
                 const active = !isWorkbench && key === currentTabKey;
                 const name = page?.name ?? (active ? tabTitle : key);
                 const icon = page?.icon ?? tabIcon;
@@ -515,7 +526,7 @@ export function AppShell({
                     ref={active ? activeTabRef : undefined}
                     className={`ka-tab${active ? " is-active" : ""}`}
                     onClick={() => {
-                      const href = settingsHref(key) ?? officeHref(key) ?? propertyHref(key) ?? operationHref(key) ?? dataHref(key) ?? assetHref(key) ?? resourceHref(key) ?? investHref(key) ?? customerHref(key);
+                      const href = settingsHref(key) ?? officeHref(key) ?? propertyHref(key) ?? operationHref(key) ?? dataHref(key) ?? assetHref(key) ?? resourceHref(key) ?? investHref(key) ?? customerHref(key) ?? financeHref(key);
                       if (href) router.push(href);
                     }}
                   >

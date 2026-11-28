@@ -885,6 +885,142 @@ export function customerHref(key: string): string | undefined {
   return page ? `/orgs/customer/${page.slug}` : undefined;
 }
 
+export const FINANCE_SIDEBAR: SidebarNode[] = [
+  {
+    type: "group",
+    key: "menu-fin-income",
+    name: "收入管理",
+    icon: "org-menu-shanghuyingshou",
+    children: [
+      { type: "page", key: "menu-fin-receivable", name: "应收账单", icon: "org-menu-shanghuyingshou" },
+      { type: "page", key: "menu-fin-bill-discount", name: "账单优惠", icon: "org-menu-zichanzhangdan" },
+      { type: "page", key: "menu-fin-bad-debt", name: "坏账管理", icon: "org-menu-zichanzhangdan" },
+      { type: "page", key: "menu-fin-receipt-stream", name: "收款流水", icon: "org-menu-shoufukuan" },
+      { type: "page", key: "menu-fin-overdue-receivable", name: "逾期账单", icon: "org-menu-shoufeiguanli" },
+      { type: "page", key: "menu-fin-collection-status", name: "收费状态表", icon: "org-menu-caiwubaobiao" },
+    ],
+  },
+  {
+    type: "group",
+    key: "menu-fin-accrual",
+    name: "权责管理",
+    icon: "org-menu-caiwubaobiao",
+    children: [
+      { type: "page", key: "menu-fin-accrual", name: "权责应收", icon: "org-menu-caiwubaobiao" },
+      { type: "page", key: "menu-fin-income-confirm", name: "收入确认", icon: "org-menu-caiwubaobiao" },
+    ],
+  },
+  {
+    type: "group",
+    key: "menu-fin-expense",
+    name: "支出管理",
+    icon: "org-menu-shoufukuan",
+    children: [
+      { type: "page", key: "menu-fin-payable", name: "应付账单", icon: "org-menu-shoufukuan" },
+      { type: "page", key: "menu-fin-payment-stream", name: "付款流水", icon: "org-menu-shoufukuan" },
+      { type: "page", key: "menu-fin-overdue-payable", name: "逾期账单", icon: "org-menu-shoufeiguanli" },
+    ],
+  },
+  {
+    type: "group",
+    key: "menu-fin-invoice",
+    name: "发票管理",
+    icon: "org-menu-fapiaojilu",
+    children: [
+      { type: "page", key: "menu-fin-invoice-records", name: "开票记录", icon: "org-menu-fapiaojilu" },
+      { type: "page", key: "menu-fin-invoice-apply", name: "业户申请开票", icon: "org-menu-fapiaojilu" },
+    ],
+  },
+  { type: "page", key: "menu-fin-notice", name: "缴费通知单", icon: "org-menu-churuzheng" },
+  { type: "page", key: "menu-fin-receipts", name: "收据记录", icon: "org-menu-churuzheng" },
+  {
+    type: "group",
+    key: "menu-fin-setting",
+    name: "财务设置",
+    icon: "org-menu-shezhi",
+    children: [
+      { type: "page", key: "menu-fin-remit-types", name: "汇款方式", icon: "org-menu-shezhi" },
+      { type: "page", key: "menu-fin-notice-setting", name: "通知单设置", icon: "org-menu-shezhi" },
+      { type: "page", key: "menu-fin-invoice-setting", name: "发票设置", icon: "org-menu-shezhi" },
+      { type: "page", key: "menu-fin-bill-number", name: "账单编号", icon: "org-menu-shezhi" },
+      { type: "page", key: "menu-fin-stream-number", name: "流水编号", icon: "org-menu-shezhi" },
+      { type: "page", key: "menu-fin-receipt-setting", name: "收据设置", icon: "org-menu-shezhi" },
+      { type: "page", key: "menu-fin-fee-types", name: "费用类型", icon: "org-menu-shezhi" },
+      {
+        type: "group",
+        key: "menu-fin-voucher",
+        name: "凭证设置",
+        icon: "org-menu-churuzheng",
+        children: [
+          { type: "page", key: "menu-fin-voucher-subjects", name: "总账科目", icon: "org-menu-churuzheng" },
+          { type: "page", key: "menu-fin-voucher-assist", name: "辅助核算", icon: "org-menu-churuzheng" },
+          { type: "page", key: "menu-fin-voucher-templates", name: "凭证模板", icon: "org-menu-churuzheng" },
+          { type: "page", key: "menu-fin-voucher-config", name: "对接配置", icon: "org-menu-churuzheng" },
+          { type: "page", key: "menu-fin-voucher-records", name: "凭证记录", icon: "org-menu-churuzheng" },
+        ],
+      },
+      { type: "page", key: "menu-fin-simple-collection", name: "简易收款", icon: "org-menu-shezhi" },
+      { type: "page", key: "menu-fin-coupons", name: "优惠券管理", icon: "org-menu-shezhi" },
+      { type: "page", key: "menu-fin-pricing", name: "收费标准", icon: "org-menu-shezhi" },
+    ],
+  },
+  { type: "page", key: "menu-fin-cashier", name: "收银台", icon: "org-menu-shoufukuan" },
+];
+
+export type FinancePage = {
+  id: string;
+  key: string;
+  name: string;
+  icon: string;
+  slug: string;
+  sidebarKey: string;
+};
+
+export const FINANCE_PAGES: FinancePage[] = [
+  { id: "01", key: "menu-fin-receivable", name: "应收账单", icon: "org-menu-shanghuyingshou", slug: "receivable", sidebarKey: "menu-fin-receivable" },
+  { id: "02", key: "menu-fin-bill-discount", name: "账单优惠", icon: "org-menu-zichanzhangdan", slug: "bill-discount", sidebarKey: "menu-fin-bill-discount" },
+  { id: "03", key: "menu-fin-bad-debt", name: "坏账管理", icon: "org-menu-zichanzhangdan", slug: "bad-debt", sidebarKey: "menu-fin-bad-debt" },
+  { id: "04", key: "menu-fin-receipt-stream", name: "收款流水", icon: "org-menu-shoufukuan", slug: "receipt-stream", sidebarKey: "menu-fin-receipt-stream" },
+  { id: "05", key: "menu-fin-overdue-receivable", name: "逾期账单", icon: "org-menu-shoufeiguanli", slug: "overdue-receivable", sidebarKey: "menu-fin-overdue-receivable" },
+  { id: "06", key: "menu-fin-collection-status", name: "收费状态表", icon: "org-menu-caiwubaobiao", slug: "collection-status", sidebarKey: "menu-fin-collection-status" },
+  { id: "07", key: "menu-fin-accrual", name: "权责应收", icon: "org-menu-caiwubaobiao", slug: "accrual", sidebarKey: "menu-fin-accrual" },
+  { id: "08", key: "menu-fin-income-confirm", name: "收入确认", icon: "org-menu-caiwubaobiao", slug: "income-confirm", sidebarKey: "menu-fin-income-confirm" },
+  { id: "09", key: "menu-fin-payable", name: "应付账单", icon: "org-menu-shoufukuan", slug: "payable", sidebarKey: "menu-fin-payable" },
+  { id: "10", key: "menu-fin-payment-stream", name: "付款流水", icon: "org-menu-shoufukuan", slug: "payment-stream", sidebarKey: "menu-fin-payment-stream" },
+  { id: "11", key: "menu-fin-overdue-payable", name: "逾期账单", icon: "org-menu-shoufeiguanli", slug: "overdue-payable", sidebarKey: "menu-fin-overdue-payable" },
+  { id: "12", key: "menu-fin-invoice-records", name: "开票记录", icon: "org-menu-fapiaojilu", slug: "invoice-records", sidebarKey: "menu-fin-invoice-records" },
+  { id: "13", key: "menu-fin-invoice-apply", name: "业户申请开票", icon: "org-menu-fapiaojilu", slug: "invoice-apply", sidebarKey: "menu-fin-invoice-apply" },
+  { id: "14", key: "menu-fin-notice", name: "缴费通知单", icon: "org-menu-churuzheng", slug: "notice", sidebarKey: "menu-fin-notice" },
+  { id: "15", key: "menu-fin-receipts", name: "收据记录", icon: "org-menu-churuzheng", slug: "receipts", sidebarKey: "menu-fin-receipts" },
+  { id: "16", key: "menu-fin-remit-types", name: "汇款方式", icon: "org-menu-shezhi", slug: "remit-types", sidebarKey: "menu-fin-remit-types" },
+  { id: "17", key: "menu-fin-notice-setting", name: "通知单设置", icon: "org-menu-shezhi", slug: "notice-setting", sidebarKey: "menu-fin-notice-setting" },
+  { id: "18", key: "menu-fin-invoice-setting", name: "发票设置", icon: "org-menu-shezhi", slug: "invoice-setting", sidebarKey: "menu-fin-invoice-setting" },
+  { id: "19", key: "menu-fin-bill-number", name: "账单编号", icon: "org-menu-shezhi", slug: "bill-number", sidebarKey: "menu-fin-bill-number" },
+  { id: "20", key: "menu-fin-stream-number", name: "流水编号", icon: "org-menu-shezhi", slug: "stream-number", sidebarKey: "menu-fin-stream-number" },
+  { id: "21", key: "menu-fin-receipt-setting", name: "收据设置", icon: "org-menu-shezhi", slug: "receipt-setting", sidebarKey: "menu-fin-receipt-setting" },
+  { id: "22", key: "menu-fin-fee-types", name: "费用类型", icon: "org-menu-shezhi", slug: "fee-types", sidebarKey: "menu-fin-fee-types" },
+  { id: "23", key: "menu-fin-voucher-subjects", name: "总账科目", icon: "org-menu-churuzheng", slug: "voucher-subjects", sidebarKey: "menu-fin-voucher-subjects" },
+  { id: "24", key: "menu-fin-voucher-assist", name: "辅助核算", icon: "org-menu-churuzheng", slug: "voucher-assist", sidebarKey: "menu-fin-voucher-assist" },
+  { id: "25", key: "menu-fin-voucher-templates", name: "凭证模板", icon: "org-menu-churuzheng", slug: "voucher-templates", sidebarKey: "menu-fin-voucher-templates" },
+  { id: "26", key: "menu-fin-voucher-config", name: "对接配置", icon: "org-menu-churuzheng", slug: "voucher-config", sidebarKey: "menu-fin-voucher-config" },
+  { id: "27", key: "menu-fin-voucher-records", name: "凭证记录", icon: "org-menu-churuzheng", slug: "voucher-records", sidebarKey: "menu-fin-voucher-records" },
+  { id: "28", key: "menu-fin-simple-collection", name: "简易收款", icon: "org-menu-shezhi", slug: "simple-collection", sidebarKey: "menu-fin-simple-collection" },
+  { id: "29", key: "menu-fin-coupons", name: "优惠券管理", icon: "org-menu-shezhi", slug: "coupons", sidebarKey: "menu-fin-coupons" },
+  { id: "30", key: "menu-fin-pricing", name: "收费标准", icon: "org-menu-shezhi", slug: "pricing", sidebarKey: "menu-fin-pricing" },
+  { id: "31", key: "menu-fin-cashier", name: "收银台", icon: "org-menu-shoufukuan", slug: "cashier", sidebarKey: "menu-fin-cashier" },
+  { id: "32", key: "menu-fin-bill-new", name: "新建收款账单", icon: "org-menu-shanghuyingshou", slug: "bill-new", sidebarKey: "menu-fin-receivable" },
+  { id: "33", key: "menu-fin-payable-new", name: "新建付款账单", icon: "org-menu-shoufukuan", slug: "payable-new", sidebarKey: "menu-fin-payable" },
+];
+
+export const FINANCE_PAGE_BY_KEY = Object.fromEntries(
+  FINANCE_PAGES.map((page) => [page.key, page]),
+);
+
+export function financeHref(key: string): string | undefined {
+  const page = FINANCE_PAGES.find((item) => item.key === key);
+  return page ? `/orgs/finance/${page.slug}` : undefined;
+}
+
 export const WORKBENCH_CARDS: WorkbenchCard[] = [
   { title: "合同待审批", value: "0", moreLabel: "查看更多>>", image: "/sites/kuaijing/workbench/cards/approval_contract.jpg" },
   { title: "合同即将到期", value: "0", moreLabel: "查看详情>>", image: "/sites/kuaijing/workbench/cards/contract.jpg" },
