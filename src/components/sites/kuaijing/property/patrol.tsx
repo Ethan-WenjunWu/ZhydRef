@@ -57,6 +57,8 @@ const CONFIG: Record<string, { brand: string; items: SubMenuItem[]; noun: string
   green: { brand: "绿化检查", items: PATROL_ITEMS, noun: "巡检", point: "巡检点" },
   clean: { brand: "保洁检查", items: PATROL_ITEMS, noun: "巡检", point: "巡检点" },
   plan: { brand: "服务计划", items: SERVICE_PLAN_ITEMS, noun: "服务", point: "事项" },
+  merchant: { brand: "商铺巡检", items: PATROL_ITEMS, noun: "巡检", point: "巡检点" },
+  vacancy: { brand: "空铺巡检", items: PATROL_ITEMS, noun: "巡检", point: "巡检点" },
 };
 
 const STATS = [

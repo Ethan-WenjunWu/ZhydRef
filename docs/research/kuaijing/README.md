@@ -15,6 +15,7 @@ and 390×844 (DPR 3, mobile emulation).
 | `/orgs/#/index` → 系统设置 left menu | `/orgs/settings/<slug>` (20 routes) | `src/app/orgs/settings/[slug]/page.tsx`, `app/SettingsShell.tsx`, `SettingsPages.tsx`, `SettingsUI.tsx` |
 | `/orgs/#/index` → 行政办公 left menu | `/orgs/office/<slug>` (16 routes) | `src/app/orgs/office/[slug]/page.tsx`, `app/OfficeShell.tsx`, `office/OfficePages.tsx`, `office/*.tsx` |
 | `/orgs/#/index` → 物业管理 left menu | `/orgs/property/<slug>` (31 routes) | `src/app/orgs/property/[slug]/page.tsx`, `app/PropertyShell.tsx`, `property/PropertyPages.tsx`, `property/*.tsx` |
+| `/orgs/#/index` → 运营管理 left menu | `/orgs/operation/<slug>` (44 routes) | `src/app/orgs/operation/[slug]/page.tsx`, `app/OperationShell.tsx`, `operation/OperationPages.tsx`, `operation/*.tsx` |
 | `/public/system/agreement/use` | `/public/system/agreement/use` | `src/app/public/system/agreement/use/page.tsx` |
 | `/public/system/agreement/privacy` | `/public/system/agreement/privacy` | `src/app/public/system/agreement/privacy/page.tsx` |
 
@@ -213,6 +214,35 @@ dialogs, material document creation, inventory plan/task views, category/archive
 warehouse/code dialogs, material list/application statuses, air-conditioner rule
 creation, and express delivery creation. Page-level data is demo state only.
 
+## 运营管理 (A8) — all 44 pages
+
+The operation shell selects 运营管理 and reproduces its 13 nested groups,
+including 进退场管理、收费管理、营业额管理、巡场管理、租户管理、商业管理、
+公寓运营、资格管理、C端运营、溯源管理 and the top-level 会议室/场地预约/投票问卷.
+
+| Group | Pages / local routes |
+| --- | --- |
+| 进退场管理 | 进场管理 `checkin`、装修管理 `decoration`、退场管理 `checkout` |
+| 收费管理 | 商户应收 `merchant-receivable`、运营费用 `operation-cost`、押金管理 `deposit`、商户账单 `merchant-bill`、账单管理 `bill-management`、优惠管理 `discount`、开票记录 `invoice`、收银台 `cashier` |
+| 营业额管理 | 日报 `turnover-daily`、录入 `turnover-entry`、看板 `turnover-board`、联销结算 `turnover-settle` |
+| 巡场管理 | 商铺巡检 `patrol-merchant`、空铺巡检 `patrol-vacancy` |
+| 租户管理 | 商户信息 `merchant-info`、商户奖励 `merchant-reward`、商户违规 `merchant-violation` |
+| 商业管理 | 店铺管理 `store` |
+| 公寓运营 | 公寓房态 `apartment-status`、快捷短租 `short-rental`、待办事项 `todo`、公寓入住 `apartment-checkin`、公寓退租 `apartment-checkout`、公寓智能硬件 `apartment-device` |
+| 会议室 / 场地预约 / 投票问卷 | `meeting-room`、`venue`、`survey`（会议室/场地含内部二级菜单） |
+| 资格管理 | 轮候管理 `waiting`、个人资格审批 `qualification-personal`、单位资格审批 `qualification-unit`、看房管理 `showings` |
+| C端运营 | 页面装修 `page-design`、资讯列表 `news`、邻里论坛 `forum`、活动报名 `activities` |
+| 溯源管理 | 商品信息 `goods-info`、货主信息 `cargo-owner`、经营户信息 `business-owner`、IC卡管理 `ic-card`、溯源管理 `traceability`、进场收费 `entrance-fee` |
+
+Deep-page work was captured after every click with a 5-second wait. The
+进场管理/装修/退场 pages use the source's status sidebar (待提交/审批中/已进场/
+已退场/已作废 etc.), organization selector/tree and list tables. The 新增
+multi-step drawer reproduces 基础信息 / 抄表及物品 / 入住协议、材料与事项.
+收费 pages share the source billing layout (14 statistics, date summary,
+wide collection table); 营业额看板 uses floor/room cards; 会议室/场地预约 use
+their internal side menus; qualification/C-end/origin pages use their captured
+filters, statistics and table columns.
+
 ## Asset map
 
 | Source | Local | Notes |
@@ -312,7 +342,8 @@ Screenshots live in `docs/design-references/`:
   `kuaijing-workbench-source-calendar.png`,
   `settings-source-01.png` … `settings-source-20.png`,
   `office-source-01.png` … `office-source-16.png`,
-  `property-source-01/04/06/11/14/25.png`
+  `property-source-01/04/06/11/14/25.png`,
+  `operation-source-01.png`, `operation-source-01-modal.png`
 - Local: `kuaijing-local-initial.png`, `kuaijing-local-password.png`,
   `kuaijing-local-filled.png`, `kuaijing-local-wechat.png`,
   `kuaijing-local-wecom-modal.png`, `kuaijing-local-lang.png`,
@@ -327,4 +358,5 @@ Screenshots live in `docs/design-references/`:
   `kuaijing-local-workbench-collapsed-1440.png`,
   `settings-local-01.png` … `settings-local-20.png`,
   `office-local-01.png` … `office-local-16.png`,
-  `property-local-01/04/06/11/14.png`
+  `property-local-01/04/06/11/14.png`,
+  `operation-local-01/04/13/30.png`

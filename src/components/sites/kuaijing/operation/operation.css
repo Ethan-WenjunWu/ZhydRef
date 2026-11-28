@@ -1,0 +1,527 @@
+/* Scoped styles for 运营管理 (A8). */
+
+.kuaijing-app .op-page {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: calc(100vh - 96px);
+  padding: 10px;
+  background: #f0f2f5;
+}
+
+.kuaijing-app .op-card {
+  padding: 12px 14px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.kuaijing-app .op-card.is-plain {
+  padding: 10px 14px;
+}
+
+.kuaijing-app .op-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 38px;
+  margin-bottom: 8px;
+}
+
+.kuaijing-app .op-card-head strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.kuaijing-app .op-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kuaijing-app .op-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.kuaijing-app .op-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 74px;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .op-stat span {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+}
+
+.kuaijing-app .op-stat strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.kuaijing-app .op-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: end;
+  gap: 12px 16px;
+  margin: 8px 0;
+}
+
+.kuaijing-app .op-filter-grid.is-five {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.kuaijing-app .op-filter-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kuaijing-app .op-filter-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+}
+
+.kuaijing-app .op-note {
+  margin: 8px 0;
+  padding: 8px 12px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+  line-height: 21px;
+  background: #fafafa;
+}
+
+.kuaijing-app .op-wide-table {
+  min-width: 1200px;
+}
+
+.kuaijing-app .op-wide-table.is-huge {
+  min-width: 2000px;
+}
+
+.kuaijing-app .op-table-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.kuaijing-app .op-table-tabs,
+.kuaijing-app .op-status-tabs,
+.kuaijing-app .op-page-tabs {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.kuaijing-app .op-table-tabs button,
+.kuaijing-app .op-status-tabs button {
+  padding: 6px 0;
+  color: rgba(0, 0, 0, 0.65);
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+}
+
+.kuaijing-app .op-table-tabs button.is-active,
+.kuaijing-app .op-status-tabs button.is-active {
+  color: #2681f3;
+  border-bottom-color: #2681f3;
+}
+
+.kuaijing-app .op-split-page {
+  display: flex;
+  min-height: calc(100vh - 96px);
+  background: #fff;
+}
+
+.kuaijing-app .op-status-side {
+  flex: none;
+  width: 200px;
+  padding: 8px 10px;
+  background: #f7f8fa;
+  border-right: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .op-status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.kuaijing-app .op-status-item {
+  display: block;
+  width: 100%;
+  height: 36px;
+  padding: 0 12px;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: 2px;
+}
+
+.kuaijing-app .op-status-item.is-active {
+  color: #2681f3;
+  background: #e6f4ff;
+}
+
+.kuaijing-app .op-org-select {
+  margin-top: 18px;
+}
+
+.kuaijing-app .op-org-tree {
+  margin-top: 8px;
+}
+
+.kuaijing-app .op-org-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 8px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+}
+
+.kuaijing-app .op-org-row.is-parent {
+  color: #2681f3;
+  background: #e6f4ff;
+}
+
+.kuaijing-app .op-split-main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding: 0 16px 12px;
+}
+
+.kuaijing-app .op-split-main .op-card {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.kuaijing-app .op-title-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 16px;
+}
+
+.kuaijing-app .op-sub-side {
+  flex: none;
+  width: 200px;
+  min-height: calc(100vh - 96px);
+  padding: 12px 10px;
+  background: #fff;
+  border-right: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .op-sub-brand {
+  height: 48px;
+  padding: 0 10px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 48px;
+}
+
+.kuaijing-app .op-sub-item {
+  display: block;
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: 2px;
+}
+
+.kuaijing-app .op-sub-item.is-active {
+  color: #2681f3;
+  background: #e6f4ff;
+}
+
+.kuaijing-app .op-booking-page {
+  flex-direction: row;
+  gap: 0;
+  padding: 0;
+  background: #fff;
+}
+
+.kuaijing-app .op-booking-main {
+  flex: 1;
+  min-width: 0;
+  padding: 16px;
+}
+
+.kuaijing-app .op-empty-hero {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 80px 0;
+  color: rgba(0, 0, 0, 0.65);
+  background: #fff;
+}
+
+.kuaijing-app .op-empty-box {
+  padding: 30px 0;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
+  text-align: center;
+}
+
+.kuaijing-app .op-org-inline {
+  padding: 4px 0;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+}
+
+.kuaijing-app .op-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.kuaijing-app .op-stepper button {
+  padding: 0;
+  color: rgba(0, 0, 0, 0.45);
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.kuaijing-app .op-stepper button.is-active {
+  color: #2684ff;
+}
+
+.kuaijing-app .op-form-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.kuaijing-app .op-form-section > span {
+  width: 3px;
+  height: 15px;
+  background: #2681f3;
+}
+
+.kuaijing-app .op-form-section .sk-btn {
+  margin-left: auto;
+}
+
+.kuaijing-app .op-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 24px;
+}
+
+.kuaijing-app .op-form-grid.is-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.kuaijing-app .op-form-grid .is-full {
+  grid-column: 1 / -1;
+}
+
+.kuaijing-app .op-form-grid > .of-field {
+  margin-bottom: 16px;
+}
+
+.kuaijing-app .op-upload {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+  cursor: pointer;
+  background: #fafafa;
+  border: 1px dashed #d9d9d9;
+}
+
+.kuaijing-app .op-cashier-head {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 12px;
+}
+
+.kuaijing-app .op-turnover-board {
+  background: #f0f2f5;
+}
+
+.kuaijing-app .op-board-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #fff;
+}
+
+.kuaijing-app .op-board-legend {
+  display: flex;
+  gap: 16px;
+  padding: 8px 14px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 12px;
+  background: #fff;
+}
+
+.kuaijing-app .op-board {
+  padding: 14px;
+  background: #fff;
+}
+
+.kuaijing-app .op-board-title {
+  margin-bottom: 10px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+}
+
+.kuaijing-app .op-floor {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.kuaijing-app .op-floor-num {
+  width: 30px;
+  padding-top: 28px;
+  color: rgba(0, 0, 0, 0.65);
+  text-align: center;
+}
+
+.kuaijing-app .op-rooms {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 6px;
+  flex: 1;
+}
+
+.kuaijing-app .op-room {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  background: #fafafa;
+  border: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .op-room strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 13px;
+}
+
+.kuaijing-app .op-design-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.kuaijing-app .op-design-card {
+  height: 100px;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  background: #fafafa;
+  border: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .op-page-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.kuaijing-app .op-page-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .op-page-card span {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+}
+
+@media (max-width: 1200px) {
+  .kuaijing-app .op-filter-grid,
+  .kuaijing-app .op-filter-grid.is-five {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .kuaijing-app .op-stat-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+
+  .kuaijing-app .op-rooms {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.kuaijing-app .op-org-row {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.kuaijing-app .op-tag {
+  display: inline-block;
+  padding: 0 6px;
+  font-size: 12px;
+  line-height: 20px;
+  border: 1px solid;
+  border-radius: 2px;
+}
+.kuaijing-app .op-tag.is-orange { color: #fa8c16; border-color: #ffd591; background: #fff7e6; }
+.kuaijing-app .op-tag.is-gray { color: rgba(0,0,0,.45); border-color: #d9d9d9; background: #fafafa; }
+
+.kuaijing-app .op-wide-table th,
+.kuaijing-app .op-wide-table td {
+  white-space: nowrap;
+}

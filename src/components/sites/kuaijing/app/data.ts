@@ -329,6 +329,137 @@ export function propertyHref(key: string): string | undefined {
   return page ? `/orgs/property/${page.slug}` : undefined;
 }
 
+export const OPERATION_SIDEBAR: SidebarNode[] = [
+  { type: "group", key: "menu-opgroup-jinchuchang", name: "进退场管理", icon: "org-menu-jinchuchang", children: [
+    { type: "page", key: "menu-op-checkin", name: "进场管理", icon: "org-menu-jinchang" },
+    { type: "page", key: "menu-op-decoration", name: "装修管理", icon: "org-menu-zhuangxiuguanli" },
+    { type: "page", key: "menu-op-checkout", name: "退场管理", icon: "org-menu-tuichang" },
+  ] },
+  { type: "group", key: "menu-opgroup-shoufeiguanli", name: "收费管理", icon: "org-menu-shoufeiguanli", children: [
+    { type: "page", key: "menu-op-merchant-receivable", name: "商户应收", icon: "org-menu-shanghuyingshou" },
+    { type: "page", key: "menu-op-operation-cost", name: "运营费用", icon: "org-menu-yunyingfeiyong" },
+    { type: "page", key: "menu-op-deposit", name: "押金管理", icon: "org-menu-yajinguanli" },
+    { type: "page", key: "menu-op-merchant-bill", name: "商户账单", icon: "org-menu-shanghuzhandan" },
+    { type: "page", key: "menu-op-bill-management", name: "账单管理", icon: "org-menu-zhandanguanli" },
+    { type: "page", key: "menu-op-discount", name: "优惠管理", icon: "org-menu-youhuiguanli" },
+    { type: "page", key: "menu-op-invoice", name: "开票记录", icon: "org-menu-fapiaojilu" },
+    { type: "page", key: "menu-op-cashier", name: "收银台", icon: "org-menu-shouyintai" },
+  ] },
+  { type: "group", key: "menu-opgroup-yingyee", name: "营业额管理", icon: "org-menu-yingyee", children: [
+    { type: "page", key: "menu-op-turnover-daily", name: "营业额日报", icon: "org-menu-yingyeeribao" },
+    { type: "page", key: "menu-op-turnover-entry", name: "营业额录入", icon: "org-menu-yingyee_enter" },
+    { type: "page", key: "menu-op-turnover-board", name: "营业额看板", icon: "org-menu-yingyeekanban" },
+    { type: "page", key: "menu-op-turnover-settle", name: "联销结算", icon: "org-menu-lianxiaojiesuan" },
+  ] },
+  { type: "group", key: "menu-opgroup-xunchang", name: "巡场管理", icon: "org-menu-xunchang", children: [
+    { type: "page", key: "menu-op-patrol-merchant", name: "商铺巡检", icon: "org-menu-shangpu" },
+    { type: "page", key: "menu-op-patrol-vacancy", name: "空铺巡检", icon: "org-menu-kongpu" },
+  ] },
+  { type: "group", key: "menu-opgroup-zuhuguanli", name: "租户管理", icon: "org-menu-zuhuguanli", children: [
+    { type: "page", key: "menu-op-merchant-info", name: "商户信息", icon: "org-menu-zukeliebiao" },
+    { type: "page", key: "menu-op-merchant-reward", name: "商户奖励", icon: "org-menu-shanghujiangli" },
+    { type: "page", key: "menu-op-merchant-violation", name: "商户违规", icon: "org-menu-shanghuweigui" },
+  ] },
+  { type: "group", key: "menu-opgroup-shangyeguanli", name: "商业管理", icon: "org-menu-shangyeguanli", children: [
+    { type: "page", key: "menu-op-store", name: "店铺管理", icon: "org-menu-dianpuguanli" },
+  ] },
+  { type: "group", key: "menu-opgroup-gongyuyunying", name: "公寓运营", icon: "org-menu-gongyuyunying", children: [
+    { type: "page", key: "menu-op-apartment-status", name: "公寓房态", icon: "org-menu-gongyufangtai" },
+    { type: "page", key: "menu-op-short-rental", name: "快捷短租", icon: "org-menu-mianhetongduanzu" },
+    { type: "page", key: "menu-op-todo", name: "待办事项", icon: "org-menu-daibanshixiang" },
+    { type: "page", key: "menu-op-apartment-checkin", name: "公寓入住", icon: "org-menu-gongyuruzhu" },
+    { type: "page", key: "menu-op-apartment-checkout", name: "公寓退租", icon: "org-menu-gongyutuizu" },
+    { type: "page", key: "menu-op-apartment-device", name: "公寓智能硬件", icon: "org-menu-gongyuzhinengyingjian" },
+  ] },
+  { type: "page", key: "menu-op-meeting-room", name: "会议室", icon: "org-menu-huiyishi" },
+  { type: "page", key: "menu-op-venue", name: "场地预约", icon: "org-menu-changdiyuyue" },
+  { type: "page", key: "menu-op-survey", name: "投票问卷", icon: "org-menu-toupiaowenjuan" },
+  { type: "group", key: "menu-opgroup-zigeguanli", name: "资格管理", icon: "org-menu-zigeguanli", children: [
+    { type: "page", key: "menu-op-waiting", name: "轮候管理", icon: "org-menu-lunhouguanli" },
+    { type: "page", key: "menu-op-qualification-personal", name: "个人资格审批", icon: "org-menu-gerenzigeshenpi" },
+    { type: "page", key: "menu-op-qualification-unit", name: "单位资格审批", icon: "org-menu-danweizigeshenpi" },
+    { type: "page", key: "menu-op-showings", name: "看房管理", icon: "org-menu-kanfangguanli" },
+  ] },
+  { type: "group", key: "menu-opgroup-yonghuyunying", name: "C端运营", icon: "org-menu-yonghuyunying", children: [
+    { type: "page", key: "menu-op-page-design", name: "页面装修", icon: "org-menu-yemianzhuangxiu" },
+    { type: "page", key: "menu-op-news", name: "资讯列表", icon: "org-menu-zixunliebiao" },
+    { type: "page", key: "menu-op-forum", name: "邻里论坛", icon: "org-menu-linliluntan" },
+    { type: "page", key: "menu-op-activities", name: "活动报名", icon: "org-menu-huodongbaoming" },
+  ] },
+  { type: "group", key: "menu-opgroup-suyuanguanli", name: "溯源管理", icon: "org-menu-suyuanguanli", children: [
+    { type: "page", key: "menu-op-goods-info", name: "商品信息", icon: "org-menu-shangpinxinxi" },
+    { type: "page", key: "menu-op-cargo-owner", name: "货主信息", icon: "org-menu-huozhuxinxi" },
+    { type: "page", key: "menu-op-business-owner", name: "经营户信息", icon: "org-menu-jingyinghuxinxi" },
+    { type: "page", key: "menu-op-ic-card", name: "IC卡管理", icon: "org-menu-ickaguanli" },
+    { type: "page", key: "menu-op-traceability", name: "溯源管理", icon: "org-menu-suyuanguanli" },
+    { type: "page", key: "menu-op-entrance-fee", name: "进场收费", icon: "org-menu-jinchangshoufei" },
+  ] },
+];
+
+export type OperationPage = {
+  id: string;
+  key: string;
+  name: string;
+  icon: string;
+  slug: string;
+};
+
+export const OPERATION_PAGES: OperationPage[] = [
+  { id: "01", key: "menu-op-checkin", name: "进场管理", icon: "org-menu-jinchang", slug: "checkin" },
+  { id: "02", key: "menu-op-decoration", name: "装修管理", icon: "org-menu-zhuangxiuguanli", slug: "decoration" },
+  { id: "03", key: "menu-op-checkout", name: "退场管理", icon: "org-menu-tuichang", slug: "checkout" },
+  { id: "04", key: "menu-op-merchant-receivable", name: "商户应收", icon: "org-menu-shanghuyingshou", slug: "merchant-receivable" },
+  { id: "05", key: "menu-op-operation-cost", name: "运营费用", icon: "org-menu-yunyingfeiyong", slug: "operation-cost" },
+  { id: "06", key: "menu-op-deposit", name: "押金管理", icon: "org-menu-yajinguanli", slug: "deposit" },
+  { id: "07", key: "menu-op-merchant-bill", name: "商户账单", icon: "org-menu-shanghuzhandan", slug: "merchant-bill" },
+  { id: "08", key: "menu-op-bill-management", name: "账单管理", icon: "org-menu-zhandanguanli", slug: "bill-management" },
+  { id: "09", key: "menu-op-discount", name: "优惠管理", icon: "org-menu-youhuiguanli", slug: "discount" },
+  { id: "10", key: "menu-op-invoice", name: "开票记录", icon: "org-menu-fapiaojilu", slug: "invoice" },
+  { id: "11", key: "menu-op-cashier", name: "收银台", icon: "org-menu-shouyintai", slug: "cashier" },
+  { id: "12", key: "menu-op-turnover-daily", name: "营业额日报", icon: "org-menu-yingyeeribao", slug: "turnover-daily" },
+  { id: "13", key: "menu-op-turnover-entry", name: "营业额录入", icon: "org-menu-yingyee_enter", slug: "turnover-entry" },
+  { id: "14", key: "menu-op-turnover-board", name: "营业额看板", icon: "org-menu-yingyeekanban", slug: "turnover-board" },
+  { id: "15", key: "menu-op-turnover-settle", name: "联销结算", icon: "org-menu-lianxiaojiesuan", slug: "turnover-settle" },
+  { id: "16", key: "menu-op-patrol-merchant", name: "商铺巡检", icon: "org-menu-shangpu", slug: "patrol-merchant" },
+  { id: "17", key: "menu-op-patrol-vacancy", name: "空铺巡检", icon: "org-menu-kongpu", slug: "patrol-vacancy" },
+  { id: "18", key: "menu-op-merchant-info", name: "商户信息", icon: "org-menu-zukeliebiao", slug: "merchant-info" },
+  { id: "19", key: "menu-op-merchant-reward", name: "商户奖励", icon: "org-menu-shanghujiangli", slug: "merchant-reward" },
+  { id: "20", key: "menu-op-merchant-violation", name: "商户违规", icon: "org-menu-shanghuweigui", slug: "merchant-violation" },
+  { id: "21", key: "menu-op-store", name: "店铺管理", icon: "org-menu-dianpuguanli", slug: "store" },
+  { id: "22", key: "menu-op-apartment-status", name: "公寓房态", icon: "org-menu-gongyufangtai", slug: "apartment-status" },
+  { id: "23", key: "menu-op-short-rental", name: "快捷短租", icon: "org-menu-mianhetongduanzu", slug: "short-rental" },
+  { id: "24", key: "menu-op-todo", name: "待办事项", icon: "org-menu-daibanshixiang", slug: "todo" },
+  { id: "25", key: "menu-op-apartment-checkin", name: "公寓入住", icon: "org-menu-gongyuruzhu", slug: "apartment-checkin" },
+  { id: "26", key: "menu-op-apartment-checkout", name: "公寓退租", icon: "org-menu-gongyutuizu", slug: "apartment-checkout" },
+  { id: "27", key: "menu-op-apartment-device", name: "公寓智能硬件", icon: "org-menu-gongyuzhinengyingjian", slug: "apartment-device" },
+  { id: "28", key: "menu-op-waiting", name: "轮候管理", icon: "org-menu-lunhouguanli", slug: "waiting" },
+  { id: "29", key: "menu-op-qualification-personal", name: "个人资格审批", icon: "org-menu-gerenzigeshenpi", slug: "qualification-personal" },
+  { id: "30", key: "menu-op-qualification-unit", name: "单位资格审批", icon: "org-menu-danweizigeshenpi", slug: "qualification-unit" },
+  { id: "31", key: "menu-op-showings", name: "看房管理", icon: "org-menu-kanfangguanli", slug: "showings" },
+  { id: "32", key: "menu-op-page-design", name: "页面装修", icon: "org-menu-yemianzhuangxiu", slug: "page-design" },
+  { id: "33", key: "menu-op-news", name: "资讯列表", icon: "org-menu-zixunliebiao", slug: "news" },
+  { id: "34", key: "menu-op-forum", name: "邻里论坛", icon: "org-menu-linliluntan", slug: "forum" },
+  { id: "35", key: "menu-op-activities", name: "活动报名", icon: "org-menu-huodongbaoming", slug: "activities" },
+  { id: "36", key: "menu-op-goods-info", name: "商品信息", icon: "org-menu-shangpinxinxi", slug: "goods-info" },
+  { id: "37", key: "menu-op-cargo-owner", name: "货主信息", icon: "org-menu-huozhuxinxi", slug: "cargo-owner" },
+  { id: "38", key: "menu-op-business-owner", name: "经营户信息", icon: "org-menu-jingyinghuxinxi", slug: "business-owner" },
+  { id: "39", key: "menu-op-ic-card", name: "IC卡管理", icon: "org-menu-ickaguanli", slug: "ic-card" },
+  { id: "40", key: "menu-op-traceability", name: "溯源管理", icon: "org-menu-suyuanguanli", slug: "traceability" },
+  { id: "41", key: "menu-op-entrance-fee", name: "进场收费", icon: "org-menu-jinchangshoufei", slug: "entrance-fee" },
+  { id: "28", key: "menu-op-meeting-room", name: "会议室", icon: "org-menu-huiyishi", slug: "meeting-room" },
+  { id: "29", key: "menu-op-venue", name: "场地预约", icon: "org-menu-changdiyuyue", slug: "venue" },
+  { id: "30", key: "menu-op-survey", name: "投票问卷", icon: "org-menu-toupiaowenjuan", slug: "survey" },
+];
+
+export const OPERATION_PAGE_BY_KEY = Object.fromEntries(
+  OPERATION_PAGES.map((page) => [page.key, page]),
+);
+
+export function operationHref(key: string): string | undefined {
+  const page = OPERATION_PAGE_BY_KEY[key];
+  return page ? `/orgs/operation/${page.slug}` : undefined;
+}
+
 export const SETTINGS_SIDEBAR: SidebarNode[] = [
   {
     type: "group",

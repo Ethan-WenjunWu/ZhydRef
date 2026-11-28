@@ -14,11 +14,13 @@ import {
   ACCOUNT,
   NOTICES,
   OFFICE_PAGE_BY_KEY,
+  OPERATION_PAGE_BY_KEY,
   PROPERTY_PAGE_BY_KEY,
   SETTINGS_PAGE_BY_KEY,
   SIDEBAR,
   TOP_MODULES,
   officeHref,
+  operationHref,
   propertyHref,
   settingsHref,
   type SidebarNode,
@@ -160,7 +162,8 @@ export function AppShell({
     if (
       activeTopKey === "menu-setting-30002" ||
       activeTopKey === "menu-office-30010" ||
-      activeTopKey === "menu-property-30009"
+      activeTopKey === "menu-property-30009" ||
+      activeTopKey === "menu-operationManage-30006"
     ) {
       openSiteTab(activeLeafKey);
     }
@@ -240,6 +243,8 @@ export function AppShell({
       router.push("/orgs/office/overview");
     } else if (key === "menu-property-30009") {
       router.push("/orgs/property/repair");
+    } else if (key === "menu-operationManage-30006") {
+      router.push("/orgs/operation/checkin");
     }
     setOverflowOpen(false);
   };
@@ -250,7 +255,8 @@ export function AppShell({
   const isModulePage =
     activeTopKey === "menu-setting-30002" ||
     activeTopKey === "menu-office-30010" ||
-    activeTopKey === "menu-property-30009";
+    activeTopKey === "menu-property-30009" ||
+    activeTopKey === "menu-operationManage-30006";
   const moduleTabKeys = openTabs.filter((key) => key !== WORKBENCH_TAB);
   if (
     isModulePage &&
@@ -459,7 +465,7 @@ export function AppShell({
               ) : null}
 
               {moduleTabKeys.map((key) => {
-                const page = SETTINGS_PAGE_BY_KEY[key] ?? OFFICE_PAGE_BY_KEY[key] ?? PROPERTY_PAGE_BY_KEY[key];
+                const page = SETTINGS_PAGE_BY_KEY[key] ?? OFFICE_PAGE_BY_KEY[key] ?? PROPERTY_PAGE_BY_KEY[key] ?? OPERATION_PAGE_BY_KEY[key];
                 const active = !isWorkbench && key === activeLeafKey;
                 const name = page?.name ?? (active ? tabTitle : key);
                 const icon = page?.icon ?? tabIcon;
@@ -469,7 +475,7 @@ export function AppShell({
                     ref={active ? activeTabRef : undefined}
                     className={`ka-tab${active ? " is-active" : ""}`}
                     onClick={() => {
-                      const href = settingsHref(key) ?? officeHref(key) ?? propertyHref(key);
+                      const href = settingsHref(key) ?? officeHref(key) ?? propertyHref(key) ?? operationHref(key);
                       if (href) router.push(href);
                     }}
                   >
