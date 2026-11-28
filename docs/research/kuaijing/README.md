@@ -17,6 +17,7 @@ and 390×844 (DPR 3, mobile emulation).
 | `/orgs/#/index` → 资产管理 left menu | `/orgs/asset/<slug>` (37 routes) | `src/app/orgs/asset/[slug]/page.tsx`, `app/AssetShell.tsx`, `asset/AssetPages.tsx`, `asset/*.tsx` |
 | `/orgs/#/index` → 资源管理 left menu | `/orgs/resource/<slug>` (15 routes) | `src/app/orgs/resource/[slug]/page.tsx`, `app/ResourceShell.tsx`, `resource/ResourcePages.tsx`, `resource/*.tsx` |
 | `/orgs/#/index` → 招商管理 left menu | `/orgs/investment/<slug>` (19 routes) | `src/app/orgs/investment/[slug]/page.tsx`, `app/InvestShell.tsx`, `investment/InvestPages.tsx`, `investment/*.tsx` |
+| `/orgs/#/index` → 客商管理 left menu | `/orgs/customer/<slug>` (7 routes) | `src/app/orgs/customer/[slug]/page.tsx`, `app/CustomerShell.tsx`, `customer/CustomerPages.tsx`, `customer/*.tsx` |
 | 招商平台 (new window) | `/platform` | `src/app/platform/page.tsx`, `platform/PlatformPage.tsx` |
 | `/orgs/#/index` → 系统设置 left menu | `/orgs/settings/<slug>` (20 routes) | `src/app/orgs/settings/[slug]/page.tsx`, `app/SettingsShell.tsx`, `SettingsPages.tsx`, `SettingsUI.tsx` |
 | `/orgs/#/index` → 行政办公 left menu | `/orgs/office/<slug>` (16 routes) | `src/app/orgs/office/[slug]/page.tsx`, `app/OfficeShell.tsx`, `office/OfficePages.tsx`, `office/*.tsx` |

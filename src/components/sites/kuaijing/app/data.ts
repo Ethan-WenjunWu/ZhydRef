@@ -850,6 +850,41 @@ export function settingsHref(key: string): string | undefined {
   return page ? `/orgs/settings/${page.slug}` : undefined;
 }
 
+export const CUSTOMER_SIDEBAR: SidebarNode[] = [
+  { type: "page", key: "menu-cus-tenants", name: "业户列表", icon: "org-menu-zukeliebiao" },
+  { type: "page", key: "menu-cus-people", name: "业户人员管理", icon: "org-menu-yonghuyunying" },
+  { type: "page", key: "menu-cus-analysis", name: "业户人员分析", icon: "org-menu-zukefenxi" },
+  { type: "page", key: "menu-cus-suppliers", name: "供应商列表", icon: "org-menu-gongyingshangguanli" },
+];
+
+export type CustomerPage = {
+  id: string;
+  key: string;
+  name: string;
+  icon: string;
+  slug: string;
+  sidebarKey: string;
+};
+
+export const CUSTOMER_PAGES: CustomerPage[] = [
+  { id: "01", key: "menu-cus-tenants", name: "业户列表", icon: "org-menu-zukeliebiao", slug: "tenants", sidebarKey: "menu-cus-tenants" },
+  { id: "02", key: "menu-cus-archive", name: "归档业户列表", icon: "org-menu-zukeliebiao", slug: "tenant-archive", sidebarKey: "menu-cus-tenants" },
+  { id: "03", key: "menu-cus-detail", name: "客商详情【A01】", icon: "org-menu-zuke", slug: "tenant-detail", sidebarKey: "menu-cus-tenants" },
+  { id: "04", key: "menu-cus-people", name: "业户人员管理", icon: "org-menu-yonghuyunying", slug: "people", sidebarKey: "menu-cus-people" },
+  { id: "05", key: "menu-cus-ic-cards", name: "IC卡列表", icon: "org-menu-yonghuyunying", slug: "ic-cards", sidebarKey: "menu-cus-people" },
+  { id: "06", key: "menu-cus-analysis", name: "业户人员分析", icon: "org-menu-zukefenxi", slug: "analysis", sidebarKey: "menu-cus-analysis" },
+  { id: "07", key: "menu-cus-suppliers", name: "供应商列表", icon: "org-menu-gongyingshangguanli", slug: "suppliers", sidebarKey: "menu-cus-suppliers" },
+];
+
+export const CUSTOMER_PAGE_BY_KEY = Object.fromEntries(
+  CUSTOMER_PAGES.map((page) => [page.key, page]),
+);
+
+export function customerHref(key: string): string | undefined {
+  const page = CUSTOMER_PAGES.find((item) => item.key === key);
+  return page ? `/orgs/customer/${page.slug}` : undefined;
+}
+
 export const WORKBENCH_CARDS: WorkbenchCard[] = [
   { title: "合同待审批", value: "0", moreLabel: "查看更多>>", image: "/sites/kuaijing/workbench/cards/approval_contract.jpg" },
   { title: "合同即将到期", value: "0", moreLabel: "查看详情>>", image: "/sites/kuaijing/workbench/cards/contract.jpg" },

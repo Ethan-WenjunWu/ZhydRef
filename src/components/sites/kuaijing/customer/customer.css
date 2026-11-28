@@ -1,0 +1,1094 @@
+/* Scoped styles for 客商管理 (A5). */
+
+.kuaijing-app .cus-search-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+}
+
+.kuaijing-app .cus-search-input {
+  display: flex;
+  width: 275px;
+  max-width: 100%;
+}
+
+.kuaijing-app .cus-search-input .sk-input {
+  height: 32px;
+  border-radius: 2px 0 0 2px;
+}
+
+.kuaijing-app .cus-search-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 32px;
+  color: rgba(0, 0, 0, 0.55);
+  font-size: 15px;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-left: none;
+  border-radius: 0 2px 2px 0;
+  cursor: pointer;
+}
+
+.kuaijing-app .cus-search-btn:hover {
+  color: #1677ff;
+}
+
+.kuaijing-app .cus-stats {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
+  overflow: hidden;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.kuaijing-app .cus-stats:has(.cus-stat:nth-child(3):last-child) {
+  --cols: 3;
+}
+
+.kuaijing-app .cus-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 12px;
+  border-right: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .cus-stat:last-child {
+  border-right: none;
+}
+
+.kuaijing-app .cus-stat-label {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.kuaijing-app .cus-stat strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.kuaijing-app .cus-table-card {
+  padding: 0;
+  overflow: visible;
+}
+
+.kuaijing-app .cus-table-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+}
+
+.kuaijing-app .cus-table-head .op-table-tabs {
+  margin: 0;
+}
+
+.kuaijing-app .cus-card-title {
+  padding: 4px 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.kuaijing-app .cus-table-card .sk-table-wrap {
+  border-top: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .cus-menu {
+  position: relative;
+  display: inline-flex;
+}
+
+.kuaijing-app .cus-menu-icon {
+  margin-right: 4px;
+  font-size: 14px;
+}
+
+.kuaijing-app .cus-menu-caret {
+  margin-left: 4px;
+  font-size: 10px;
+  opacity: 0.65;
+}
+
+.kuaijing-app .cus-menu-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: 40;
+  min-width: 132px;
+  padding: 5px 0;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12), 0 3px 6px -4px rgba(0, 0, 0, 0.2);
+}
+
+.kuaijing-app .cus-menu-item {
+  display: block;
+  width: 100%;
+  padding: 6px 14px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.kuaijing-app .cus-menu-item:hover {
+  background: #f5f5f5;
+}
+
+.kuaijing-app .cus-gear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.kuaijing-app .cus-gear:hover {
+  color: #1677ff;
+}
+
+.kuaijing-app .cus-gear-panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: 40;
+  width: 420px;
+  padding: 12px 16px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12), 0 3px 6px -4px rgba(0, 0, 0, 0.2);
+}
+
+.kuaijing-app .cus-gear-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .cus-gear-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 16px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.kuaijing-app .cus-hint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  margin-left: 2px;
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 10px;
+  font-style: normal;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.kuaijing-app .cus-op-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.kuaijing-app .cus-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.kuaijing-app .cus-status i {
+  width: 6px;
+  height: 6px;
+  background: #52c41a;
+  border-radius: 50%;
+}
+
+.kuaijing-app .cus-link {
+  color: #1677ff;
+}
+
+.kuaijing-app .cus-phone-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.kuaijing-app .cus-eye {
+  width: 13px;
+  height: 13px;
+  border: 1px solid #1677ff;
+  border-radius: 60% / 45%;
+  opacity: 0.75;
+}
+
+.kuaijing-app .cus-archive-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+}
+
+.kuaijing-app .cus-archive-head strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.kuaijing-app .cus-archive-head .cus-search-head {
+  flex: 1;
+  justify-content: flex-end;
+  padding: 0;
+}
+
+/* Detail page ------------------------------------------------------------ */
+
+.kuaijing-app .cus-detail-page {
+  padding: 10px;
+}
+
+.kuaijing-app .cus-detail-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.kuaijing-app .cus-detail-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 20px;
+}
+
+.kuaijing-app .cus-detail-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  color: #1677ff;
+}
+
+.kuaijing-app .cus-detail-tabs {
+  padding: 0 16px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.kuaijing-app .cus-detail-card {
+  padding: 0;
+}
+
+.kuaijing-app .cus-detail-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .cus-detail-card-head strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.kuaijing-app .cus-detail-card .sk-table-wrap {
+  border: none;
+}
+
+.kuaijing-app .cus-detail-card .sk-pagination {
+  padding: 10px 16px;
+}
+
+.kuaijing-app .cus-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px 24px;
+  padding: 18px 16px 24px;
+}
+
+.kuaijing-app .cus-detail-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.kuaijing-app .cus-detail-field span {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 13px;
+}
+
+.kuaijing-app .cus-detail-field strong {
+  color: #000000d9;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.kuaijing-app .cus-detail-field.is-full {
+  grid-column: 1 / -1;
+}
+
+/* Forms ------------------------------------------------------------------ */
+
+.kuaijing-app .cus-form-card {
+  margin-top: 16px;
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+}
+
+.kuaijing-app .cus-form-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .cus-form-card-head strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.kuaijing-app .cus-form-card-body {
+  padding: 18px 16px 6px;
+}
+
+.kuaijing-app .cus-form-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px 24px;
+  margin-bottom: 8px;
+}
+
+.kuaijing-app .cus-form-grid.is-two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.kuaijing-app .cus-form-grid.is-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.kuaijing-app .cus-textarea {
+  height: 90px;
+  padding: 6px 11px;
+  resize: vertical;
+}
+
+.kuaijing-app .cus-counter {
+  display: block;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+  text-align: right;
+}
+
+.kuaijing-app .cus-inline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.kuaijing-app .cus-inline > .sk-select,
+.kuaijing-app .cus-inline > .sk-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.kuaijing-app .cus-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kuaijing-app .cus-name-row .sk-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.kuaijing-app .cus-phone-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.kuaijing-app .cus-phone-row > span:first-child {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 9px;
+  color: rgba(0, 0, 0, 0.65);
+  background: #fafafa;
+  border: 1px solid #d9d9d9;
+  border-right: none;
+  border-radius: 2px 0 0 2px;
+}
+
+.kuaijing-app .cus-phone-row .sk-input {
+  flex: 1;
+  min-width: 0;
+  border-radius: 0 2px 2px 0;
+}
+
+.kuaijing-app .cus-phone-row .sk-checkbox {
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+.kuaijing-app .cus-date-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.kuaijing-app .cus-date-row .sk-input {
+  min-width: 0;
+  width: 100%;
+}
+
+.kuaijing-app .cus-date-row span {
+  flex: none;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.kuaijing-app .cus-photo-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.kuaijing-app .cus-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 92px;
+  padding: 10px;
+  color: rgba(0, 0, 0, 0.45);
+  background: #f7f9fc;
+  border: 1px dashed #d6e0f0;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.kuaijing-app .cus-photo:hover {
+  border-color: #1677ff;
+}
+
+.kuaijing-app .cus-photo small {
+  font-size: 12px;
+}
+
+.kuaijing-app .cus-photo-icon {
+  width: 34px;
+  height: 26px;
+  background: linear-gradient(180deg, #dbeafe, #bfdbfe);
+  border: 2px solid #3b82f6;
+  border-radius: 3px;
+  clip-path: polygon(0 0, 70% 0, 60% 15%, 100% 15%, 100% 100%, 0 100%);
+}
+
+.kuaijing-app .cus-upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 26px 16px;
+  color: rgba(0, 0, 0, 0.65);
+  background: #fff;
+  border: 1px dashed #d9d9d9;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.kuaijing-app .cus-upload-area strong {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.kuaijing-app .cus-upload-area small {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+}
+
+.kuaijing-app .cus-upload-icon {
+  color: #409eff;
+  font-size: 44px;
+  line-height: 1;
+}
+
+.kuaijing-app .cus-import-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.kuaijing-app .cus-download-icon {
+  margin-right: 4px;
+  font-size: 12px;
+}
+
+.kuaijing-app .cus-modal-section {
+  margin: 18px 0 12px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.kuaijing-app .cus-preview-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: #fafafa;
+  border-radius: 2px;
+}
+
+.kuaijing-app .cus-preview-card small {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+}
+
+.kuaijing-app .cus-field-note {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+}
+
+.kuaijing-app .cus-range {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kuaijing-app .cus-tag-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.kuaijing-app .cus-tag-filter {
+  width: 200px;
+}
+
+.kuaijing-app .cus-alert {
+  padding: 8px 12px;
+  margin-bottom: 14px;
+  color: #1677ff;
+  font-size: 14px;
+  background: #e6f4ff;
+  border: 1px solid #91caff;
+  border-radius: 2px;
+}
+
+.kuaijing-app .cus-field-card {
+  padding: 14px 16px;
+  background: #fff;
+  border: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .cus-field-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.kuaijing-app .cus-field-head strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+}
+
+.kuaijing-app .cus-field-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  color: #1677ff;
+  font-size: 12px;
+  background: #e6f4ff;
+  border-radius: 10px;
+}
+
+.kuaijing-app .cus-field-search {
+  width: 200px;
+  margin-left: auto;
+}
+
+.kuaijing-app .cus-sort-input {
+  width: 80px;
+}
+
+.kuaijing-app .cus-logo-upload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  color: rgba(0, 0, 0, 0.45);
+  background: #fafafa;
+  border: 1px dashed #d9d9d9;
+  cursor: pointer;
+}
+
+.kuaijing-app .cus-editor {
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+}
+
+.kuaijing-app .cus-editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 6px 10px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 12px;
+  background: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .cus-editor-count {
+  margin-left: auto;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.kuaijing-app .cus-editor-body {
+  height: 140px;
+  border: none;
+  resize: vertical;
+}
+
+/* People ----------------------------------------------------------------- */
+
+.kuaijing-app .cus-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: end;
+  gap: 14px 16px;
+}
+
+.kuaijing-app .cus-filter-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kuaijing-app .cus-input-with-icon {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.kuaijing-app .cus-input-with-icon .sk-input {
+  flex: 1;
+  padding-right: 30px;
+}
+
+.kuaijing-app .cus-input-icon {
+  display: inline-flex;
+  align-items: center;
+  color: #1677ff;
+  font-size: 15px;
+}
+
+.kuaijing-app .cus-input-with-icon .cus-input-icon {
+  position: absolute;
+  right: 8px;
+  pointer-events: none;
+}
+
+.kuaijing-app .cus-face-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.kuaijing-app .cus-face-actions .sk-btn {
+  min-width: 88px;
+}
+
+/* IC cards --------------------------------------------------------------- */
+
+.kuaijing-app .cus-ic-page {
+  padding: 18px 20px 24px;
+}
+
+.kuaijing-app .cus-ic-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 18px;
+}
+
+.kuaijing-app .cus-ic-head strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.kuaijing-app .cus-ic-filter {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  padding-bottom: 6px;
+}
+
+.kuaijing-app .cus-ic-filter .of-field:first-child {
+  width: 490px;
+}
+
+.kuaijing-app .cus-ic-filter .of-field:nth-child(2) {
+  width: 490px;
+}
+
+.kuaijing-app .cus-ic-actions {
+  display: flex;
+  gap: 8px;
+  padding-bottom: 1px;
+}
+
+.kuaijing-app .cus-rfid {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0 12px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 12px;
+}
+
+.kuaijing-app .cus-rfid-dot {
+  width: 6px;
+  height: 6px;
+  background: #faad14;
+  border-radius: 50%;
+}
+
+.kuaijing-app .cus-rfid-icon {
+  padding: 0 2px;
+  color: #1677ff;
+  font-size: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.kuaijing-app .cus-ic-page .sk-table-wrap {
+  border: 1px solid #f0f0f0;
+  border-radius: 2px;
+}
+
+/* Analysis --------------------------------------------------------------- */
+
+.kuaijing-app .cus-analysis-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 16px;
+}
+
+.kuaijing-app .cus-analysis-select {
+  width: 150px;
+}
+
+.kuaijing-app .cus-chart-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.kuaijing-app .cus-chart-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+  padding: 14px 16px 12px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.kuaijing-app .cus-chart-head {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.kuaijing-app .cus-chart-head strong {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.kuaijing-app .cus-chart-body {
+  flex: 1;
+  min-height: 128px;
+  padding-top: 12px;
+}
+
+.kuaijing-app .cus-chart-empty {
+  height: 100%;
+  min-height: 128px;
+}
+
+.kuaijing-app .cus-hbar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 6px;
+}
+
+.kuaijing-app .cus-hbar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 16px;
+}
+
+.kuaijing-app .cus-hbar-label {
+  flex: none;
+  width: 56px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 12px;
+  text-align: right;
+}
+
+.kuaijing-app .cus-hbar-value {
+  flex: none;
+  width: 16px;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 11px;
+}
+
+.kuaijing-app .cus-hbar-grid {
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 16px;
+}
+
+.kuaijing-app .cus-hbar-grid i {
+  width: 1px;
+  height: 16px;
+  background: #f0f0f0;
+}
+
+.kuaijing-app .cus-vbar {
+  position: relative;
+  display: flex;
+  height: 128px;
+  padding-left: 18px;
+}
+
+.kuaijing-app .cus-vbar-zero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 11px;
+}
+
+.kuaijing-app .cus-vbar-plot {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.kuaijing-app .cus-vbar-axis {
+  height: 1px;
+  background: #d9d9d9;
+}
+
+.kuaijing-app .cus-vbar-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  padding-top: 4px;
+}
+
+.kuaijing-app .cus-vbar-labels span {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 11px;
+  white-space: nowrap;
+  transform: rotate(-45deg);
+  transform-origin: top left;
+  margin-top: 2px;
+}
+
+.kuaijing-app .cus-vbar-labels span:first-child {
+  transform: rotate(-45deg) translateX(-6px);
+}
+
+.kuaijing-app .cus-pie-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 128px;
+}
+
+.kuaijing-app .cus-pie {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+}
+
+.kuaijing-app .cus-pie.is-tiny {
+  width: 46px;
+  height: 46px;
+}
+
+.kuaijing-app .cus-pie-wrap.is-small {
+  align-items: flex-end;
+  padding-bottom: 4px;
+}
+
+.kuaijing-app .cus-pie-callout {
+  position: absolute;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 11px;
+}
+
+.kuaijing-app .cus-pie-callout.is-male {
+  top: 20px;
+  left: calc(50% - 88px);
+}
+
+.kuaijing-app .cus-pie-callout.is-female {
+  top: 32px;
+  left: calc(50% - 88px);
+}
+
+.kuaijing-app .cus-pie-callout.is-unknown {
+  right: calc(50% - 92px);
+  bottom: 18px;
+}
+
+.kuaijing-app .cus-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  padding-top: 6px;
+}
+
+.kuaijing-app .cus-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.kuaijing-app .cus-legend-item i {
+  width: 9px;
+  height: 9px;
+  border-radius: 1px;
+}
+
+.kuaijing-app .cus-legend-pager {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 11px;
+}
+
+.kuaijing-app .cus-field-manage {
+  padding: 0;
+}
+
+.kuaijing-app .cus-table-wrap {
+  overflow-x: auto;
+}
+
+.kuaijing-app .cus-field-table th {
+  white-space: nowrap;
+}
+
+.kuaijing-app .cus-field-table .cus-field-name {
+  width: 100%;
+  min-width: 120px;
+}
+
+.kuaijing-app .cus-switch-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.kuaijing-app .cus-switch-cell .sk-switch {
+  width: 36px;
+  height: 18px;
+}
+
+.kuaijing-app .cus-switch-cell .sk-switch-inner {
+  display: none;
+}
+
+@media (max-width: 1280px) {
+  .kuaijing-app .cus-filter-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .kuaijing-app .cus-chart-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .kuaijing-app .cus-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .kuaijing-app .cus-filter-grid,
+  .kuaijing-app .cus-chart-grid,
+  .kuaijing-app .cus-form-grid.is-three,
+  .kuaijing-app .cus-photo-row,
+  .kuaijing-app .cus-detail-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}

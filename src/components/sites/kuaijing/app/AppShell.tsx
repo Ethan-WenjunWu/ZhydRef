@@ -13,6 +13,7 @@ import {
 import {
   ACCOUNT,
   ASSET_PAGE_BY_KEY,
+  CUSTOMER_PAGE_BY_KEY,
   DATA_PAGE_BY_KEY,
   INVEST_PAGE_BY_KEY,
   NOTICES,
@@ -24,6 +25,7 @@ import {
   SIDEBAR,
   TOP_MODULES,
   assetHref,
+  customerHref,
   dataHref,
   investHref,
   officeHref,
@@ -106,6 +108,7 @@ type AppShellProps = {
   sidebarTitle?: string;
   sidebarTitleIcon?: string;
   activeLeafKey?: string;
+  activeTabKey?: string;
   tabTitle?: string;
   tabIcon?: string;
   leafHref?: (key: string) => string | undefined;
@@ -139,12 +142,14 @@ export function AppShell({
   sidebarTitle = "数据中心",
   sidebarTitleIcon = "org-menu-zonglan-xuanzhong",
   activeLeafKey = "menu-workbench-999999999",
+  activeTabKey,
   tabTitle = "工作台",
   tabIcon = "org-menu-gongzuotai",
   leafHref,
   newTabKeys = [],
 }: AppShellProps) {
   const router = useRouter();
+  const currentTabKey = activeTabKey ?? activeLeafKey;
   const [collapsed, setCollapsed] = useState(false);
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>(() => {
     const keys = collectGroupKeys(sidebar, activeLeafKey) ?? [];
@@ -177,15 +182,16 @@ export function AppShell({
       activeTopKey === "menu-workProperty-220001" ||
       activeTopKey === "menu-orgLouyu-30005" ||
       activeTopKey === "menu-attractInvestment-30001" ||
+      activeTopKey === "menu-owner-39999" ||
       (activeTopKey === "menu-home-30004" && DATA_PAGE_BY_KEY[activeLeafKey])
     ) {
-      openSiteTab(activeLeafKey);
+      openSiteTab(currentTabKey);
     }
-  }, [activeTopKey, activeLeafKey]);
+  }, [activeTopKey, activeLeafKey, currentTabKey]);
 
   useEffect(() => {
     activeTabRef.current?.scrollIntoView({ inline: "nearest", block: "nearest" });
-  }, [activeLeafKey, openTabs]);
+  }, [currentTabKey, openTabs]);
 
   useEffect(() => {
     const el = topMenuRef.current;
@@ -267,6 +273,8 @@ export function AppShell({
       router.push("/orgs/resource/rent-control");
     } else if (key === "menu-attractInvestment-30001") {
       router.push("/orgs/investment/investment-projects");
+    } else if (key === "menu-owner-39999") {
+      router.push("/orgs/customer/tenants");
     }
     setOverflowOpen(false);
   };
@@ -285,14 +293,15 @@ export function AppShell({
     activeTopKey === "menu-workProperty-220001" ||
     activeTopKey === "menu-orgLouyu-30005" ||
     activeTopKey === "menu-attractInvestment-30001" ||
+    activeTopKey === "menu-owner-39999" ||
     isDataPage;
   const moduleTabKeys = openTabs.filter((key) => key !== WORKBENCH_TAB);
   if (
     isModulePage &&
-    activeLeafKey !== WORKBENCH_TAB &&
-    !moduleTabKeys.includes(activeLeafKey)
+    currentTabKey !== WORKBENCH_TAB &&
+    !moduleTabKeys.includes(currentTabKey)
   ) {
-    moduleTabKeys.push(activeLeafKey);
+    moduleTabKeys.push(currentTabKey);
   }
 
   const filteredNotices = NOTICES.filter((item) => {
@@ -496,8 +505,8 @@ export function AppShell({
               ) : null}
 
               {moduleTabKeys.map((key) => {
-                const page = SETTINGS_PAGE_BY_KEY[key] ?? OFFICE_PAGE_BY_KEY[key] ?? PROPERTY_PAGE_BY_KEY[key] ?? OPERATION_PAGE_BY_KEY[key] ?? DATA_PAGE_BY_KEY[key] ?? ASSET_PAGE_BY_KEY[key] ?? RESOURCE_PAGE_BY_KEY[key] ?? INVEST_PAGE_BY_KEY[key];
-                const active = !isWorkbench && key === activeLeafKey;
+                const page = SETTINGS_PAGE_BY_KEY[key] ?? OFFICE_PAGE_BY_KEY[key] ?? PROPERTY_PAGE_BY_KEY[key] ?? OPERATION_PAGE_BY_KEY[key] ?? DATA_PAGE_BY_KEY[key] ?? ASSET_PAGE_BY_KEY[key] ?? RESOURCE_PAGE_BY_KEY[key] ?? INVEST_PAGE_BY_KEY[key] ?? CUSTOMER_PAGE_BY_KEY[key];
+                const active = !isWorkbench && key === currentTabKey;
                 const name = page?.name ?? (active ? tabTitle : key);
                 const icon = page?.icon ?? tabIcon;
                 return (
@@ -506,7 +515,7 @@ export function AppShell({
                     ref={active ? activeTabRef : undefined}
                     className={`ka-tab${active ? " is-active" : ""}`}
                     onClick={() => {
-                      const href = settingsHref(key) ?? officeHref(key) ?? propertyHref(key) ?? operationHref(key) ?? dataHref(key) ?? assetHref(key) ?? resourceHref(key) ?? investHref(key);
+                      const href = settingsHref(key) ?? officeHref(key) ?? propertyHref(key) ?? operationHref(key) ?? dataHref(key) ?? assetHref(key) ?? resourceHref(key) ?? investHref(key) ?? customerHref(key);
                       if (href) router.push(href);
                     }}
                   >
@@ -599,7 +608,7 @@ export function AppShell({
                     disabled={isWorkbench}
                     onClick={() => {
                       setTabMenuOpen(false);
-                      closeSiteTab(activeLeafKey);
+                      closeSiteTab(currentTabKey);
                       router.push("/orgs/index");
                     }}
                   >
@@ -612,7 +621,7 @@ export function AppShell({
                     disabled={isWorkbench || moduleTabKeys.length <= 1}
                     onClick={() => {
                       setTabMenuOpen(false);
-                      closeOtherSiteTabs(activeLeafKey);
+                      closeOtherSiteTabs(currentTabKey);
                     }}
                   >
                     <CloseCircleIcon />
